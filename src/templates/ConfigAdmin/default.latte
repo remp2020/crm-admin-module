@@ -1,0 +1,24 @@
+{block #content}
+
+<div class="row">
+  <div class="col-md-12">
+    <h1 n:block="title">{_application.admin.configs.default.header}</h1>
+    <hr>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <ul class="nav nav-tabs">
+      <li n:foreach="$categories as $category" role="presentation" n:class="$category->id == $actualCategory->id ? active">
+        <a n:href="ConfigAdmin:default $category->id" role="button">
+          <span class="{$category->icon} fa-fw"></span>
+          {$category->name}
+        </a>
+      </li>
+    </ul>
+
+    <div style="margin-top:4em">
+      {control configForm}
+    </div>
+  </div>
+</div>

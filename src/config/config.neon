@@ -1,0 +1,6 @@
+services:
+	moduleManager:
+		setup:
+			- addModule(Crm\AdminModule\AdminModule())
+
+	- Crm\AdminModule\Components\DateFilterFormFactory

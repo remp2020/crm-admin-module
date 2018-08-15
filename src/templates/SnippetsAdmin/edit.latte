@@ -1,0 +1,28 @@
+{block #title}{_application.admin.snippets.edit.title}{/block}
+
+{block head}
+  <link rel="stylesheet" href="{$basePath}/layouts/admin/vendors/highlight/styles/monokai.css">
+  <script src="{$basePath}/layouts/admin/vendors/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+{/block}
+
+{block #content}
+
+<div class="row">
+  <div class="col-md-12">
+    <a n:href="show $snippet->id"><i class="fa fa-angle-left"></i> {_application.admin.snippets.edit.back}</a>
+    <div class="page-header">
+      <h1>
+        {_application.admin.snippets.edit.header}
+        <small>[{$snippet->id}]</small>
+      	{$snippet->title}
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+    {control snippetForm}
+  </div>
+</div>

@@ -1,0 +1,78 @@
+{block #content}
+
+<div class="row">
+
+  <div class="col-md-12">
+    <h1 n:block="title">{_application.admin.audit_log.default.header}</h1>
+    <hr>
+  </div>
+
+</div>
+
+<div class="row">
+
+  <div class="col-md-12">
+    {control filterForm}
+    <hr />
+  </div>
+
+  <div class="col-md-12">
+    {if $count > 0}
+      <table class="table table-striped table-hover table-bordered">
+        <thead>
+        <tr>
+          <th>{_application.admin.audit_log.default.operation}</th>
+          <th>{_application.admin.audit_log.default.table}</th>
+          <th>{_application.admin.audit_log.default.signature}</th>
+          <th>{_application.admin.audit_log.default.change}</th>
+          <th>{_application.admin.audit_log.default.changed_by}</th>
+          <th>{_application.admin.audit_log.default.created_at}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr n:foreach="$records as $record">
+          {var $decoded = json_decode($record->data, 1)}
+
+          <td><span class="label label-default">{$record->operation}</span></td>
+          <td><code>{$record->table_name}</code></td>
+          <td>{$record->signature}</td>
+
+          <td width="50%">
+            {var $changes = array_merge($decoded['from'], $decoded['to'])}
+
+            <div n:foreach="$changes as $key => $value">
+              <table width="100%" style="table-layout: fixed;">
+                <tr title="{$key}" data-toggle="tooltip" data-placement="left">
+                  <td width="20%" class="text-muted"><small>{$key}</small></td>
+                  <td width="37%"><pre>{if empty($decoded['from'][$key])}<em>-</em>{else}{$decoded['from'][$key]}{/if}</pre></td>
+                  <td style="font-size: 2rem; vertical-align: initial;padding:0.5rem 0.5rem 0.5rem 2rem;">&rarr;</td>
+                  <td width="37%"><pre>{if empty($decoded['to'][$key])}<em>-</em>{else}{$decoded['to'][$key]}{/if}</pre></td>
+                </tr>
+              </table>
+            </div>
+          </td>
+          <td><a n:if="$record->user" n:href=":Users:UsersAdmin:default text => $record->user->email">{$record->user->email}</a></td>
+          <td class="text-muted">{$record->created_at|userDate}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    {control vp}
+    {else}
+      <p>Nenasli sa ziadne zaznamy ktore by zodpovedali filtru</p>
+    {/if}
+  </div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $('#frm-filterForm-created_at_from').datetimepicker({
+            format: 'YYYY-MM-DD',
+            defaultDate: {$createdAtFrom}
+        });
+        $('#frm-filterForm-created_at_to').datetimepicker({
+            format: 'YYYY-MM-DD',
+            defaultDate: {$createdAtTo}
+        });
+    });
+</script>

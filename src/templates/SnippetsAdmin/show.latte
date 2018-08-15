@@ -1,0 +1,63 @@
+{block head}
+  <link rel="stylesheet" href="{$basePath}/layouts/admin/vendors/highlight/styles/monokai.css">
+  <script src="{$basePath}/layouts/admin/vendors/highlight/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+{/block}
+
+{block #content}
+
+<div class="row">
+  <div class="col-md-12">
+    <a n:href="default"><i class="fa fa-angle-left"></i> {_application.admin.snippets.show.back}</a>
+    <div class="page-header">
+      <h1>
+        <small>[{$snippet->id}]</small>
+        <span n:block="title">
+          {$snippet->title}
+        </span>
+      	<a n:href="edit $snippet->id" class="btn btn-primary btn-lg pull-right"><i class="fa fa-pencil"></i> {_application.admin.snippets.show.edit}</a>
+      </h1>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">{_application.admin.snippets.show.basic_informations}</div>
+      <ul class="list-group">
+        <li class="list-group-item"><b>{_application.data.snippets.fields.identifier}:</b> <code>{$snippet->identifier}</code></li>
+        <li class="list-group-item"><b>{_system.fields.created}:</b> <span class="text-muted">{$snippet->created_at|userDate}</span></li>
+        <li class="list-group-item"><b>{_system.fields.updated}:</b> <span class="text-muted">{$snippet->updated_at|userDate}</span></li>
+        <li class="list-group-item">
+          <b>{_application.data.snippets.fields.is_active}:</b>
+          {if $snippet->is_active}
+            <span class="label label-success"><i class="fa fa-check-circle"></i></span>
+          {else}
+            <span class="label label-default"><i class="fa fa-times-circle"></i></span>
+          {/if}
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">{_application.admin.snippets.show.usage_informations}</div>
+      <ul class="list-group">
+        <li class="list-group-item"><b>{_application.data.snippets.fields.total_used}:</b> {$snippet->total_used}</li>
+        <li class="list-group-item"><b>{_application.data.snippets.fields.last_used}:</b> <span n:if="$snippet->last_used" class="text-muted">{$snippet->last_used|userDate}</span></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>{_application.data.snippets.fields.html}</h3>
+    <pre><code class="html">{$snippet->html}</code></pre>
+  </div>
+</div>
+

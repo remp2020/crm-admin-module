@@ -1,0 +1,69 @@
+{block #content}
+
+<div class="row">
+    <div class="col-md-12">
+        <h1 n:block="title">{_application.admin.background.default.header}</h1>
+        <hr>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Typy</div>
+                    <ul class="list-group">
+                        <li n:foreach="$typeCounts as $type => $count" class="list-group-item">
+                            {$type}
+                            <div class="pull-right">
+                                <span class="label label-primary" title="enqueued">{$count['enqueued']}</span>
+                                <span class="label label-success" title="passed">{$count['done']}</span>
+                                <span class="label label-danger" title="failed">{$count['error']}</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Stavy</div>
+                    <ul class="list-group">
+                        <li n:foreach="$stateCounts as $state => $count" class="list-group-item">
+                            {$state} <span class="badge">{$count}</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        {control backgroundJobsGraph}
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Enqueued Jobs</h3>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <th>Id</th>
+            <th>Type</th>
+            <th>Payload</th>
+            <th>Process At</th>
+            </thead>
+            <tbody>
+            <tr n:foreach="$enqueuedTasks as $task">
+                <td><small>{$task['id']}</small></td>
+                <td>{$task['type']}</td>
+                <td><code>{$task['payload']}</code></td>
+                <td>{$task['processAt']}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
