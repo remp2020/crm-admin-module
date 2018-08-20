@@ -90,7 +90,7 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
             ->setWhere('AND state="done"')
             ->setValueField('COUNT(*)')
             ->setStart('-1 month'))
-            ->setName('Done');
+            ->setName($this->translator->translate('admin.admin.background_jobs.default.states.done'));
 
         $graphDataItem2 = new GraphDataItem();
         $graphDataItem2->setCriteria((new Criteria())
@@ -99,11 +99,11 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
             ->setWhere('AND state="error"')
             ->setValueField('COUNT(*)')
             ->setStart('-1 month'))
-            ->setName('Error');
+            ->setName($this->translator->translate('admin.admin.background_jobs.default.states.error'));
 
         $control = $factory->create()
-            ->setGraphTitle('Background jobs')
-            ->setGraphHelp('Background jobs in time')
+            ->setGraphTitle($this->translator->translate('admin.admin.background_jobs.default.graph.title'))
+            ->setGraphHelp($this->translator->translate('admin.admin.background_jobs.default.graph.tooltip'))
             ->addGraphDataItem($graphDataItem1)
             ->addGraphDataItem($graphDataItem2);
 

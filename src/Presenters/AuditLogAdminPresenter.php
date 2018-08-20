@@ -41,29 +41,29 @@ class AuditLogAdminPresenter extends AdminPresenter
         $form->setRenderer(new BootstrapInlineRenderer());
 
         $form->addSelect('operation', '', [
-            AuditLogRepository::OPERATION_CREATE => 'Create',
-            AuditLogRepository::OPERATION_UPDATE => 'Update',
-            AuditLogRepository::OPERATION_DELETE => 'Delete',
+            AuditLogRepository::OPERATION_CREATE => $this->translate('default.operation.create'),
+            AuditLogRepository::OPERATION_UPDATE => $this->translate('default.operation.update'),
+            AuditLogRepository::OPERATION_DELETE => $this->translate('default.operation.delete'),
         ])
-            ->setPrompt($this->translate('default.operation'))
+            ->setPrompt($this->translate('default.operation.title'))
             ;
 
         $form->addText('table', $this->translate('default.table'))
-            ->setAttribute('placeholder', $this->translator->translate('application.common.eg') .' users');
+            ->setAttribute('placeholder', $this->translate('default.eg') .' users');
 
         $form->addText('signature', $this->translate('default.signature'))
-            ->setAttribute('placeholder', $this->translator->translate('application.common.eg') .' 12345');
+            ->setAttribute('placeholder', $this->translate('default.eg') .' 12345');
 
         $form->addText('created_at_from', $this->translate('default.created_at_from'))
-            ->setAttribute('placeholder', $this->translator->translate('application.common.eg').' 2016-02-29');
+            ->setAttribute('placeholder', $this->translate('default.eg').' 2016-02-29');
 
         $form->addText('created_at_to', $this->translate('default.created_at_to'))
-            ->setAttribute('placeholder', $this->translator->translate('application.common.eg').' 2020-02-29');
+            ->setAttribute('placeholder', $this->translate('default.eg').' 2020-02-29');
 
         $form->addSubmit('send', $this->translate('default.filter'))
             ->getControlPrototype()
             ->setName('button')
-            ->setHtml('<i class="fa fa-filter"></i> Filter');
+            ->setHtml('<i class="fa fa-filter"></i> ' . $this->translate('default.filter'));
 
         $presenter = $this;
         $form->addSubmit('cancel', $this->translate('default.cancel_filter'))
@@ -96,19 +96,19 @@ class AuditLogAdminPresenter extends AdminPresenter
     private function getFilteredLogs()
     {
         $auditRecords = $this->auditLogRepository->getTable();
-        if (($value = $this->request->getParameter('table')) != null) {
+        if (($value = $this->request->getParameter('table')) !== null) {
             $auditRecords->where('table_name', $value);
         }
-        if (($value = $this->request->getParameter('signature')) != null) {
+        if (($value = $this->request->getParameter('signature')) !== null) {
             $auditRecords->where('signature', $value);
         }
-        if (($value = $this->request->getParameter('operation')) != null) {
+        if (($value = $this->request->getParameter('operation')) !== null) {
             $auditRecords->where('operation', $value);
         }
-        if (($value = $this->request->getParameter('created_at_from')) != null) {
+        if (($value = $this->request->getParameter('created_at_from')) !== null) {
             $auditRecords->where('created_at > ?', $value);
         }
-        if (($value = $this->request->getParameter('created_at_to')) != null) {
+        if (($value = $this->request->getParameter('created_at_to')) !== null) {
             $auditRecords->where('created_at < ?', $value);
         }
         $auditRecords->order('created_at DESC');
@@ -117,6 +117,6 @@ class AuditLogAdminPresenter extends AdminPresenter
 
     private function translate($key)
     {
-        return $this->translator->translate('application.admin.audit_log.' . $key);
+        return $this->translator->translate('admin.admin.audit_log.' . $key);
     }
 }

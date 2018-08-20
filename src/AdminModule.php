@@ -40,7 +40,7 @@ class AdminModule extends CrmModule
         $mainMenu = new MenuItem('', ':Application:Admin:', 'fa fa-cog', 900, true);
 
         $menuItem1 = new MenuItem(
-            $this->translator->translate('application.menu.settings'),
+            $this->translator->translate('admin.menu.settings'),
             ':Admin:ConfigAdmin:',
             'fa fa-wrench',
             100,
@@ -49,7 +49,7 @@ class AdminModule extends CrmModule
         $mainMenu->addChild($menuItem1);
 
         $menuItem2 = new MenuItem(
-            $this->translator->translate('application.menu.background_jobs'),
+            $this->translator->translate('admin.menu.background_jobs'),
             ':Admin:BackgroundStatusAdmin:',
             'fa fa-refresh',
             200,
@@ -58,7 +58,7 @@ class AdminModule extends CrmModule
         $mainMenu->addChild($menuItem2);
 
         $menuItem4 = new MenuItem(
-            $this->translator->translate('application.menu.snippets'),
+            $this->translator->translate('admin.menu.snippets'),
             ':Admin:SnippetsAdmin:',
             'fa fa-eyedropper',
             400,
@@ -67,7 +67,7 @@ class AdminModule extends CrmModule
         $mainMenu->addChild($menuItem4);
 
         $menuItem5 = new MenuItem(
-            $this->translator->translate('application.menu.audit_log'),
+            $this->translator->translate('admin.menu.audit_log'),
             ':Admin:AuditLogAdmin:',
             'fa fa-list-ul',
             500,

@@ -44,7 +44,7 @@ class SnippetsAdminPresenter extends AdminPresenter
     {
         $snippet = $this->snippetsRepository->find($id);
         $this->snippetsRepository->delete($snippet);
-        $this->flashMessage($this->translator->translate('application.admin.snippets.messages.snippet_deleted'));
+        $this->flashMessage($this->translator->translate('admin.admin.snippets.messages.snippet_deleted'));
         $this->redirect('default');
     }
 
@@ -56,11 +56,11 @@ class SnippetsAdminPresenter extends AdminPresenter
         }
         $form = $this->snippetFormFactory->create($snippet);
         $this->snippetFormFactory->onCreate = function (IRow $snippet) {
-            $this->flashMessage($this->translator->translate('application.admin.snippets.messages.snippet_created'));
+            $this->flashMessage($this->translator->translate('admin.admin.snippets.messages.snippet_created'));
             $this->redirect('show', $snippet->id);
         };
         $this->snippetFormFactory->onUpdate = function (IRow $snippet) {
-            $this->flashMessage($this->translator->translate('application.admin.snippets.messages.snippet_updated'));
+            $this->flashMessage($this->translator->translate('admin.admin.snippets.messages.snippet_updated'));
             $this->redirect('show', $snippet->id);
         };
         return $form;

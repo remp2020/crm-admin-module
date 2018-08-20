@@ -42,7 +42,7 @@ class ConfigAdminPresenter extends AdminPresenter
 
         $form = $configFormFactory->create($actualCategory);
         $configFormFactory->onSave = function ($categoryId) {
-            $this->flashMessage($this->translator->translate('application.admin.configs.messages.settings_saved'));
+            $this->flashMessage($this->translator->translate('admin.admin.configs.messages.settings_saved'));
             $this->redirect('ConfigAdmin:default', $categoryId);
         };
         return $form;

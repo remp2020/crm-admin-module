@@ -3,7 +3,7 @@
 <div class="row">
 
   <div class="col-md-12">
-    <h1 n:block="title">{_application.admin.audit_log.default.header}</h1>
+    <h1 n:block="title">{_admin.admin.audit_log.default.header}</h1>
     <hr>
   </div>
 
@@ -21,19 +21,19 @@
       <table class="table table-striped table-hover table-bordered">
         <thead>
         <tr>
-          <th>{_application.admin.audit_log.default.operation}</th>
-          <th>{_application.admin.audit_log.default.table}</th>
-          <th>{_application.admin.audit_log.default.signature}</th>
-          <th>{_application.admin.audit_log.default.change}</th>
-          <th>{_application.admin.audit_log.default.changed_by}</th>
-          <th>{_application.admin.audit_log.default.created_at}</th>
+          <th>{_admin.admin.audit_log.default.operation.title}</th>
+          <th>{_admin.admin.audit_log.default.table}</th>
+          <th>{_admin.admin.audit_log.default.signature}</th>
+          <th>{_admin.admin.audit_log.default.change}</th>
+          <th>{_admin.admin.audit_log.default.changed_by}</th>
+          <th>{_admin.admin.audit_log.default.created_at}</th>
         </tr>
         </thead>
         <tbody>
         <tr n:foreach="$records as $record">
           {var $decoded = json_decode($record->data, 1)}
 
-          <td><span class="label label-default">{$record->operation}</span></td>
+          <td><span class="label label-default">{_admin.admin.audit_log.default.operation.$record->operation|lower}</span></td>
           <td><code>{$record->table_name}</code></td>
           <td>{$record->signature}</td>
 
@@ -59,7 +59,7 @@
 
     {control vp}
     {else}
-      <p>Nenasli sa ziadne zaznamy ktore by zodpovedali filtru</p>
+      <p>{_admin.admin.audit_log.default.no_records}</p>
     {/if}
   </div>
 </div>

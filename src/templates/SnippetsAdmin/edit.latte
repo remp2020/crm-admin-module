@@ -1,4 +1,4 @@
-{block #title}{_application.admin.snippets.edit.title}{/block}
+{block #title}{_admin.admin.snippets.edit.title, ['snippetTitle' => $snippet->title]}{/block}
 
 {block head}
   <link rel="stylesheet" href="{$basePath}/layouts/admin/vendors/highlight/styles/monokai.css">
@@ -10,12 +10,11 @@
 
 <div class="row">
   <div class="col-md-12">
-    <a n:href="show $snippet->id"><i class="fa fa-angle-left"></i> {_application.admin.snippets.edit.back}</a>
+    <a n:href="show $snippet->id"><i class="fa fa-angle-left"></i> {_admin.admin.snippets.edit.back}</a>
     <div class="page-header">
       <h1>
-        {_application.admin.snippets.edit.header}
+        {_admin.admin.snippets.edit.title, ['snippetTitle' => $snippet->title]}
         <small>[{$snippet->id}]</small>
-      	{$snippet->title}
       </h1>
     </div>
   </div>

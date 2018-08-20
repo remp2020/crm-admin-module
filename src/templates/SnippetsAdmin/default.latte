@@ -1,14 +1,14 @@
-{block #title}{_application.admin.snippets.default.title}{/block}
+{block #title}{_admin.admin.snippets.default.title}{/block}
 
 {block #content}
 
 <div class="row">
   <div class="col-md-12">
     <h2>
-      {_application.admin.snippets.default.title}
+      {_admin.admin.snippets.default.title}
       <small> / {_system.total} {count($snippets)}
       </small>
-      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper-o"></i> {_application.admin.snippets.default.new}</a>
+      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper-o"></i> {_admin.admin.snippets.default.new}</a>
     </h2>
     <hr>
   </div>
@@ -16,9 +16,9 @@
     <table class="table table-striped table-hover table-bordered">
       <thead>
         <tr>
-          <th>{_application.data.snippets.fields.title}</th>
-          <th>{_application.data.snippets.fields.identifier}</th>
-          <th>{_application.data.snippets.fields.total_used}</th>
+          <th>{_admin.data.snippets.fields.title}</th>
+          <th>{_admin.data.snippets.fields.identifier}</th>
+          <th>{_admin.data.snippets.fields.total_used}</th>
           <th>{_system.fields.created}</th>
           <th>{_system.actions}</th>
         </tr>
@@ -39,7 +39,7 @@
               {$snippet->total_used|number} /
               <small class="text-muted">{$snippet->last_used|userDate}</small>
             {else}
-              <small class="text-muted">n/a</small>
+              <small class="text-muted">{_admin.data.snippets.no_record}</small>
             {/if}
           </td>
           <td class="text-muted">{$snippet->created_at|userDate}</td>

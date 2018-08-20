@@ -2,7 +2,7 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h1 n:block="title">{_application.admin.background.default.header}</h1>
+        <h1 n:block="title">{_admin.admin.background_jobs.default.header}</h1>
         <hr>
     </div>
 </div>
@@ -12,14 +12,14 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Typy</div>
+                    <div class="panel-heading">{_admin.admin.background_jobs.default.types.title}</div>
                     <ul class="list-group">
                         <li n:foreach="$typeCounts as $type => $count" class="list-group-item">
                             {$type}
                             <div class="pull-right">
-                                <span class="label label-primary" title="enqueued">{$count['enqueued']}</span>
-                                <span class="label label-success" title="passed">{$count['done']}</span>
-                                <span class="label label-danger" title="failed">{$count['error']}</span>
+                                <span class="label label-primary" title="{_admin.admin.background_jobs.default.states.enqueued}">{$count['enqueued']}</span>
+                                <span class="label label-success" title="{_admin.admin.background_jobs.default.states.done}">{$count['done']}</span>
+                                <span class="label label-danger" title="{_admin.admin.background_jobs.default.states.error}">{$count['error']}</span>
                             </div>
                         </li>
                     </ul>
@@ -30,10 +30,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Stavy</div>
+                    <div class="panel-heading">{_admin.admin.background_jobs.default.states.title}</div>
                     <ul class="list-group">
                         <li n:foreach="$stateCounts as $state => $count" class="list-group-item">
-                            {$state} <span class="badge">{$count}</span>
+                            {_admin.admin.background_jobs.default.states.$state} <span class="badge">{$count}</span>
                         </li>
                     </ul>
                 </div>
@@ -48,13 +48,13 @@
 
 <div class="row">
     <div class="col-md-12">
-        <h3>Enqueued Jobs</h3>
+        <h3>{_admin.admin.background_jobs.default.enqueued_jobs.title}</h3>
         <table class="table table-striped table-hover table-bordered">
             <thead>
-            <th>Id</th>
-            <th>Type</th>
-            <th>Payload</th>
-            <th>Process At</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.id}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.type}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.payload}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.processed_at}</th>
             </thead>
             <tbody>
             <tr n:foreach="$enqueuedTasks as $task">
