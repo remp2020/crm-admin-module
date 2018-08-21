@@ -2,8 +2,8 @@
 
 namespace Crm\AdminModule\Presenters;
 
+use Crm\AdminModule\Forms\ConfigFormFactory;
 use Crm\ApplicationModule\Config\Repository\ConfigCategoriesRepository;
-use Crm\ApplicationModule\Forms\ConfigFormFactory;
 
 class ConfigAdminPresenter extends AdminPresenter
 {
