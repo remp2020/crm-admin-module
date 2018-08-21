@@ -3,7 +3,6 @@
 namespace Crm\AdminModule\Presenters;
 
 use Crm\ApplicationModule\Components\AdminMenuFactoryInterface;
-use Crm\ApplicationModule\Components\DetailWidgetFactoryInterface;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;
@@ -53,11 +52,5 @@ class AdminPresenter extends BasePresenter
         $adminMenu->setMenuItems($this->applicationManager->getAdminMenuItems());
 
         return $adminMenu;
-    }
-
-    protected function createComponentDetailWidget(DetailWidgetFactoryInterface $factory)
-    {
-        $control = $factory->create();
-        return $control;
     }
 }
