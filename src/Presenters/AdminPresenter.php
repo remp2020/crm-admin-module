@@ -25,18 +25,17 @@ class AdminPresenter extends BasePresenter
     {
         parent::startup();
 
-        if (!$this->getUser()->isLoggedIn()) {
-            $this->redirect(':Users:Sign:In');
-        }
+        $this->onlyLoggedIn();
 
         $userRepository = $this->context->getByType('Crm\UsersModule\Repository\UsersRepository');
         $user = $userRepository->find($this->getUser()->id);
         if (!$user) {
-            $this->redirect(':Users:Sign:In');
+            $this->getUser()->logout(true);
+            $this->redirect($this->applicationConfig->get('not_logged_in_route'), ['back' => $this->storeRequest()]);
         }
 
         if (UsersRepository::ROLE_ADMIN !== $user->role) {
-            $this->redirect(':Users:Sign:In');
+            throw new ForbiddenRequestException();
         }
 
         if (!$this->getUser()->isAllowed($this->getName(), $this->getAction())) {
