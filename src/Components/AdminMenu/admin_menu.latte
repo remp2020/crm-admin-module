@@ -1,0 +1,40 @@
+<ul class="nav navbar-nav" style="font-size: 1.25rem">
+  {foreach $menuItems as $menuItem}
+
+    {if $menuItem->hasSubItems()}
+      {var $actual = false}
+      {foreach $menuItem->subItems() as $subItem}
+        {ifCurrent $subItem->link()}
+          {var $actual = $subItem}
+        {/ifCurrent}
+      {/foreach}
+
+      <li class="dropdown{if $actual} active{/if}">
+        <a href="#" class="dropdown-toggle" data-target="#" data-toggle="dropdown" role="button" aria-expanded="false">
+            <i class="{$menuItem->icon()} fa-fw"></i>
+            <span class="hidden-sm">{$menuItem->name()}</span>
+            <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li n:foreach="$menuItem->subItems() as $subItem" n:class="$subItem == $actual ? active">
+            <a n:if="$subItem->internal()" href="{plink $subItem->link()}">
+                <i class="{$subItem->icon()} fa-fw"></i>{$subItem->name()}
+            </a>
+            <a n:if="!$subItem->internal()" href="{$subItem->link()}">
+                <i class="{$subItem->icon()} fa-fw"></i>{$subItem->name()}
+            </a>
+          </li>
+        </ul>
+      </li>
+    {else}
+        {var $menuItemLink =  $menuItem->link()}
+      <li{ifCurrent $menuItemLink} class="active"{/ifCurrent}>
+        <a n:if="$menuItem->internal()" href="{plink $menuItemLink}"><i class="{$menuItem->icon()}"></i> {$menuItem->name()}</a>
+        <a n:if="!$menuItem->internal()" href="{$menuItemLink}"><i class="{$menuItem->icon()}"></i> {$menuItem->name()}</a>
+      </li>
+    {/if}
+
+  {/foreach}
+</ul>
+
+

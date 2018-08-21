@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Presenters;
 
-use Crm\ApplicationModule\Components\AdminMenuFactoryInterface;
+use Crm\AdminModule\Components\AdminMenuFactoryInterface;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;

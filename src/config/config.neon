@@ -3,6 +3,7 @@ services:
 		setup:
 			- addModule(Crm\AdminModule\AdminModule())
 
+	- Crm\AdminModule\Components\AdminMenuFactoryInterface
 	- Crm\AdminModule\Components\DateFilterFormFactory
 	- Crm\AdminModule\Forms\ConfigFormFactory
 	- Crm\AdminModule\Forms\SnippetFormFactory
