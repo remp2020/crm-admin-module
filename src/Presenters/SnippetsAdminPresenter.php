@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Presenters;
 
-use Crm\ApplicationModule\Forms\SnippetFormFactory;
+use Crm\AdminModule\Forms\SnippetFormFactory;
 use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
 use Nette\Database\Table\IRow;
 

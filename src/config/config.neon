@@ -4,3 +4,5 @@ services:
 			- addModule(Crm\AdminModule\AdminModule())
 
 	- Crm\AdminModule\Components\DateFilterFormFactory
+	- Crm\AdminModule\Forms\ConfigFormFactory
+	- Crm\AdminModule\Forms\SnippetFormFactory
