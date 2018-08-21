@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{ifset #title}{include title|striptags} | {/ifset}{$siteTitle}</title>
+  <meta n:if="$siteDescription" name="description" content="{$siteDescription}">
+  <link rel="stylesheet" href="{$basePath}/layouts/admin/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{$basePath}/layouts/admin/js/jquery-ui.css">
+  <script src="{$basePath}/layouts/admin/js/jquery-1.11.1.min.js"></script>
+  <script src="{$basePath}/layouts/admin/js/jquery-ui.js"></script>
+  <script src="{$basePath}/layouts/admin/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="{$basePath}/layouts/admin/css/admin.css?v=2" rel="stylesheet">
+  <link href="{$basePath}/layouts/admin/css/docs.min.css" rel="stylesheet">
+  <script src="{$basePath}/layouts/admin/js/highcharts.js"></script>
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+  <script type="text/javascript" src="{$basePath}/layouts/admin/js/sparkline.min.js"></script>
+  <link href="{$basePath}/layouts/admin/css/bootstrap-datetimepicker.css" rel="stylesheet">
+  <script src="{$basePath}/layouts/admin/js/moment.js"></script>
+  <script src="{$basePath}/layouts/admin/js/bootstrap-datetimepicker.js"></script>
+  <script src="{$basePath}/layouts/admin/js/nette-ajax/nette.ajax.js"></script>
+  <script src="{$basePath}/layouts/admin/js/netteForms.js"></script>
+  <script src="{$basePath}/layouts/admin/js/jquery.select2.min.js"></script>
+  <link href="{$basePath}/layouts/admin/css/jquery.select2.min.css" rel="stylesheet"/>
+  <script type="text/javascript" src="{$basePath}/layouts/admin/js/jquery.autosize.js"></script>
+
+  <link rel="stylesheet" href="{$basePath}/layouts/dennikn/css/flatpickr.min.css">
+  <script src="{$basePath}/layouts/dennikn/js/flatpickr.js"></script>
+  <script src="{$basePath}/layouts/dennikn/js/flatpickr_sk.js"></script>
+
+  <style>
+    .jqstooltip {
+      width: 50px;
+      height: 25px !important;
+    }
+
+    .navbar-collapse {
+      padding: 0;
+    }
+
+    .nav > li > a {
+      padding: 15px 10px;
+    }
+  </style>
+  <script>
+      // fix dimensions of chart that was in a hidden element
+      jQuery(document).on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) { // on tab selection event
+          jQuery(".contains-chart").each(function () { // target each element with the .contains-chart class
+              if (jQuery(this).data('gchart')) {
+                  window[jQuery(this).data('gchart')]();
+              } else {
+                  var chart = jQuery(this).highcharts(); // target the chart itself
+
+                  chart.reflow(); // reflow that chart
+              }
+          });
+      });
+  </script>
+  {block head}{/block}
+</head>
+
+<body>
+<script> document.documentElement.className += ' js' </script>
+
+<nav class="navbar navbar-default" {if getenv('CRM_ENV') == 'local'} style="background-color:black;"{/if}
+     role="navigation">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+              data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+      {$admin_logo|noescape}
+
+      {control adminMenu}
+
+      <ul class="nav navbar-nav navbar-right">
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            <span class="fa fa-user"></span>
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="{link $homeRoute}"><i class="fa fa-angle-left"></i> Domov</a></li>
+            <li><a href="{link :Users:UsersAdmin:Show $current_user}"><i class="fa fa-user"></i> Profil</a></li>
+            <li class="divider"></li>
+            <li><a href="{link :Users:Sign:Out}"><i class="fa fa-sign-out"></i> Odhlásiť</a></li>
+          </ul>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+
+
+<div class="admin_ontainer" style="padding: 0 20px">
+
+  {foreach $flashes as $flash}
+    {if $flash->type == 'info'}
+      <div class="alert alert-success">
+        <strong>{_application.frontend.layout.success}</strong> {$flash->message|noescape}
+      </div>
+    {elseif $flash->type == 'error'}
+      <div class="alert alert-danger">
+        <strong>{_application.frontend.layout.danger}</strong> {$flash->message|noescape}
+      </div>
+    {elseif $flash->type == 'message'}
+      <div class="alert alert-warning">
+        {$flash->message}
+      </div>
+    {else}
+      <div class="alert alert-warning">
+        <strong>{_application.frontend.layout.warning}</strong> {$flash->message|noescape}
+      </div>
+    {/if}
+  {/foreach}
+
+  {include content}
+
+  <footer style="margin-top:50px">
+    <hr>
+    <p class="text-center text-muted">
+      <b>CRM</b>
+      <small>Copyright {php echo date('Y'); }</small>
+    </p>
+  </footer>
+</div>
+
+
+<script>
+    $(function () {
+        $.nette.init();
+
+        $.nette.ext('crm', {
+            start: function () {
+                if ($('.preloader')) {
+                    $('.preloader').show();
+                }
+            },
+            complete: function () {
+                if ($('.preloader')) {
+                    $('.preloader').hide();
+                }
+            }
+        });
+
+    });
+
+    $('input.flatpickr').each(function (i) {
+        var properties = {
+            "locale": {$locale},
+            "time_24hr": true,
+            "dateFormat": "Y-m-d",
+            "altInput": true,
+            "altFormat": "J M Y"
+        };
+
+        var enableTime = $(this).attr('flatpickr_datetime');
+        if (enableTime) {
+            properties["enableTime"] = true;
+            properties["dateFormat"] = 'Z';
+        }
+
+        this.flatpickr(properties);
+    });
+</script>
+
+<!-- <script src="http://ajaxorg.github.io/ace-builds/src/ace.js"></script> -->
+<script type="text/javascript" src="{$basePath}/layouts/admin/ace/ace/ace.js"></script>
+<script type="text/javascript" src="{$basePath}/layouts/admin/ace/jquery-ace.min.js"></script>
+<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js"></script>
+
+{block scripts}{/block}
+</body>
+</html>
