@@ -8,6 +8,8 @@ use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 class DateFilterFormFactory
 {
+    const OPTIONAL = 'optional';
+
     private $translator;
 
     public function __construct(Translator $translator)
@@ -24,6 +26,8 @@ class DateFilterFormFactory
             ->setAttribute('class', 'flatpickr');
         $form->addText('date_to', $this->translator->translate('admin.components.date_filter_form.date_to'))
             ->setAttribute('class', 'flatpickr');
+
+        $form->addContainer(self::OPTIONAL);
 
         $form->addSubmit('send', $this->translator->translate('admin.components.date_filter_form.submit'))
             ->getControlPrototype()
