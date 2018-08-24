@@ -20,7 +20,7 @@ final class AdminModuleExtension extends CompilerExtension implements ITranslati
     public function beforeCompile()
     {
         $builder = $this->getContainerBuilder();
-        // get definition 'nette.presenterFactory' && add mapping for this module
+        // load presenters from extension to Nette
         $builder->getDefinition($builder->getByType(\Nette\Application\IPresenterFactory::class))
             ->addSetup('setMapping', [['Admin' => 'Crm\AdminModule\Presenters\*Presenter']]);
     }
