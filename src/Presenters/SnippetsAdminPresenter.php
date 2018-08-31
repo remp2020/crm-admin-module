@@ -29,6 +29,10 @@ class SnippetsAdminPresenter extends AdminPresenter
         $this->template->snippets = $this->snippetsRepository->loadAll();
     }
 
+    public function renderNew()
+    {
+    }
+
     public function renderShow($id)
     {
         $snippet = $this->snippetsRepository->find($id);
