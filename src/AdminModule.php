@@ -3,9 +3,9 @@
 namespace Crm\AdminModule;
 
 use Crm\ApplicationModule\CrmModule;
+use Crm\ApplicationModule\LayoutManager;
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
-use Crm\ApplicationModule\LayoutManager;
 use Crm\UsersModule\Auth\Permissions;
 use Kdyby\Translation\Translator;
 use Nette\DI\Container;
