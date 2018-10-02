@@ -108,7 +108,7 @@
 </nav>
 
 
-<div class="admin_ontainer" style="padding: 0 20px">
+<div id="admin_container" class="admin_container" style="padding: 0 20px">
 
   {foreach $flashes as $flash}
     {if $flash->type == 'info'}
@@ -183,7 +183,7 @@
 <!-- <script src="http://ajaxorg.github.io/ace-builds/src/ace.js"></script> -->
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/ace/ace.js"></script>
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/jquery-ace.min.js"></script>
-<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js"></script>
+<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js?v2"></script>
 
 {block scripts}{/block}
 </body>
