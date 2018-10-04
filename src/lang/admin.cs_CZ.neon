@@ -1,0 +1,99 @@
+menu:
+	settings: Nastavení
+	background_jobs: Úkoly na pozadí
+	snippets: Snippety
+	audit_log: Audit log
+
+admin:
+	audit_log:
+		default:
+			header: Audit log
+			operation:
+				title: Operácia
+				create: Vytvorenie
+				update: Upravenie
+				delete: Zmazanie
+			table: Tabuľka
+			signature: Identifikátor
+			created_at_from: Čas od
+			created_at_to: Čas do
+			filter: Filter
+			cancel_filter: Zruš filter
+			change: Zmena
+			changed_by: Zmenu vykonal
+			created_at: Čas
+			no_records: 'Nenašli sa žiadne záznamy, ktoré by zodpovedali filtru'
+			eg: napr.
+
+	background_jobs:
+		default:
+			header: Úlohy na pozadí
+			graph:
+				title: Úlohy na pozadí
+				tooltip: Úlohy na pozadí zobrazené v čase
+			types:
+				title: Typy
+			states:
+				title: Stavy
+				enqueued: V poradí
+				done: Úspešné
+				error: Chybné
+			enqueued_jobs:
+				title: Úlohy v poradí
+				id: Id
+				type: Typ
+				payload: Payload
+				processed_at: Spracované
+	configs:
+		default:
+			header: Nastavenia
+
+		messages:
+			settings_saved: "Nastavenia boli uložené."
+
+	snippets:
+		default:
+			title: Snippety
+			new: Nový snippet
+		new:
+			title: Nový snippet
+			back: späť na snippety
+		show:
+			title: Snippet '%snippetTitle%'
+			back: späť na snippety
+			edit: Upraviť snippet
+			basic_informations: Základne informácie
+			usage_informations: Použitie
+		edit:
+			back: späť na snippety
+			title: Upraviť snippet '%snippetTitle%'
+		messages:
+			snippet_deleted: Snippet bol úspešne zmazaný
+			snippet_created: Snippet bol úspešne vytvorený
+			snippet_updated: Snippet bol úspešne upravený
+
+components:
+	date_filter_form:
+		date_from: Filter od
+		date_to: Filter do
+		submit: Filter
+
+data:
+	snippets:
+		fields:
+			title: Názov
+			identifier: Identifikátor
+			is_active: Aktívny
+			html: HTML snippetu
+			sorting: Poradie
+			last_used: Naposledy použitý
+			total_used: Celkovo použitý
+		required:
+			title: Názov je povinný
+			identifier: Identifikátor je povinný
+		placeholder:
+			title: napríklad User zone header
+			identifier: napríklad user_header
+			sorting: napríklad 300
+			html: nejaké html
+		no_record: 'n/a'

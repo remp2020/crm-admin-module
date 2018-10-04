@@ -60,8 +60,7 @@ class SnippetFormFactory
         $form->addTextArea('html', 'admin.data.snippets.fields.html')
             ->setAttribute('placeholder', 'admin.data.snippets.placeholder.html')
             ->setAttribute('rows', 30)
-            ->getControlPrototype()
-            ->addAttributes(['class' => 'ace', 'data-lang' => 'html']);
+            ->setAttribute('data-codeeditor', 'htmlmixed');
 
         $form->addSubmit('send', 'system.save');
 
