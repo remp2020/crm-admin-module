@@ -10,7 +10,7 @@
   <script src="{$basePath}/layouts/admin/js/jquery-ui.js"></script>
   <script src="{$basePath}/layouts/admin/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link href="{$basePath}/layouts/admin/css/admin.css?v=2" rel="stylesheet">
+  <link href="{$basePath}/layouts/admin/css/admin.css?v=3" rel="stylesheet">
   <link href="{$basePath}/layouts/admin/css/docs.min.css" rel="stylesheet">
   <script src="{$basePath}/layouts/admin/js/highcharts.js"></script>
   <script type="text/javascript" src="https://www.google.com/jsapi"></script>
@@ -65,7 +65,7 @@
 <body>
 <script> document.documentElement.className += ' js' </script>
 
-<nav class="navbar navbar-default" {if getenv('CRM_ENV') == 'local'} style="background-color:black;"{/if}
+<nav class="navbar navbar-default {getenv('CRM_ENV')}"
      role="navigation">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
