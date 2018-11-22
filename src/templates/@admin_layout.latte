@@ -9,6 +9,7 @@
   <script src="{$basePath}/layouts/admin/js/jquery-1.11.1.min.js"></script>
   <script src="{$basePath}/layouts/admin/js/jquery-ui.js"></script>
   <script src="{$basePath}/layouts/admin/js/bootstrap.min.js"></script>
+    <link href="{$basePath}/layouts/admin/css/jquery.select2.min.css" rel="stylesheet"/>
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="{$basePath}/layouts/admin/css/admin.css?v=2" rel="stylesheet">
   <link href="{$basePath}/layouts/admin/css/docs.min.css" rel="stylesheet">
@@ -21,7 +22,6 @@
   <script src="{$basePath}/layouts/admin/js/nette-ajax/nette.ajax.js"></script>
   <script src="{$basePath}/layouts/admin/js/netteForms.js"></script>
   <script src="{$basePath}/layouts/admin/js/jquery.select2.min.js"></script>
-  <link href="{$basePath}/layouts/admin/css/jquery.select2.min.css" rel="stylesheet"/>
   <script type="text/javascript" src="{$basePath}/layouts/admin/js/jquery.autosize.js"></script>
 
   <link rel="stylesheet" href="{$basePath}/layouts/default/css/flatpickr.min.css">
@@ -108,7 +108,7 @@
 </nav>
 
 
-<div class="admin_ontainer" style="padding: 0 20px">
+<div id="admin_container" class="admin_container" style="padding: 0 20px">
 
   {foreach $flashes as $flash}
     {if $flash->type == 'info'}
@@ -183,7 +183,7 @@
 <!-- <script src="http://ajaxorg.github.io/ace-builds/src/ace.js"></script> -->
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/ace/ace.js"></script>
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/jquery-ace.min.js"></script>
-<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js"></script>
+<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js?v2"></script>
 
 {block scripts}{/block}
 </body>
