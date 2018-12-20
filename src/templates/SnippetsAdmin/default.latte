@@ -8,7 +8,7 @@
       {_admin.admin.snippets.default.title}
       <small> / {_system.total} {count($snippets)}
       </small>
-      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper-o"></i> {_admin.admin.snippets.default.new}</a>
+      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper"></i> {_admin.admin.snippets.default.new}</a>
     </h2>
     <hr>
   </div>
@@ -46,7 +46,7 @@
           <td>
             <p class="text-nowrap">
               <a n:href="show $snippet->id" class="btn btn-sm btn-info" title="{_system.show}"><i class="fa fa-eye"></i> </a>
-              <a n:href="edit $snippet->id" class="btn btn-sm btn-primary" title="{_system.edit}"><i class="fa fa-pencil"></i> </a>
+              <a n:href="edit $snippet->id" class="btn btn-sm btn-primary" title="{_system.edit}"><i class="fa fa-edit"></i> </a>
             </p>
           </td>
         </tr>
