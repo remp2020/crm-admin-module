@@ -49,7 +49,7 @@ class AdminModule extends CrmModule
         $menuItem4 = new MenuItem(
             $this->translator->translate('admin.menu.snippets'),
             ':Admin:SnippetsAdmin:',
-            'fa fa-eyedropper',
+            'fa fa-eye-dropper',
             400,
             true
         );
