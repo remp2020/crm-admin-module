@@ -40,7 +40,7 @@ class AdminModule extends CrmModule
         $menuItem2 = new MenuItem(
             $this->translator->translate('admin.menu.background_jobs'),
             ':Admin:BackgroundStatusAdmin:',
-            'fa fa-refresh',
+            'fa fa-sync-alt',
             200,
             true
         );
@@ -49,7 +49,7 @@ class AdminModule extends CrmModule
         $menuItem4 = new MenuItem(
             $this->translator->translate('admin.menu.snippets'),
             ':Admin:SnippetsAdmin:',
-            'fa fa-eyedropper',
+            'fa fa-eye-dropper',
             400,
             true
         );
