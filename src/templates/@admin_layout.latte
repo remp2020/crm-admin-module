@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>{ifset #title}{include title|striptags} | {/ifset}{$siteTitle}</title>
   <meta n:if="$siteDescription" name="description" content="{$siteDescription}">
+  <meta name="robots" content="noindex">
   <link rel="stylesheet" href="{$basePath}/layouts/admin/css/bootstrap.min.css">
   <link rel="stylesheet" href="{$basePath}/layouts/admin/js/jquery-ui.css">
   <script src="{$basePath}/layouts/admin/js/jquery-1.11.1.min.js"></script>
