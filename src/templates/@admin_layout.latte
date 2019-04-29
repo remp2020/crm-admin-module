@@ -89,6 +89,19 @@
 
       <ul class="nav navbar-nav navbar-right">
 
+        <li class="dropdown" style="text-transform: uppercase;">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+            {$locale|substr:0:2}
+            <span class="caret"></span>
+          </a>
+
+          <ul class="dropdown-menu" role="menu">
+            {foreach $availableLocales as $availableLocale}
+              <li><a n:href=":Admin:ConfigAdmin:changeDefaultLocale $availableLocale, $backLink">{$availableLocale|substr:0:2}</a></li>
+            {/foreach}
+          </ul>
+        </li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
             <span class="fa fa-user"></span>
