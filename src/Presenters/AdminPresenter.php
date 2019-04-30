@@ -58,7 +58,7 @@ class AdminPresenter extends BasePresenter
     public function createComponentChangeLocale(ChangeLocaleFormFactory $factory)
     {
         $form = $factory->create();
-        $factory->onChange = function() {
+        $factory->onChange = function () {
             $this->redirect('this');
         };
         return $form;
