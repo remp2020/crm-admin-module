@@ -47,10 +47,4 @@ class ConfigAdminPresenter extends AdminPresenter
         };
         return $form;
     }
-
-    public function actionChangeDefaultLocale($locale, $back)
-    {
-        $this->localeSession->setLocale($locale);
-        $this->restoreRequest($back);
-    }
 }

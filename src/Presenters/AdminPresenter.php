@@ -3,6 +3,7 @@
 namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Components\AdminMenuFactoryInterface;
+use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;
@@ -52,5 +53,14 @@ class AdminPresenter extends BasePresenter
         $adminMenu->setMenuItems($this->applicationManager->getAdminMenuItems());
 
         return $adminMenu;
+    }
+
+    public function createComponentChangeLocale(ChangeLocaleFormFactory $factory)
+    {
+        $form = $factory->create();
+        $factory->onChange = function() {
+            $this->redirect('this');
+        };
+        return $form;
     }
 }

@@ -7,3 +7,4 @@ services:
 	- Crm\AdminModule\Components\DateFilterFormFactory
 	- Crm\AdminModule\Forms\ConfigFormFactory
 	- Crm\AdminModule\Forms\SnippetFormFactory
+	- Crm\AdminModule\Forms\ChangeLocaleFormFactory

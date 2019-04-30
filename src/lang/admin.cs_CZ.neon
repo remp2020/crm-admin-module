@@ -5,6 +5,11 @@ menu:
 	audit_log: Audit log
 
 admin:
+	layout:
+		home: Domů
+		profile: Profil
+		signout: Odhlásit
+
 	audit_log:
 		default:
 			header: Audit log

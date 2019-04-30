@@ -89,20 +89,11 @@
 
       <ul class="nav navbar-nav navbar-right">
 
-	  	{if $user->isAllowed('Admin:ConfigAdmin', 'changeDefaultLocale')}
-        <li class="dropdown" style="text-transform: uppercase;">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {$locale|substr:0:2}
-            <span class="caret"></span>
-          </a>
-
-          <ul class="dropdown-menu" role="menu">
-            {foreach $availableLocales as $availableLocale}
-              <li><a n:href=":Admin:ConfigAdmin:changeDefaultLocale $availableLocale, $backLink">{$availableLocale|substr:0:2}</a></li>
-            {/foreach}
-          </ul>
+        <li style="padding: 7px">
+          {form changeLocale}
+            {input locale}
+          {/form}
         </li>
-		{/if}
 
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -111,10 +102,10 @@
           </a>
 
           <ul class="dropdown-menu" role="menu">
-            <li><a href="{link $homeRoute}"><i class="fa fa-angle-left"></i> Domov</a></li>
-            <li><a href="{link :Users:UsersAdmin:Show $current_user}"><i class="fa fa-user"></i> Profil</a></li>
+            <li><a href="{link $homeRoute}"><i class="fa fa-angle-left"></i> {_admin.layout.home}</a></li>
+            <li><a href="{link :Users:UsersAdmin:Show $current_user}"><i class="fa fa-user"></i> {_admin.layout.profile}</a></li>
             <li class="divider"></li>
-            <li><a href="{link :Users:Sign:Out}"><i class="fa fa-sign-out"></i> Odhlásiť</a></li>
+            <li><a href="{link :Users:Sign:Out}"><i class="fa fa-sign-out"></i> {_admin.layout.signout}</a></li>
           </ul>
         </li>
       </ul>

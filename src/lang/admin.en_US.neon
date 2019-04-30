@@ -5,6 +5,11 @@ menu:
 	audit_log: Audit log
 
 admin:
+	layout:
+		home: Home
+		profile: Profile
+		signout: Sign out
+
 	audit_log:
 		default:
 			header: Audit log
