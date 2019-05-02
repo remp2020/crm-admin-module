@@ -34,7 +34,8 @@ class ChangeLocaleFormFactory
 
         $locales = [];
         foreach ($this->translator->getAvailableLocales() as $l) {
-            $locales[$l] = $l;
+            $locale = mb_substr($l, 0, 2);
+            $locales[$locale] = mb_strtoupper($locale);
         }
 
         $locale = $form->addSelect('locale', null, $locales)
