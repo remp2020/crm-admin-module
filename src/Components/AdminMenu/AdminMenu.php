@@ -9,6 +9,15 @@ use Nette\Application\UI;
 use Nette\Security\IAuthorizator;
 use Nette\Security\User;
 
+/**
+ * Component used for rendering admin menu.
+ *
+ * Fetches items from MenuContainerInterface
+ * transforms it to multidimensional array
+ * and renders to bootstrap styled latte template.
+ *
+ * @package Crm\AdminModule\Components
+ */
 class AdminMenu extends UI\Control
 {
     private $templateName = 'admin_menu.latte';

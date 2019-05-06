@@ -6,6 +6,14 @@ use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
+/**
+ * Basic date form filter component.
+ *
+ * Returns Nette\Application\UI\Form with from/to date inputs
+ * + optional form container for adding custom fields.
+ *
+ * @package Crm\AdminModule\Components
+ */
 class DateFilterFormFactory
 {
     const OPTIONAL = 'optional';
