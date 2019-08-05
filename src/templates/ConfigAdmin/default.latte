@@ -12,7 +12,7 @@
       <li n:foreach="$categories as $category" role="presentation" n:class="$category->id == $actualCategory->id ? active">
         <a n:href="ConfigAdmin:default $category->id" role="button">
           <span class="{$category->icon} fa-fw"></span>
-          {$category->name}
+          {_$category->name}
         </a>
       </li>
     </ul>

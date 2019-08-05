@@ -7,6 +7,7 @@ use Crm\ApplicationModule\Config\ConfigsCache;
 use Crm\ApplicationModule\Config\Repository\ConfigsRepository;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
+use Nette\Utils\Html;
 use Tomaj\Form\Renderer\BootstrapRenderer;
 
 class ConfigFormFactory
@@ -61,7 +62,7 @@ class ConfigFormFactory
             }
 
             $item->setDefaultValue($config->value)
-                ->setOption('description', $config->description);
+                ->setOption('description', Html::el('span', ['class' => 'help-block'])->setHtml($this->translator->translate($config->description)));
         }
 
         $form->addHidden('categoryId', $categoryId);
