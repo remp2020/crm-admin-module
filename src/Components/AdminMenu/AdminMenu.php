@@ -40,9 +40,6 @@ class AdminMenu extends UI\Control
 
     private function format($link)
     {
-        if (strpos($link, 'http') === 0) { // external link
-            return [IAuthorizator::ALLOW, IAuthorizator::ALLOW];
-        }
         $parts = explode(':', $link);
         $module = $parts[1] . ':' . $parts[2];
         $action = 'default';
@@ -74,7 +71,13 @@ class AdminMenu extends UI\Control
                     if (!$subItem->link()) {
                         continue;
                     }
-                    list($module, $action) = $this->format($subItem->link());
+                    if ($subItem->internal()) {
+                        list($module, $action) = $this->format($subItem->link());
+                    } else {
+                        $module = IAuthorizator::ALLOW;
+                        $action = IAuthorizator::ALLOW;
+                    }
+
                     if ($this->user->isAllowed($module, $action)) {
                         $subItems[] = $subItem;
                     }
@@ -87,7 +90,12 @@ class AdminMenu extends UI\Control
                     $result[] = $newItem;
                 }
             } else {
-                list($module, $action) = $this->format($menuItem->link());
+                if ($menuItem->internal()) {
+                    list($module, $action) = $this->format($menuItem->link());
+                } else {
+                    $module = IAuthorizator::ALLOW;
+                    $action = IAuthorizator::ALLOW;
+                }
                 if ($this->user->isAllowed($module, $action)) {
                     $result[] = $menuItem;
                 }
