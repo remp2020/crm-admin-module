@@ -39,16 +39,20 @@ admin:
 			types:
 				title: Types
 			states:
-				title: States
-				enqueued: Enqueued
-				done: Successful
 				error: Failed
 			enqueued_jobs:
 				title: Enqueued Jobs
 				id: Id
 				type: Type
 				payload: Payload
-				processed_at: Processed at
+				process_at: "Scheduled for (time)"
+			no_data_available: No records found
+			errors_1:
+				title: Errors in the last 24 hours
+			errors_7:
+				title: Errors in the last 7 days
+			errors_31:
+				title: Errors in the last 31 days
 
 	configs:
 		default:
