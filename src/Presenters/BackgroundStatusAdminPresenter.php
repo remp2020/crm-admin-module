@@ -25,16 +25,13 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
 
     public function renderDefault()
     {
-        $errorRanges = [1,7,31];
-        $queuedCounts = array_filter(
-            $this->hermesTasksQueue->getTypeCounts()
-        );
+        $errorDayRanges = [1,7,31];
 
         $errorCounts = [];
-        foreach ($errorRanges as $range) {
-            $errorCounts[$range] = $this->hermesTasksRepository
+        foreach ($errorDayRanges as $dayRange) {
+            $errorCounts[$dayRange] = $this->hermesTasksRepository
                 ->getStateCounts(
-                    DateTime::from("-{$range} days"),
+                    DateTime::from("-{$dayRange} days"),
                     [
                         HermesTasksRepository::STATE_ERROR,
                     ]
@@ -59,8 +56,7 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
             ];
         }
 
-        $this->template->queuedCounts = $queuedCounts;
-        $this->template->errorRanges = $errorRanges;
+        $this->template->errorDayRanges = $errorDayRanges;
         $this->template->errorCounts = $errorCounts;
         $this->template->enqueuedTasks = $enqueuedTasks;
     }
