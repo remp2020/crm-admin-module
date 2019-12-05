@@ -25,75 +25,46 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
 
     public function renderDefault()
     {
-        $typeCounts = $this->hermesTasksQueue->getTypeCounts();
+        $errorDayRanges = [1,7,31];
 
-        $stateCounts = [
-            'enqueued' => array_sum($typeCounts)
-        ];
-
-        array_walk($typeCounts, function (&$item) {
-            $item = [
-                'enqueued' => $item,
-                'processing' => 0,
-                'error' => 0,
-                'done' => 0,
-            ];
-        });
-
-        $states = $this->hermesTasksRepository->getStateCounts();
-
-        foreach ($states as $state) {
-            if (isset($stateCounts[$state->state])) {
-                $stateCounts[$state->state] += $state->count;
-            } else {
-                $stateCounts[$state->state] = $state->count;
-            }
-
-            if (!isset($typeCounts[$state->type])) {
-                $typeCounts[$state->type] = [
-                    'enqueued' => 0,
-                    'processing' => 0,
-                    'error' => 0,
-                    'done' => 0,
-                ];
-            }
-            $typeCounts[$state->type][$state->state] += $state->count;
+        $errorCounts = [];
+        foreach ($errorDayRanges as $dayRange) {
+            $errorCounts[$dayRange] = $this->hermesTasksRepository
+                ->getStateCounts(
+                    DateTime::from("-{$dayRange} days"),
+                    [
+                        HermesTasksRepository::STATE_ERROR,
+                    ]
+                )
+                ->fetchPairs('type', 'count');
         }
-        ksort($stateCounts);
 
         $tasks = $this->hermesTasksQueue->getAllTask();
         $enqueuedTasks = [];
-        foreach ($tasks as $task => $processAt) {
+        foreach ($tasks as $task => $processTime) {
             $task = Json::decode($task);
-            $processAt = DateTime::createFromFormat('U', $processAt)
-                ->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+            $processAt = null;
+            if ($processTime) {
+                $processAt = DateTime::createFromFormat('U.u', number_format($processTime, 6, '.', ''));
+            }
 
             $enqueuedTasks[] = [
                 'id' => $task->message->id,
                 'type' => $task->message->type,
-                'payload' => Json::encode($task->message->payload),
-                'processAt' => $processAt->format('d.m.Y H:i:s'),
+                'payload' => Json::encode($task->message->payload, Json::PRETTY),
+                'processAt' => $processAt,
             ];
         }
 
-        $this->template->typeCounts = $typeCounts;
-        $this->template->stateCounts = $stateCounts;
+        $this->template->errorDayRanges = $errorDayRanges;
+        $this->template->errorCounts = $errorCounts;
         $this->template->enqueuedTasks = $enqueuedTasks;
     }
 
     protected function createComponentBackgroundJobsGraph(GoogleLineGraphGroupControlFactoryInterface $factory)
     {
-        $graphDataItem1 = new GraphDataItem();
-        $graphDataItem1->setCriteria((new Criteria())
-            ->setTableName('hermes_tasks')
-            ->setTimeField('created_at')
-            ->setWhere('AND state="done"')
-            ->setValueField('COUNT(*)')
-            ->setStart('-1 month'))
-            ->setName($this->translator->translate('admin.admin.background_jobs.default.states.done'));
-
-        $graphDataItem2 = new GraphDataItem();
-        $graphDataItem2->setCriteria((new Criteria())
+        $errorEvents = new GraphDataItem();
+        $errorEvents->setCriteria((new Criteria())
             ->setTableName('hermes_tasks')
             ->setTimeField('created_at')
             ->setWhere('AND state="error"')
@@ -104,8 +75,7 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
         $control = $factory->create()
             ->setGraphTitle($this->translator->translate('admin.admin.background_jobs.default.graph.title'))
             ->setGraphHelp($this->translator->translate('admin.admin.background_jobs.default.graph.tooltip'))
-            ->addGraphDataItem($graphDataItem1)
-            ->addGraphDataItem($graphDataItem2);
+            ->addGraphDataItem($errorEvents);
 
         return $control;
     }

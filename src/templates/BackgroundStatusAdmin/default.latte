@@ -9,59 +9,43 @@
 
 <div class="row">
     <div class="col-md-3">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{_admin.admin.background_jobs.default.types.title}</div>
-                    <ul class="list-group">
-                        <li n:foreach="$typeCounts as $type => $count" class="list-group-item">
-                            {$type}
-                            <div class="pull-right">
-                                <span class="label label-primary" title="{_admin.admin.background_jobs.default.states.enqueued}">{$count['enqueued']}</span>
-                                <span class="label label-success" title="{_admin.admin.background_jobs.default.states.done}">{$count['done']}</span>
-                                <span class="label label-danger" title="{_admin.admin.background_jobs.default.states.error}">{$count['error']}</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+        <div n:foreach="$errorDayRanges as $dayRange" class="panel panel-default">
+            <div class="panel-heading">{_admin.admin.background_jobs.default.errors_$dayRange.title}</div>
+            {if empty($errorCounts[$dayRange])}
+            <div class="panel-body">
+                {_admin.admin.background_jobs.default.no_data_available}
             </div>
-        </div>
-
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">{_admin.admin.background_jobs.default.states.title}</div>
-                    <ul class="list-group">
-                        <li n:foreach="$stateCounts as $state => $count" class="list-group-item">
-                            {_admin.admin.background_jobs.default.states.$state} <span class="badge">{$count}</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            {else}
+            <ul class="list-group">
+                <li n:foreach="$errorCounts[$dayRange] as $type => $count" class="list-group-item">
+                    {$type}
+                    <div class="pull-right">
+                        <span class="badge" title="{_admin.admin.background_jobs.default.states.error}">{$count}</span>
+                    </div>
+                </li>
+            </ul>
+            {/if}
         </div>
     </div>
 
     <div class="col-md-9">
         {control backgroundJobsGraph}
     </div>
-</div>
-
-<div class="row">
     <div class="col-md-12">
-        <h3>{_admin.admin.background_jobs.default.enqueued_jobs.title}</h3>
+        <h3>{_admin.admin.background_jobs.default.enqueued_jobs.title} <small>({count($enqueuedTasks)})</small></h3>
         <table class="table table-striped table-hover table-bordered">
             <thead>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.id}</th>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.type}</th>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.payload}</th>
-            <th>{_admin.admin.background_jobs.default.enqueued_jobs.processed_at}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.process_at|userDate}</th>
             </thead>
             <tbody>
             <tr n:foreach="$enqueuedTasks as $task">
                 <td><small>{$task['id']}</small></td>
-                <td>{$task['type']}</td>
-                <td><code>{$task['payload']}</code></td>
-                <td>{$task['processAt']}</td>
+                <td><span class="label label-default">{$task['type']}</span></td>
+                <td><pre style="max-width: 800px; overflow: scroll">{$task['payload']}</pre></td>
+                <td>{$task['processAt']|userDate}</td>
             </tr>
             </tbody>
         </table>

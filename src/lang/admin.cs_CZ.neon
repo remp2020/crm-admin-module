@@ -39,16 +39,21 @@ admin:
 			types:
 				title: Typy
 			states:
-				title: Stavy
-				enqueued: V poradí
-				done: Úspešné
-				error: Chybné
+				error: Chyby
 			enqueued_jobs:
 				title: Úlohy v poradí
 				id: Id
 				type: Typ
 				payload: Payload
-				processed_at: Spracované
+				process_at: "Naplánováno na (čas)"
+			no_data_available: Nebyly nalezeny žádné záznamy
+			errors_1:
+				title: Chyby za posledních 24 hodin
+			errors_7:
+				title: Chyby za posledních 7 dní
+			errors_31:
+				title: Chyby za posledních 31 dní
+
 	configs:
 		default:
 			header: Nastavenia
