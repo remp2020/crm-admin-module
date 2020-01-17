@@ -28,7 +28,7 @@ admin:
 			changed_by: Zmenu vykonal
 			created_at: Čas
 			no_records: 'Nenašli sa žiadne záznamy, ktoré by zodpovedali filtru'
-			eg: napr.
+			eg: např.
 
 	background_jobs:
 		default:
@@ -102,8 +102,8 @@ data:
 			title: Názov je povinný
 			identifier: Identifikátor je povinný
 		placeholder:
-			title: napríklad User zone header
-			identifier: napríklad user_header
-			sorting: napríklad 300
+			title: například User zone header
+			identifier: například user_header
+			sorting: například 300
 			html: nejaké html
 		no_record: 'n/a'
