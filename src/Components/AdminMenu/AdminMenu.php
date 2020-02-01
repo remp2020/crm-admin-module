@@ -43,7 +43,7 @@ class AdminMenu extends UI\Control
         $parts = explode(':', $link);
         $module = $parts[1] . ':' . $parts[2];
         $action = 'default';
-        if (!isset($parts[3])) {
+        if (!empty($parts[3])) {
             $action = $parts[3];
         }
         return [$module, $action];
