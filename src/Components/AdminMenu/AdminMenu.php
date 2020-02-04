@@ -44,7 +44,7 @@ class AdminMenu extends UI\Control
         $module = $parts[1] . ':' . $parts[2];
         $action = 'default';
         if (!empty($parts[3])) {
-            $action = $parts[3];
+            $action = lcfirst($parts[3]);
         }
         return [$module, $action];
     }
