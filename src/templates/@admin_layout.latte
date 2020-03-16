@@ -168,7 +168,7 @@
 
     });
 
-    $('input.flatpickr').each(function (i) {
+    $('input.flatpickr, .flatpickr-wrap').each(function (i) {
         var properties = {
             "allowInput": true,
             "locale": {$locale},
@@ -182,6 +182,11 @@
         if (enableTime) {
             properties["enableTime"] = true;
             properties["dateFormat"] = 'Z';
+        }
+
+        var wrap = $(this).data('flatpickr_wrap');
+        if (wrap) {
+            properties['wrap'] = true;
         }
 
         this.flatpickr(properties);
