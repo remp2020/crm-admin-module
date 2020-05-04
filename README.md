@@ -6,7 +6,7 @@
 
 General from/to date filter with optional container.
 
-![alt text](docs/_static/date_filter_form.png "Date filter form")
+![alt text](docs/date_filter_form.png "Date filter form")
 
 [Source code](https://github.com/remp2020/crm-admin-module/blob/master/src/Components/DateFilterFormFactory.php)
 
@@ -16,7 +16,7 @@ General from/to date filter with optional container.
 
 Top admin menu.
 
-![alt text](docs/_static/admin_menu.png "Admin menu")
+![alt text](docs/admin_menu.png "Admin menu")
 
 [Source code](https://github.com/remp2020/crm-admin-module/blob/master/src/Components/AdminMenu/AdminMenu.php)
 
