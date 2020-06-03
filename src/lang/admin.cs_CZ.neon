@@ -56,10 +56,11 @@ admin:
 
 	configs:
 		default:
-			header: Nastavenia
-
+			header: Nastavení
 		messages:
-			settings_saved: "Nastavenia boli uložené."
+			settings_saved: "Nastavení byly uloženy."
+		validation:
+			integer: "Zadejte prosím celé číslo."
 
 	snippets:
 		default:

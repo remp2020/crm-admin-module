@@ -57,9 +57,10 @@ admin:
 	configs:
 		default:
 			header: Settings
-
 		messages:
 			settings_saved: "Settings was successfully saved."
+		validation:
+			integer: "Please enter a valid integer"
 
 	snippets:
 		default:

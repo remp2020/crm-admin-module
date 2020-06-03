@@ -9,6 +9,7 @@ use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
 use Nette\Utils\Html;
 use Tomaj\Form\Renderer\BootstrapRenderer;
+use Tracy\Debugger;
 
 class ConfigFormFactory
 {
@@ -42,6 +43,10 @@ class ConfigFormFactory
             $item = null;
             if ($config->type == ApplicationConfig::TYPE_STRING) {
                 $item = $form->addText($config->name, $config->display_name ?? $config->name);
+            } elseif ($config->type == ApplicationConfig::TYPE_INT) {
+                $item = $form->addText($config->name, $config->display_name ?? $config->name);
+                $item->addCondition(Form::FILLED)
+                    ->addRule(Form::INTEGER, $this->translator->translate('admin.admin.configs.validation.integer'));
             } elseif ($config->type == ApplicationConfig::TYPE_PASSWORD) {
                 $item = $form->addText($config->name, $config->display_name ?? $config->name);
             } elseif ($config->type == ApplicationConfig::TYPE_TEXT) {
@@ -59,6 +64,9 @@ class ConfigFormFactory
                     ->getControlPrototype()->addAttributes(['class' => 'ace', 'data-lang' => 'html']);
             } elseif ($config->type == ApplicationConfig::TYPE_BOOLEAN) {
                 $item = $form->addCheckbox($config->name, $config->display_name ?? $config->name);
+            } else {
+                Debugger::log('Unknown config type [' . $config->type . '] of config [' . $config->name . ']', Debugger::ERROR);
+                continue;
             }
 
             $item->setDefaultValue($config->value)
