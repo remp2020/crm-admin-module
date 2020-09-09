@@ -4,9 +4,11 @@
     {if $menuItem->hasSubItems()}
       {var $actual = false}
       {foreach $menuItem->subItems() as $subItem}
-        {ifCurrent $subItem->link()}
+        {* only validate if link is current if it's not an actual URL
+        ifCurrent doesn't work correctly with URL specified with ports *}
+        {if $subItem->internal() && $presenter->isLinkCurrent($subItem->link())}
           {var $actual = $subItem}
-        {/ifCurrent}
+        {/if}
       {/foreach}
 
       <li class="dropdown{if $actual} active{/if}">
@@ -27,8 +29,8 @@
         </ul>
       </li>
     {else}
-        {var $menuItemLink =  $menuItem->link()}
-      <li{ifCurrent $menuItemLink} class="active"{/ifCurrent}>
+      {var $menuItemLink = $menuItem->link()}
+      <li n:class="$presenter->isLinkCurrent($menuItemLink) ? active">
         <a n:if="$menuItem->internal()" href="{plink $menuItemLink}"><i class="{$menuItem->icon()}"></i> {$menuItem->name()}</a>
         <a n:if="!$menuItem->internal()" href="{$menuItemLink}"><i class="{$menuItem->icon()}"></i> {$menuItem->name()}</a>
       </li>
