@@ -5,6 +5,7 @@ services:
 
 	- Crm\AdminModule\Components\AdminMenuFactoryInterface
 	- Crm\AdminModule\Components\DateFilterFormFactory
+	- Crm\AdminModule\Components\YearMonthFilterFormFactory
 	- Crm\AdminModule\Forms\ConfigFormFactory
 	- Crm\AdminModule\Forms\SnippetFormFactory
 	- Crm\AdminModule\Forms\ChangeLocaleFormFactory
