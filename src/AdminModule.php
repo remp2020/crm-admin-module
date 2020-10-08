@@ -2,6 +2,7 @@
 
 namespace Crm\AdminModule;
 
+use Crm\ApplicationModule\AssetsManager;
 use Crm\ApplicationModule\CrmModule;
 use Crm\ApplicationModule\LayoutManager;
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
@@ -70,5 +71,10 @@ class AdminModule extends CrmModule
     public function registerLayouts(LayoutManager $layoutManager)
     {
         $layoutManager->registerLayout('admin', realpath(__DIR__ . '/templates/@admin_layout.latte'));
+    }
+
+    public function registerAssets(AssetsManager $assetsManager)
+    {
+        $assetsManager->copyAssets(__DIR__ . '/assets/vendor/trumbowyg', 'layouts/admin/vendors/trumbowyg/');
     }
 }
