@@ -76,5 +76,6 @@ class AdminModule extends CrmModule
     public function registerAssets(AssetsManager $assetsManager)
     {
         $assetsManager->copyAssets(__DIR__ . '/assets/dist/', 'layouts/admin/dist/');
+        $assetsManager->copyAssets(__DIR__ . '/assets/images/', 'layouts/admin/dist/images/module/');
     }
 }
