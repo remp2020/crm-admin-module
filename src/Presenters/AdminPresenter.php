@@ -63,4 +63,11 @@ class AdminPresenter extends BasePresenter
         };
         return $form;
     }
+
+    public function adminFilterSubmitted($form, $values)
+    {
+        $this->redirect($this->action, array_map(function ($item) {
+            return $item ?: null;
+        }, (array)$values));
+    }
 }
