@@ -9,6 +9,21 @@ use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 class AuditLogAdminPresenter extends AdminPresenter
 {
+    /** @persistent */
+    public $created_at_from;
+
+    /** @persistent */
+    public $created_at_to;
+
+    /** @persistent */
+    public $operation;
+
+    /** @persistent */
+    public $signature;
+
+    /** @persistent */
+    public $table;
+
     private $auditLogRepository;
 
     public function __construct(AuditLogRepository $auditLogRepository)
