@@ -83,7 +83,7 @@ class AuditLogAdminPresenter extends AdminPresenter
         $presenter = $this;
         $form->addSubmit('cancel', $this->translate('default.cancel_filter'))
             ->onClick[] = function () use ($presenter) {
-                $presenter->redirect('AuditLog:Default', ['text' => '']);
+                $presenter->redirect('AuditLogAdmin:Default', ['text' => '']);
             };
 
         $form->onSuccess[] = [$this, 'filterSubmitted'];
