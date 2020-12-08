@@ -86,7 +86,7 @@ class AuditLogAdminPresenter extends AdminPresenter
                 $presenter->redirect('AuditLogAdmin:Default', ['text' => '']);
             };
 
-        $form->onSuccess[] = [$this, 'filterSubmitted'];
+        $form->onSuccess[] = [$this, 'adminFilterSubmitted'];
         $form->setDefaults([
             'table' => $this->request->getParameter('table'),
             'signature' => $this->request->getParameter('signature'),
@@ -95,17 +95,6 @@ class AuditLogAdminPresenter extends AdminPresenter
             'created_at_to' => $this->request->getParameter('created_at_to'),
         ]);
         return $form;
-    }
-
-    public function filterSubmitted($form, $values)
-    {
-        $this->redirect('Default', array_filter([
-            'table' => $values['table'],
-            'signature' => $values['signature'],
-            'operation' => $values['operation'],
-            'created_at_from' => $values['created_at_from'],
-            'created_at_to' => $values['created_at_to'],
-        ]));
     }
 
     private function getFilteredLogs()
