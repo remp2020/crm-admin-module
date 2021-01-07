@@ -38,6 +38,19 @@ class AdminPresenter extends BasePresenter
             throw new ForbiddenRequestException();
         }
 
+        // check user's access to presenter's signal
+        if ($this->getSignal() !== null) {
+            [$signalReceiver, $signal] = $this->getSignal();
+            // non-empty signal receiver indicates submit action of form / component
+            // for now we want to restrict only presenter's signals
+            if ($signalReceiver === '') {
+                if (!$this->getUser()->isAllowed($this->getName(), $signal)) {
+                    throw new ForbiddenRequestException();
+                }
+            }
+        }
+
+        // check user's access to presenter's action
         if (!$this->getUser()->isAllowed($this->getName(), $this->getAction())) {
             throw new ForbiddenRequestException();
         }
