@@ -80,14 +80,17 @@ $(document).ready(function() {
             "time_24hr": true,
             "dateFormat": "Y-m-d",
             "altInput": true,
-            "altFormat": "J F Y",
+            "altFormat": "J M Y",
+            onClose(dates, currentDateString, picker) {
+                picker.setDate(picker.altInput.value, true, picker.config.altFormat)
+            }
         };
 
         var enableTime = $(this).attr('flatpickr_datetime');
         if (enableTime) {
             properties["enableTime"] = true;
             properties["dateFormat"] = 'Z';
-            properties["altFormat"] = 'J F Y H:i';
+            properties["altFormat"] = 'J M Y H:i';
         }
 
         var enableTimeSeconds = $(this).attr('flatpickr_datetime_seconds');
@@ -95,7 +98,7 @@ $(document).ready(function() {
             properties["enableTime"] = true;
             properties["enableSeconds"] = true;
             properties["dateFormat"] = 'Z';
-            properties["altFormat"] = 'J F Y H:i:S';
+            properties["altFormat"] = 'J M Y H:i:S';
         }
 
         var wrap = $(this).data('flatpickr_wrap');

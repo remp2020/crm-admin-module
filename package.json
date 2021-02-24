@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "codemirror": "^5.58.2",
-    "flatpickr": "^4.6.9",
+    "flatpickr": "4.6.2",
     "trumbowyg": "^2.21.0"
   },
   "devDependencies": {
