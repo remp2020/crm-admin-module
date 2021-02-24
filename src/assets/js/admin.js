@@ -81,9 +81,6 @@ $(document).ready(function() {
             "dateFormat": "Y-m-d",
             "altInput": true,
             "altFormat": "J F Y",
-            onChange(dates, currentDateString, picker) {
-                picker.setDate(currentDateString);
-            }
         };
 
         var enableTime = $(this).attr('flatpickr_datetime');
