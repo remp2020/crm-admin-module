@@ -26,9 +26,7 @@
   <script src="{$basePath}/layouts/admin/js/jquery.select2.min.js"></script>
   <script type="text/javascript" src="{$basePath}/layouts/admin/js/jquery.autosize.js"></script>
 
-  <link rel="stylesheet" href="{$basePath}/layouts/default/css/flatpickr.min.css">
-  <script src="{$basePath}/layouts/default/js/flatpickr.js"></script>
-  <script src="{$basePath}/layouts/default/js/flatpickr_sk.js"></script>
+  <link href="{$basePath}/layouts/admin/dist/css/admin-module.min.css?v1" rel="stylesheet">
 
   <style>
     .jqstooltip {
@@ -168,42 +166,8 @@
             }
         });
 
-    });
-
-    $('input.flatpickr, .flatpickr-wrap').each(function (i) {
-        var properties = {
-            "allowInput": true,
-            "locale": {$locale},
-            "time_24hr": true,
-            "dateFormat": "Y-m-d",
-            "altInput": true,
-            "altFormat": "J M Y",
-            onClose(dates, currentDateString, picker) {
-                picker.setDate(picker.altInput.value, true, picker.config.altFormat)
-            }
-        };
-
-        var enableTime = $(this).attr('flatpickr_datetime');
-        if (enableTime) {
-            properties["enableTime"] = true;
-            properties["dateFormat"] = 'Z';
-            properties["altFormat"] = 'J M Y H:i';
-        }
-
-        var enableTimeSeconds = $(this).attr('flatpickr_datetime_seconds');
-        if (enableTimeSeconds) {
-            properties["enableTime"] = true;
-            properties["enableSeconds"] = true;
-            properties["dateFormat"] = 'Z';
-            properties["altFormat"] = 'J M Y H:i:S';
-        }
-
-        var wrap = $(this).data('flatpickr_wrap');
-        if (wrap) {
-            properties['wrap'] = true;
-        }
-
-        this.flatpickr(properties);
+      {var $lang = explode("_", $locale)[0]}
+      localizeFlatpickr({$lang})
     });
 </script>
 
@@ -211,7 +175,6 @@
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/ace/ace.js"></script>
 <script type="text/javascript" src="{$basePath}/layouts/admin/ace/jquery-ace.min.js"></script>
 <script type="text/javascript" src="{$basePath}/layouts/admin/dist/js/admin-module.min.js?v1"></script>
-<script type="text/javascript" src="{$basePath}/layouts/admin/js/admin.js?v8"></script>
 
 {block scripts}{/block}
 </body>
