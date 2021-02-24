@@ -81,8 +81,8 @@ $(document).ready(function() {
             "dateFormat": "Y-m-d",
             "altInput": true,
             "altFormat": "J F Y",
-            onClose(dates, currentDateString, picker) {
-                picker.setDate(currentDateString, true, picker.config.altFormat)
+            onChange(dates, currentDateString, picker) {
+                picker.setDate(currentDateString);
             }
         };
 
