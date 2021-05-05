@@ -32,6 +32,9 @@ class AuditLogAdminPresenter extends AdminPresenter
         parent::__construct();
     }
 
+    /**
+     * @admin-access-level read
+     */
     public function renderDefault()
     {
         $records = $this->getFilteredLogs();

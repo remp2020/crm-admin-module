@@ -10,6 +10,9 @@ class ConfigAdminPresenter extends AdminPresenter
     /** @var ConfigCategoriesRepository @inject */
     public $configCategoriesRepository;
 
+    /**
+     * @admin-access-level write
+     */
     public function renderDefault($categoryId)
     {
         list($categories, $actualCategory) = $this->loadConfigs();

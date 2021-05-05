@@ -24,26 +24,41 @@ class SnippetsAdminPresenter extends AdminPresenter
         $this->snippetFormFactory = $snippetFormFactory;
     }
 
+    /**
+     * @admin-access-level read
+     */
     public function renderDefault()
     {
         $this->template->snippets = $this->snippetsRepository->loadAll();
     }
 
+    /**
+     * @admin-access-level write
+     */
     public function renderNew()
     {
     }
 
+    /**
+     * @admin-access-level read
+     */
     public function renderShow($id)
     {
         $snippet = $this->snippetsRepository->find($id);
         $this->template->snippet = $snippet;
     }
 
+    /**
+     * @admin-access-level write
+     */
     public function renderEdit($id)
     {
         $this->template->snippet = $this->snippetsRepository->find($id);
     }
 
+    /**
+     * @admin-access-level write
+     */
     public function handleDelete($id)
     {
         $snippet = $this->snippetsRepository->find($id);

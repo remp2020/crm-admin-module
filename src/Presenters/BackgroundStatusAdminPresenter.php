@@ -31,6 +31,9 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
         $this->hermesEmitter = $hermesEmitter;
     }
 
+    /**
+     * @admin-access-level read
+     */
     public function renderDefault()
     {
         $errorDayRanges = [1,7,31];
