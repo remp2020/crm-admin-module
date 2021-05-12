@@ -51,7 +51,7 @@
               </table>
             </div>
           </td>
-          <td><a n:if="$record->user" n:href=":Users:UsersAdmin:default text => $record->user->public_name">{$record->user->public_name}</a></td>
+          <td><a n:if="$record->user" n:href=":Users:UsersAdmin:show $record->user->id">{$record->user->public_name}</a></td>
           <td class="text-muted">{$record->created_at|userDate}</td>
         </tr>
         </tbody>
