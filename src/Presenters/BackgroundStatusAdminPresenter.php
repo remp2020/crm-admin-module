@@ -5,22 +5,30 @@ namespace Crm\AdminModule\Presenters;
 use Crm\ApplicationModule\Components\Graphs\GoogleLineGraphGroupControlFactoryInterface;
 use Crm\ApplicationModule\Graphs\Criteria;
 use Crm\ApplicationModule\Graphs\GraphDataItem;
-use Crm\ApplicationModule\Hermes\HermesTasksQueue;
+use Crm\ApplicationModule\Hermes\HermesMessage;
+use Crm\ApplicationModule\Hermes\RedisTasksQueue;
 use Crm\ApplicationModule\Repository\HermesTasksRepository;
 use Nette\Utils\DateTime;
 use Nette\Utils\Json;
+use Tomaj\Hermes\Emitter;
 
 class BackgroundStatusAdminPresenter extends AdminPresenter
 {
     private $hermesTasksRepository;
 
-    private $hermesTasksQueue;
+    private $redisTasksQueue;
 
-    public function __construct(HermesTasksRepository $hermesTasksRepository, HermesTasksQueue $hermesTasksQueue)
-    {
+    private $hermesEmitter;
+
+    public function __construct(
+        HermesTasksRepository $hermesTasksRepository,
+        RedisTasksQueue $redisTasksQueue,
+        Emitter $hermesEmitter
+    ) {
         parent::__construct();
         $this->hermesTasksRepository = $hermesTasksRepository;
-        $this->hermesTasksQueue = $hermesTasksQueue;
+        $this->redisTasksQueue = $redisTasksQueue;
+        $this->hermesEmitter = $hermesEmitter;
     }
 
     public function renderDefault()
@@ -39,26 +47,13 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
                 ->fetchPairs('type', 'count');
         }
 
-        $tasks = $this->hermesTasksQueue->getAllTask();
-        $enqueuedTasks = [];
-        foreach ($tasks as $task => $processTime) {
-            $task = Json::decode($task);
-            $processAt = null;
-            if ($processTime) {
-                $processAt = DateTime::createFromFormat('U.u', number_format($processTime, 6, '.', ''));
-            }
-
-            $enqueuedTasks[] = [
-                'id' => $task->message->id,
-                'type' => $task->message->type,
-                'payload' => Json::encode($task->message->payload, Json::PRETTY),
-                'processAt' => $processAt,
-            ];
-        }
+        $enqueuedTasks = $this->redisTasksQueue->getAllTask(100);
 
         $this->template->errorDayRanges = $errorDayRanges;
         $this->template->errorCounts = $errorCounts;
         $this->template->enqueuedTasks = $enqueuedTasks;
+
+        $this->template->errorTasks = $this->hermesTasksRepository->getErrorTasks()->limit(100);
     }
 
     protected function createComponentBackgroundJobsGraph(GoogleLineGraphGroupControlFactoryInterface $factory)
@@ -78,5 +73,14 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
             ->addGraphDataItem($errorEvents);
 
         return $control;
+    }
+
+    public function handleRetry($id)
+    {
+        $task = $this->hermesTasksRepository->find($id);
+        $this->hermesEmitter->emit(new HermesMessage($task->type, Json::decode($task->payload, Json::FORCE_ARRAY)));
+        // not sure if we would like to delete this task from table
+        //$this->hermesTasksRepository->delete($task);
+        $this->redirect('default');
     }
 }

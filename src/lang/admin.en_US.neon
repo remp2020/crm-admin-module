@@ -46,6 +46,15 @@ admin:
 				type: Type
 				payload: Payload
 				process_at: "Scheduled for (time)"
+				priority: Priority
+			hermes_tasks:
+				title: Jobs ended with an error
+				message_id: ID
+				type: Type
+				payload: Payload
+				process_at: Processed at
+				actions: Actions
+			retry: Process again
 			no_data_available: No records found
 			errors_1:
 				title: Errors in the last 24 hours

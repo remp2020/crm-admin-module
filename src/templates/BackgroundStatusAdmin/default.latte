@@ -36,16 +36,42 @@
         <table class="table table-striped table-hover table-bordered">
             <thead>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.id}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.priority}</th>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.type}</th>
             <th>{_admin.admin.background_jobs.default.enqueued_jobs.payload}</th>
-            <th>{_admin.admin.background_jobs.default.enqueued_jobs.process_at|userDate}</th>
+            <th>{_admin.admin.background_jobs.default.enqueued_jobs.process_at}</th>
             </thead>
             <tbody>
             <tr n:foreach="$enqueuedTasks as $task">
-                <td><small>{$task['id']}</small></td>
-                <td><span class="label label-default">{$task['type']}</span></td>
-                <td><pre style="max-width: 800px; overflow: scroll">{$task['payload']}</pre></td>
-                <td>{$task['processAt']|userDate}</td>
+                <td><small>{$task->message->id}</small></td>
+                <td>{$task->priority}</td>
+                <td><span class="label label-default">{$task->message->type}</span></td>
+                <td><pre style="max-width: 800px; overflow: scroll">{$task->message->payload|json}</pre></td>
+                <td>{$task->processedTime|userDate}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-12">
+        <h3>{_admin.admin.background_jobs.default.hermes_tasks.title}</h3>
+        <table class="table table-striped table-hover table-bordered">
+            <thead>
+            <th>{_admin.admin.background_jobs.default.hermes_tasks.message_id}</th>
+            <th>{_admin.admin.background_jobs.default.hermes_tasks.type}</th>
+            <th>{_admin.admin.background_jobs.default.hermes_tasks.payload}</th>
+            <th>{_admin.admin.background_jobs.default.hermes_tasks.process_at}</th>
+            <th>{_admin.admin.background_jobs.default.hermes_tasks.actions}</th>
+            </thead>
+            <tbody>
+            <tr n:foreach="$errorTasks as $task">
+                <td><small>{$task->message_id}</small></td>
+                <td><span class="label label-default">{$task->type}</span></td>
+                <td><pre style="max-width: 800px; overflow: scroll">{$task->payload|json}</pre></td>
+                <td>{$task->processed_at|userDate}</td>
+                <td>
+                    <a class="btn btn-default" n:href="Retry! $task->id"><i class="fa fa-recycle"></i> {_admin.admin.background_jobs.default.retry}</a>
+                </td>
             </tr>
             </tbody>
         </table>

@@ -46,6 +46,15 @@ admin:
 				type: Typ
 				payload: Payload
 				process_at: "Naplánované na (čas)"
+				priority: Priorita
+			hermes_tasks:
+			    title: Ulohy skončené s chybou
+			    message_id: ID
+			    type: Typ
+			    payload: Payload
+			    process_at: Spracované
+			    actions: Akcie
+			retry: Spracuj znovu
 			no_data_available: Nenašli sa žiadne záznamy
 			errors_1:
 				title: Chyby za posledných 24 hodín
@@ -53,6 +62,9 @@ admin:
 				title: Chyby za posledných 7 dní
 			errors_31:
 				title: Chyby za posledných 31 dní
+
+
+
 	configs:
 		default:
 			header: Nastavenia

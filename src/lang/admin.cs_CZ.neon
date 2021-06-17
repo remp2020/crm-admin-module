@@ -46,6 +46,15 @@ admin:
 				type: Typ
 				payload: Payload
 				process_at: "Naplánováno na (čas)"
+				priority: Priorita
+			hermes_tasks:
+				title: Úkoly ukončena s chybou
+				message_id: ID
+				type: Typ
+				payload: Payload
+				process_at: Zpracované
+				actions: Akce
+			retry: Zpracuj znovu
 			no_data_available: Nebyly nalezeny žádné záznamy
 			errors_1:
 				title: Chyby za posledních 24 hodin
