@@ -137,14 +137,23 @@ function initSelect2() {
             config["disabled"] = true;
         }
 
+        let modal = $(this).closest('.modal');
+        if (modal) {
+            // select2 search wouldn't work in modal without this
+            config["dropdownParent"] = modal;
+        }
+
         $(this).select2(config);
     });
 }
 
 // for selects to have correct width in collapse blocks
-    $('.collapse').on('show.bs.collapse', function () {
-        setTimeout(initSelect2, 0)
-    })
+$('.collapse').on('show.bs.collapse', function () {
+    setTimeout(initSelect2, 0);
+});
+$('.modal').on('shown.bs.modal', function () {
+    setTimeout(initSelect2, 0);
+});
 
 function initAceEditor(createDiv) {
     $('.ace').each(function () {
