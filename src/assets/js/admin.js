@@ -138,7 +138,7 @@ function initSelect2() {
         }
 
         let modal = $(this).closest('.modal');
-        if (modal) {
+        if (modal.length) {
             // select2 search wouldn't work in modal without this
             config["dropdownParent"] = modal;
         }
