@@ -114,7 +114,7 @@ $(document).ready(function() {
     initCodemirror();
 });
 
-function initSelect2() {
+window.initSelect2 = function () {
     $('select.select2').each(function () {
         let config = {
             templateResult: function(data) {
