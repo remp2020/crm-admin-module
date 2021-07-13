@@ -44,6 +44,9 @@ class AdminPresenter extends BasePresenter
             // non-empty signal receiver indicates submit action of form / component
             // for now we want to restrict only presenter's signals
             if ($signalReceiver === '') {
+                // lower first letter of signal name; resources in DB are stored with first letter lowercased
+                // (and getAction() returns lowercased name)
+                $signal = lcfirst($signal);
                 if (!$this->getUser()->isAllowed($this->getName(), $signal)) {
                     throw new ForbiddenRequestException();
                 }
