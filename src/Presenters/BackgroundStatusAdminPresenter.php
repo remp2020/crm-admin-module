@@ -78,6 +78,9 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
         return $control;
     }
 
+    /**
+     * @admin-access-level write
+     */
     public function handleRetry($id)
     {
         $task = $this->hermesTasksRepository->find($id);
