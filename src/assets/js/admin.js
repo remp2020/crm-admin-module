@@ -91,6 +91,7 @@ $(document).ready(function() {
             properties["enableTime"] = true;
             properties["dateFormat"] = 'Z';
             properties["altFormat"] = 'J M Y H:i';
+            properties["defaultHour"] = 0;
         }
 
         var enableTimeSeconds = $(this).attr('flatpickr_datetime_seconds');
@@ -99,6 +100,7 @@ $(document).ready(function() {
             properties["enableSeconds"] = true;
             properties["dateFormat"] = 'Z';
             properties["altFormat"] = 'J M Y H:i:S';
+            properties["defaultHour"] = 0;
         }
 
         var wrap = $(this).data('flatpickr_wrap');
