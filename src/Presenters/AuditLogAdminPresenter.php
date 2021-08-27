@@ -67,16 +67,16 @@ class AuditLogAdminPresenter extends AdminPresenter
             ;
 
         $form->addText('table', $this->translate('default.table'))
-            ->setAttribute('placeholder', $this->translate('default.eg') .' users');
+            ->setHtmlAttribute('placeholder', $this->translate('default.eg') .' users');
 
         $form->addText('signature', $this->translate('default.signature'))
-            ->setAttribute('placeholder', $this->translate('default.eg') .' 12345');
+            ->setHtmlAttribute('placeholder', $this->translate('default.eg') .' 12345');
 
         $form->addText('created_at_from', $this->translate('default.created_at_from'))
-            ->setAttribute('placeholder', $this->translate('default.eg').' 2016-02-29');
+            ->setHtmlAttribute('placeholder', $this->translate('default.eg').' 2016-02-29');
 
         $form->addText('created_at_to', $this->translate('default.created_at_to'))
-            ->setAttribute('placeholder', $this->translate('default.eg').' 2020-02-29');
+            ->setHtmlAttribute('placeholder', $this->translate('default.eg').' 2020-02-29');
 
         $form->addSubmit('send', $this->translate('default.filter'))
             ->getControlPrototype()

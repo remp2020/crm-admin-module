@@ -38,7 +38,7 @@ class ChangeLocaleFormFactory
         }
 
         $locale = $form->addSelect('locale', null, $locales)
-            ->setAttribute('onChange', 'submit()');
+            ->setHtmlAttribute('onChange', 'submit()');
         $locale->getControlPrototype()->addAttributes([
             'class' => 'select2',
             'style' => 'width: 80px',

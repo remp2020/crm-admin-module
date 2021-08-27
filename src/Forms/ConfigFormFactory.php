@@ -53,14 +53,14 @@ class ConfigFormFactory
                 $item = $form->addTextArea(
                     $config->name,
                     $config->display_name ?? $config->name
-                )->setAttribute('rows', 5);
+                )->setHtmlAttribute('rows', 5);
             } elseif ($config->type == ApplicationConfig::TYPE_HTML) {
                 $item = $form->addTextArea(
                     $config->name,
                     $config->display_name ?? $config->name
                 );
                 $item
-                    ->setAttribute('rows', 15)
+                    ->setHtmlAttribute('rows', 15)
                     ->getControlPrototype()->addAttributes(['class' => 'ace', 'data-lang' => 'html']);
             } elseif ($config->type == ApplicationConfig::TYPE_BOOLEAN) {
                 $item= $form->addCheckbox($config->name, $config->display_name ?? $config->name);

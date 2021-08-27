@@ -30,10 +30,10 @@ class DateFilterFormFactory
         $form = new Form;
         $form->setRenderer(new BootstrapInlineRenderer());
         $form->addText('date_from', $this->translator->translate('admin.components.date_filter_form.date_from'))
-            ->setAttribute('autofocus')
-            ->setAttribute('class', 'flatpickr');
+            ->setHtmlAttribute('autofocus')
+            ->setHtmlAttribute('class', 'flatpickr');
         $form->addText('date_to', $this->translator->translate('admin.components.date_filter_form.date_to'))
-            ->setAttribute('class', 'flatpickr');
+            ->setHtmlAttribute('class', 'flatpickr');
 
         $form->addContainer(self::OPTIONAL);
 

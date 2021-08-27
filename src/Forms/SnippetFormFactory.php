@@ -46,21 +46,21 @@ class SnippetFormFactory
 
         $form->addText('title', 'admin.data.snippets.fields.title')
             ->setRequired('admin.data.snippets.required.title')
-            ->setAttribute('placeholder', 'admin.data.snippets.placeholder.title');
+            ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.title');
 
         $form->addText('identifier', 'admin.data.snippets.fields.identifier')
             ->setRequired('admin.data.snippets.required.identifier')
-            ->setAttribute('placeholder', 'admin.data.snippets.placeholder.identifier');
+            ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.identifier');
 
         $form->addCheckbox('is_active', 'admin.data.snippets.fields.is_active');
 
         $form->addText('sorting', 'admin.data.snippets.fields.sorting')
-            ->setAttribute('placeholder', 'admin.data.snippets.placeholder.sorting');
+            ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.sorting');
 
         $form->addTextArea('html', 'admin.data.snippets.fields.html')
-            ->setAttribute('placeholder', 'admin.data.snippets.placeholder.html')
-            ->setAttribute('rows', 30)
-            ->setAttribute('data-codeeditor', 'htmlmixed');
+            ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.html')
+            ->setHtmlAttribute('rows', 30)
+            ->setHtmlAttribute('data-codeeditor', 'htmlmixed');
 
         $form->addSubmit('send', 'system.save');
 
