@@ -4,7 +4,7 @@ namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Forms\SnippetFormFactory;
 use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
-use Nette\Database\Table\IRow;
+use Nette\Database\Table\ActiveRow;
 
 class SnippetsAdminPresenter extends AdminPresenter
 {
@@ -74,11 +74,11 @@ class SnippetsAdminPresenter extends AdminPresenter
             $snippet = $this->snippetsRepository->find($this->params['id']);
         }
         $form = $this->snippetFormFactory->create($snippet);
-        $this->snippetFormFactory->onCreate = function (IRow $snippet) {
+        $this->snippetFormFactory->onCreate = function (ActiveRow $snippet) {
             $this->flashMessage($this->translator->translate('admin.admin.snippets.messages.snippet_created'));
             $this->redirect('show', $snippet->id);
         };
-        $this->snippetFormFactory->onUpdate = function (IRow $snippet) {
+        $this->snippetFormFactory->onUpdate = function (ActiveRow $snippet) {
             $this->flashMessage($this->translator->translate('admin.admin.snippets.messages.snippet_updated'));
             $this->redirect('show', $snippet->id);
         };

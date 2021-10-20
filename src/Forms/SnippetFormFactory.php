@@ -5,7 +5,7 @@ namespace Crm\AdminModule\Forms;
 use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
-use Nette\Database\IRow;
+use Nette\Database\Table\ActiveRow;
 use Tomaj\Form\Renderer\BootstrapRenderer;
 
 class SnippetFormFactory
@@ -35,7 +35,7 @@ class SnippetFormFactory
     /**
      * @return Form
      */
-    public function create(IRow $snippet = null)
+    public function create(ActiveRow $snippet = null)
     {
         $this->snippet = $snippet;
         $form = new Form;
