@@ -6,7 +6,7 @@ use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
 use Crm\ApplicationModule\Menu\MenuItemInterface;
 use Nette\Application\UI;
-use Nette\Security\IAuthorizator;
+use Nette\Security\Authorizator;
 use Nette\Security\User;
 
 /**
@@ -73,8 +73,8 @@ class AdminMenu extends UI\Control
                     if ($subItem->internal()) {
                         list($module, $action) = $this->format($subItem->link());
                     } else {
-                        $module = IAuthorizator::ALLOW;
-                        $action = IAuthorizator::ALLOW;
+                        $module = Authorizator::ALLOW;
+                        $action = Authorizator::ALLOW;
                     }
 
                     if ($this->user->isAllowed($module, $action)) {
@@ -92,8 +92,8 @@ class AdminMenu extends UI\Control
                 if ($menuItem->internal()) {
                     list($module, $action) = $this->format($menuItem->link());
                 } else {
-                    $module = IAuthorizator::ALLOW;
-                    $action = IAuthorizator::ALLOW;
+                    $module = Authorizator::ALLOW;
+                    $action = Authorizator::ALLOW;
                 }
                 if ($this->user->isAllowed($module, $action)) {
                     $result[] = $menuItem;
