@@ -5,7 +5,7 @@ namespace Crm\AdminModule\Components;
 use DateInterval;
 use DateTime;
 use Nette\Application\UI\Form;
-use Nette\Localization\ITranslator;
+use Nette\Localization\Translator;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 /**
@@ -20,7 +20,7 @@ class YearMonthFilterFormFactory
 {
     private $translator;
 
-    public function __construct(ITranslator $translator)
+    public function __construct(Translator $translator)
     {
         $this->translator = $translator;
     }
