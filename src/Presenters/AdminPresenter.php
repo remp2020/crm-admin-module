@@ -7,9 +7,13 @@ use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;
+use Nette\DI\Container;
 
 class AdminPresenter extends BasePresenter
 {
+    /** @var Container @inject */
+    public $container;
+
     /** @persistent */
     public $state;
 
@@ -27,7 +31,7 @@ class AdminPresenter extends BasePresenter
 
         $this->onlyLoggedIn();
 
-        $userRepository = $this->context->getByType('Crm\UsersModule\Repository\UsersRepository');
+        $userRepository = $this->container->getByType(UsersRepository::class);
         $user = $userRepository->find($this->getUser()->id);
         if (!$user) {
             $this->getUser()->logout(true);
