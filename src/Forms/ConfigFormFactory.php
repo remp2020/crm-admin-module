@@ -63,7 +63,7 @@ class ConfigFormFactory
                     ->setAttribute('rows', 15)
                     ->getControlPrototype()->addAttributes(['class' => 'ace', 'data-lang' => 'html']);
             } elseif ($config->type == ApplicationConfig::TYPE_BOOLEAN) {
-                $item = $form->addCheckbox($config->name, $config->display_name ?? $config->name);
+                $item= $form->addCheckbox($config->name, $config->display_name ?? $config->name);
             } else {
                 Debugger::log('Unknown config type [' . $config->type . '] of config [' . $config->name . ']', Debugger::ERROR);
                 continue;
@@ -81,6 +81,7 @@ class ConfigFormFactory
             ->setHtml('<i class="fa fa-save"></i> ' . $this->translator->translate('system.save'));
 
         $form->onSuccess[] = [$this, 'formSucceeded'];
+
         return $form;
     }
 
@@ -91,6 +92,7 @@ class ConfigFormFactory
 
         foreach ($values as $name => $value) {
             $config = $this->configsRepository->loadByName($name);
+
             if ($value !== $config->value) {
                 $this->configsRepository->update($config, ['value' => $value]);
                 $this->configsCache->add($name, $value);
