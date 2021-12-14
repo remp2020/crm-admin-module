@@ -131,6 +131,12 @@ window.initSelect2 = function () {
             allowClear: true,
         };
 
+        var allowClearSign = $(this).attr('allowClear');
+        if (!allowClearSign || allowClearSign === 'false') {
+            config['allowClear'] = false
+        }
+
+
         let placeholder = $(this).find('option[value=""]').text();
         if (placeholder.length > 0) {
             config["placeholder"] = placeholder;
