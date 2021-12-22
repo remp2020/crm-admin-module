@@ -103,6 +103,11 @@ $(document).ready(function() {
             properties["defaultHour"] = 0;
         }
 
+        var minDate = $(this).attr('flatpickr_mindate');
+        if (minDate) {
+            properties["minDate"] = minDate;
+        }
+
         var wrap = $(this).data('flatpickr_wrap');
         if (wrap) {
             properties['wrap'] = true;
