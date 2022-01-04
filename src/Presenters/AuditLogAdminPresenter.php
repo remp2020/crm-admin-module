@@ -118,7 +118,7 @@ class AuditLogAdminPresenter extends AdminPresenter
         if (($value = $this->request->getParameter('created_at_to')) !== null) {
             $auditRecords->where('created_at < ?', $value);
         }
-        $auditRecords->order('created_at DESC');
+        $auditRecords->order('created_at DESC, id DESC');
         return $auditRecords;
     }
 
