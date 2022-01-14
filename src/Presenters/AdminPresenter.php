@@ -7,13 +7,9 @@ use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;
-use Nette\DI\Container;
 
 class AdminPresenter extends BasePresenter
 {
-    /** @var Container @inject */
-    public $container;
-
     /** @persistent */
     public $state;
 
