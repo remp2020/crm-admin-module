@@ -119,3 +119,10 @@ data:
 			sorting: napríklad 300
 			html: nejaké html
 		no_record: 'n/a'
+
+security:
+	unsecure_login: 'Neboli ste prihláseny dostatočne bezpečnou metodou. Použite prihlásenie s dvojstupňovým overením.'
+
+config:
+	secure_login:
+		name: 'Vyžadovať bezpečnu formu prihlásenia pre admin role'

@@ -9,3 +9,5 @@ services:
 	- Crm\AdminModule\Forms\ConfigFormFactory
 	- Crm\AdminModule\Forms\SnippetFormFactory
 	- Crm\AdminModule\Forms\ChangeLocaleFormFactory
+	- Crm\AdminModule\Seeders\ConfigsSeeder
+	- Crm\AdminModule\Helpers\SecuredAdminAccess
