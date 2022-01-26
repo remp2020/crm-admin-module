@@ -10,7 +10,7 @@ General from/to date filter with optional container.
 
 [Source code](https://github.com/remp2020/crm-admin-module/blob/master/src/Components/DateFilterFormFactory.php)
 
-[How to use](https://github.com/remp2020/crm-subscriptions-module/blob/master/src/presenters/DashboardPresenter.php#L57)
+[How to use](https://github.com/remp2020/crm-subscriptions-module/blob/master/src/Presenters/DashboardPresenter.php#L57)
 
 **AdminMenu**
 
