@@ -3,7 +3,9 @@
 namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Components\AdminMenuFactoryInterface;
+use Crm\AdminModule\Events\AdminRequestInsecureEvent;
 use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
+use Crm\AdminModule\Helpers\SecuredAdminAccess;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
 use Nette\Application\ForbiddenRequestException;
@@ -18,6 +20,9 @@ class AdminPresenter extends BasePresenter
 
     /** @persistent */
     public $payment_method;
+
+    /** @var SecuredAdminAccess @inject */
+    public $securedAdminAccess;
 
     protected $onPage = 50;
 
@@ -56,6 +61,15 @@ class AdminPresenter extends BasePresenter
         // check user's access to presenter's action
         if (!$this->getUser()->isAllowed($this->getName(), $this->getAction())) {
             throw new ForbiddenRequestException();
+        }
+
+        // require secure login
+        if (!$this->securedAdminAccess->isSecure()) {
+            $this->emitter->emit(new AdminRequestInsecureEvent($this->storeRequest()));
+
+            $this->flashMessage($this->translator->translate('admin.security.unsecure_login'), 'warning');
+            $this->getUser()->logout(true);
+            $this->redirect($this->applicationConfig->get('not_logged_in_route'), ['back' => $this->storeRequest()]);
         }
 
         $this->setLayout('admin');

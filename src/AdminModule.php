@@ -4,9 +4,11 @@ namespace Crm\AdminModule;
 
 use Crm\ApplicationModule\AssetsManager;
 use Crm\ApplicationModule\CrmModule;
+use Crm\ApplicationModule\Event\EventsStorage;
 use Crm\ApplicationModule\LayoutManager;
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
+use Crm\ApplicationModule\SeederManager;
 use Crm\UsersModule\Auth\Permissions;
 use Kdyby\Translation\Translator;
 use Nette\DI\Container;
@@ -77,5 +79,15 @@ class AdminModule extends CrmModule
     {
         $assetsManager->copyAssets(__DIR__ . '/assets/dist/', 'layouts/admin/dist/');
         $assetsManager->copyAssets(__DIR__ . '/assets/images/', 'layouts/admin/dist/images/module/');
+    }
+
+    public function registerSeeders(SeederManager $seederManager)
+    {
+        $seederManager->addSeeder($this->getInstance(\Crm\AdminModule\Seeders\ConfigsSeeder::class));
+    }
+
+    public function registerEvents(EventsStorage $eventsStorage)
+    {
+        $eventsStorage->register('admin-request-insecure', Events\AdminRequestInsecureEvent::class);
     }
 }

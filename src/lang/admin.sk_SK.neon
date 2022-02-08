@@ -99,6 +99,8 @@ components:
 		date_from: Filter od
 		date_to: Filter do
 		submit: Filter
+	change_locale_form:
+		invalid_submission: "Zmena jazyka nebola úspešná, konto už bolo odhlásené."
 
 data:
 	snippets:
@@ -119,3 +121,10 @@ data:
 			sorting: napríklad 300
 			html: nejaké html
 		no_record: 'n/a'
+
+security:
+	unsecure_login: 'Neboli ste prihláseny dostatočne bezpečnou metodou. Použite prihlásenie s dvojstupňovým overením.'
+
+config:
+	secure_login:
+		name: 'Vyžadovať bezpečnu formu prihlásenia pre admin role'

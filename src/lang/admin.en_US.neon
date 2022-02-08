@@ -98,6 +98,8 @@ components:
 		date_from: Filter from
 		date_to: Filter to
 		submit: Filter
+	change_locale_form:
+		invalid_submission: "Change of language was not successful. The account was already signed out."
 data:
 	snippets:
 		fields:
@@ -117,3 +119,10 @@ data:
 			sorting: for example 300
 			html: some html
 		no_record: 'n/a'
+
+security:
+	unsecure_login: 'You authentication is not secure enough. Please use two factor authentication method.'
+
+config:
+	secure_login:
+		name: 'Require secure authentication method for admin roles'
