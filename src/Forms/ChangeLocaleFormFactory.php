@@ -2,23 +2,27 @@
 
 namespace Crm\AdminModule\Forms;
 
-use Kdyby\Translation\LocaleResolver\SessionResolver;
+use Crm\UsersModule\Repository\UsersRepository;
 use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
+use Nette\Security\User;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 class ChangeLocaleFormFactory
 {
     private $translator;
 
-    private $userLocaleResolver;
+    private $usersRepository;
+
+    private $user;
 
     public $onChange;
 
-    public function __construct(Translator $translator, SessionResolver $userLocaleResolver)
+    public function __construct(Translator $translator, User $user, UsersRepository $usersRepository)
     {
         $this->translator = $translator;
-        $this->userLocaleResolver = $userLocaleResolver;
+        $this->user = $user;
+        $this->usersRepository = $usersRepository;
     }
 
     /**
@@ -55,7 +59,13 @@ class ChangeLocaleFormFactory
 
     public function formSucceeded($form, $values)
     {
-        $this->userLocaleResolver->setLocale($values->locale);
+        if (!$this->user->isLoggedIn()) {
+            $form->addError('admin.components.change_locale_form.invalid_submission');
+        }
+        $user = $this->usersRepository->find($this->user->getId());
+        $this->usersRepository->update($user, [
+            'locale' => $values->locale,
+        ]);
         $this->onChange->__invoke();
     }
 }

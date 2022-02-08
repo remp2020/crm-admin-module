@@ -97,7 +97,8 @@ components:
 		date_from: Filter od
 		date_to: Filter do
 		submit: Filter
-
+	change_locale_form:
+		invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
 data:
 	snippets:
 		fields:
