@@ -99,6 +99,7 @@ components:
 		submit: Filter
 	change_locale_form:
 		invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
+
 data:
 	snippets:
 		fields:
