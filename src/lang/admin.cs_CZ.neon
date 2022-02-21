@@ -14,34 +14,30 @@ admin:
 		default:
 			header: Audit log
 			operation:
-				title: Operácia
-				create: Vytvorenie
-				update: Upravenie
-				delete: Zmazanie
-			table: Tabuľka
-			signature: Identifikátor
+				title: Operace
+			table: Tabulka
+			signature: Identifikátorátor
 			created_at_from: Čas od
 			created_at_to: Čas do
-			filter: Filter
-			cancel_filter: Zruš filter
-			change: Zmena
-			changed_by: Zmenu vykonal
+			filter: Filtr
+			cancel_filter: Zruš filtr
+			change: Změna
+			changed_by: Změnu provedl
 			created_at: Čas
-			no_records: 'Nenašli sa žiadne záznamy, ktoré by zodpovedali filtru'
 			eg: např.
 
 	background_jobs:
 		default:
-			header: Úlohy na pozadí
+			header: Úkoly na pozadí
 			graph:
-				title: Úlohy na pozadí
+				title: Úkoly na pozadí
 				tooltip: Úlohy na pozadí zobrazené v čase
 			types:
 				title: Typy
 			states:
 				error: Chyby
 			enqueued_jobs:
-				title: Úlohy v poradí
+				title: Úkoly na pozadí
 				id: Id
 				type: Typ
 				payload: Payload
@@ -77,20 +73,20 @@ admin:
 			new: Nový snippet
 		new:
 			title: Nový snippet
-			back: späť na snippety
+			back: zpět na snippety
 		show:
 			title: Snippet '%snippetTitle%'
-			back: späť na snippety
-			edit: Upraviť snippet
-			basic_informations: Základne informácie
-			usage_informations: Použitie
+			back: zpět na snippety
+			edit: Upravit snippet
+			basic_informations: Základní informace
+			usage_informations: Použití
 		edit:
-			back: späť na snippety
-			title: Upraviť snippet '%snippetTitle%'
+			back: zpět na snippety
+			title: Upravit snippet '%snippetTitle%'
 		messages:
-			snippet_deleted: Snippet bol úspešne zmazaný
-			snippet_created: Snippet bol úspešne vytvorený
-			snippet_updated: Snippet bol úspešne upravený
+			snippet_deleted: Snippet byl úspěšně smazán
+			snippet_created: Snippet byl úspěšně vytvořen
+			snippet_updated: Snippet byl úspěšně upraven
 
 components:
 	date_filter_form:
@@ -99,24 +95,25 @@ components:
 		submit: Filter
 	change_locale_form:
 		invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
+
 data:
 	snippets:
 		fields:
-			title: Názov
+			title: Název
 			identifier: Identifikátor
-			is_active: Aktívny
+			is_active: Aktivní
 			html: HTML snippetu
-			sorting: Poradie
+			sorting: Pořadí
 			last_used: Naposledy použitý
-			total_used: Celkovo použitý
+			total_used: Celkem použitý
 		required:
-			title: Názov je povinný
+			title: Název je povinný
 			identifier: Identifikátor je povinný
 		placeholder:
-			title: například User zone header
+			title: 'například User zone header'
 			identifier: například user_header
-			sorting: například 300
-			html: nejaké html
+			sorting: Například 300
+			html: nějaké html
 		no_record: 'n/a'
 
 security:
