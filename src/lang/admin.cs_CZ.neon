@@ -1,124 +1,124 @@
 menu:
-	settings: Nastavení
-	background_jobs: Úkoly na pozadí
-	snippets: Snippety
-	audit_log: Audit log
+    settings: Nastavení
+    background_jobs: Úkoly na pozadí
+    snippets: Snippety
+    audit_log: Audit log
 
 admin:
-	layout:
-		home: Domů
-		profile: Profil
-		signout: Odhlásit
+    layout:
+        home: Domů
+        profile: Profil
+        signout: Odhlásit
 
-	audit_log:
-		default:
-			header: Audit log
-			operation:
-				title: Operace
-			table: Tabulka
-			signature: Identifikátorátor
-			created_at_from: Čas od
-			created_at_to: Čas do
-			filter: Filtr
-			cancel_filter: Zruš filtr
-			change: Změna
-			changed_by: Změnu provedl
-			created_at: Čas
-			eg: např.
+    audit_log:
+        default:
+            header: Audit log
+            operation:
+                title: Operace
+            table: Tabulka
+            signature: Identifikátorátor
+            created_at_from: Čas od
+            created_at_to: Čas do
+            filter: Filtr
+            cancel_filter: Zruš filtr
+            change: Změna
+            changed_by: Změnu provedl
+            created_at: Čas
+            eg: např.
 
-	background_jobs:
-		default:
-			header: Úkoly na pozadí
-			graph:
-				title: Úkoly na pozadí
-				tooltip: Úlohy na pozadí zobrazené v čase
-			types:
-				title: Typy
-			states:
-				error: Chyby
-			enqueued_jobs:
-				title: Úkoly na pozadí
-				id: Id
-				type: Typ
-				payload: Payload
-				process_at: "Naplánováno na (čas)"
-				priority: Priorita
-			hermes_tasks:
-				title: Úkoly ukončena s chybou
-				message_id: ID
-				type: Typ
-				payload: Payload
-				process_at: Zpracované
-				actions: Akce
-			retry: Zpracuj znovu
-			no_data_available: Nebyly nalezeny žádné záznamy
-			errors_1:
-				title: Chyby za posledních 24 hodin
-			errors_7:
-				title: Chyby za posledních 7 dní
-			errors_31:
-				title: Chyby za posledních 31 dní
+    background_jobs:
+        default:
+            header: Úkoly na pozadí
+            graph:
+                title: Úkoly na pozadí
+                tooltip: Úlohy na pozadí zobrazené v čase
+            types:
+                title: Typy
+            states:
+                error: Chyby
+            enqueued_jobs:
+                title: Úkoly na pozadí
+                id: Id
+                type: Typ
+                payload: Payload
+                process_at: "Naplánováno na (čas)"
+                priority: Priorita
+            hermes_tasks:
+                title: Úkoly ukončena s chybou
+                message_id: ID
+                type: Typ
+                payload: Payload
+                process_at: Zpracované
+                actions: Akce
+            retry: Zpracuj znovu
+            no_data_available: Nebyly nalezeny žádné záznamy
+            errors_1:
+                title: Chyby za posledních 24 hodin
+            errors_7:
+                title: Chyby za posledních 7 dní
+            errors_31:
+                title: Chyby za posledních 31 dní
 
-	configs:
-		default:
-			header: Nastavení
-		messages:
-			settings_saved: "Nastavení byly uloženy."
-		validation:
-			integer: "Zadejte prosím celé číslo."
+    configs:
+        default:
+            header: Nastavení
+        messages:
+            settings_saved: "Nastavení byly uloženy."
+        validation:
+            integer: "Zadejte prosím celé číslo."
 
-	snippets:
-		default:
-			title: Snippety
-			new: Nový snippet
-		new:
-			title: Nový snippet
-			back: zpět na snippety
-		show:
-			title: Snippet '%snippetTitle%'
-			back: zpět na snippety
-			edit: Upravit snippet
-			basic_informations: Základní informace
-			usage_informations: Použití
-		edit:
-			back: zpět na snippety
-			title: Upravit snippet '%snippetTitle%'
-		messages:
-			snippet_deleted: Snippet byl úspěšně smazán
-			snippet_created: Snippet byl úspěšně vytvořen
-			snippet_updated: Snippet byl úspěšně upraven
+    snippets:
+        default:
+            title: Snippety
+            new: Nový snippet
+        new:
+            title: Nový snippet
+            back: zpět na snippety
+        show:
+            title: Snippet '%snippetTitle%'
+            back: zpět na snippety
+            edit: Upravit snippet
+            basic_informations: Základní informace
+            usage_informations: Použití
+        edit:
+            back: zpět na snippety
+            title: Upravit snippet '%snippetTitle%'
+        messages:
+            snippet_deleted: Snippet byl úspěšně smazán
+            snippet_created: Snippet byl úspěšně vytvořen
+            snippet_updated: Snippet byl úspěšně upraven
 
 components:
-	date_filter_form:
-		date_from: Filter od
-		date_to: Filter do
-		submit: Filter
-	change_locale_form:
-		invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
+    date_filter_form:
+        date_from: Filter od
+        date_to: Filter do
+        submit: Filter
+    change_locale_form:
+        invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
 
 data:
-	snippets:
-		fields:
-			title: Název
-			identifier: Identifikátor
-			is_active: Aktivní
-			html: HTML snippetu
-			sorting: Pořadí
-			last_used: Naposledy použitý
-			total_used: Celkem použitý
-		required:
-			title: Název je povinný
-			identifier: Identifikátor je povinný
-		placeholder:
-			title: 'například User zone header'
-			identifier: například user_header
-			sorting: Například 300
-			html: nějaké html
-		no_record: 'n/a'
+    snippets:
+        fields:
+            title: Název
+            identifier: Identifikátor
+            is_active: Aktivní
+            html: HTML snippetu
+            sorting: Pořadí
+            last_used: Naposledy použitý
+            total_used: Celkem použitý
+        required:
+            title: Název je povinný
+            identifier: Identifikátor je povinný
+        placeholder:
+            title: 'například User zone header'
+            identifier: například user_header
+            sorting: Například 300
+            html: nějaké html
+        no_record: 'n/a'
 
 security:
-	unsecure_login: 'Nebyli jste přihlášeni dostatečně bezpečnou metodou. Použijte přihlášení s dvoustupňovým ověřením.'
+    unsecure_login: 'Nebyli jste přihlášeni dostatečně bezpečnou metodou. Použijte přihlášení s dvoustupňovým ověřením.'
 
 config:
-	secure_login:
-		name: 'Vyžadovat bezpečnou formu přihlášení pro admin role'
+    secure_login:
+        name: 'Vyžadovat bezpečnou formu přihlášení pro admin role'
