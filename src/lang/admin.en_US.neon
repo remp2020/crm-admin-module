@@ -87,7 +87,6 @@ admin:
 		edit:
 			back: back to snippet
 			title: Edit snippet
-			header: Edit snippet
 		messages:
 			snippet_deleted: Snippet was successfully deleted
 			snippet_created: Snippet was successfully created
