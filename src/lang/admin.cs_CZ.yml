@@ -84,9 +84,9 @@ admin:
             back: zpět na snippety
             title: Upravit snippet '%snippetTitle%'
         messages:
-            snippet_deleted: Snippet byl úspěšně smazán
-            snippet_created: Snippet byl úspěšně vytvořen
-            snippet_updated: Snippet byl úspěšně upraven
+            snippet_deleted: Snippet byl úspěšně smazán.
+            snippet_created: Snippet byl úspěšně vytvořen.
+            snippet_updated: Snippet byl úspěšně upraven.
 
 components:
     date_filter_form:

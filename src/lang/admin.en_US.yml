@@ -69,7 +69,7 @@ admin:
         messages:
             settings_saved: "Settings was successfully saved."
         validation:
-            integer: "Please enter a valid integer"
+            integer: "Please enter a valid integer."
 
     snippets:
         default:
@@ -88,9 +88,9 @@ admin:
             back: back to snippet
             title: Edit snippet
         messages:
-            snippet_deleted: Snippet was successfully deleted
-            snippet_created: Snippet was successfully created
-            snippet_updated: Snippet was successfully updated
+            snippet_deleted: Snippet was successfully deleted.
+            snippet_created: Snippet was successfully created.
+            snippet_updated: Snippet was successfully updated.
 
 components:
     date_filter_form:
