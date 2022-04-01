@@ -134,13 +134,14 @@ window.initSelect2 = function () {
                 return markup;
             },
             allowClear: true,
+            language: $('html').attr('lang'),
+            dropdownAutoWidth: true
         };
 
         var allowClearSign = $(this).attr('allowClear');
         if (!allowClearSign || allowClearSign === 'false') {
             config['allowClear'] = false
         }
-
 
         let placeholder = $(this).find('option[value=""]').text();
         if (placeholder.length > 0) {
@@ -154,6 +155,28 @@ window.initSelect2 = function () {
         if (modal.length) {
             // select2 search wouldn't work in modal without this
             config["dropdownParent"] = modal;
+        }
+
+        let ajaxUrl = $(this).data('ajax-url');
+        if (ajaxUrl) {
+            config["ajax"] = {
+                "url": ajaxUrl,
+                "dataType": "json",
+                "delay": 500,
+                "processResults": function (data) {
+                    let result = [];
+                    data.forEach(item => {
+                        result.push({
+                            "id": item.key,
+                            "text": $("<span>" + item.value + "</span>"),
+                        });
+                    });
+                    return {
+                        "results": result
+                    };
+                }
+            }
+            config["minimumInputLength"] = 2;
         }
 
         $(this).select2(config);
