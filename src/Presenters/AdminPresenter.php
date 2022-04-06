@@ -64,7 +64,7 @@ class AdminPresenter extends BasePresenter
         }
 
         // require secure login
-        if (!$this->securedAdminAccess->isSecure()) {
+        if (!$this->securedAdminAccess->isSecure($user)) {
             $this->emitter->emit(new AdminRequestInsecureEvent($this->storeRequest()));
 
             $this->flashMessage($this->translator->translate('admin.security.unsecure_login'), 'warning');
