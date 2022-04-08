@@ -138,8 +138,8 @@ window.initSelect2 = function () {
             dropdownAutoWidth: true
         };
 
-        var allowClearSign = $(this).attr('allowClear');
-        if (!allowClearSign || allowClearSign === 'false') {
+        let allowClear = $(this).attr('allowClear');
+        if (allowClear === 'false') {
             config['allowClear'] = false
         }
 

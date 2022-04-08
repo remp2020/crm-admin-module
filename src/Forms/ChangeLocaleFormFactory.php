@@ -46,7 +46,7 @@ class ChangeLocaleFormFactory
         $locale->getControlPrototype()->addAttributes([
             'class' => 'select2',
             'style' => 'width: 80px',
-            'allowClear' => false,
+            'allowClear' => 'false',
         ]);
 
         $form->setDefaults([
