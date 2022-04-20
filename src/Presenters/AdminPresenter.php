@@ -89,7 +89,7 @@ class AdminPresenter extends BasePresenter
     {
         $form = $factory->create();
         $factory->onChange = function () {
-            $this->redirect('this');
+            $this->redirect('this', ['locale' => null]);
         };
         return $form;
     }
