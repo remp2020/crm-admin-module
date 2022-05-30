@@ -10,7 +10,7 @@
 <div class="row">
     <div class="col-md-3">
         <div n:foreach="$errorDayRanges as $dayRange" class="panel panel-default">
-            <div class="panel-heading">{_admin.admin.background_jobs.default.errors_$dayRange.title}</div>
+            <div class="panel-heading">{_"admin.admin.background_jobs.default.errors_{$dayRange}.title"}</div>
             {if empty($errorCounts[$dayRange])}
             <div class="panel-body">
                 {_admin.admin.background_jobs.default.no_data_available}

@@ -1,14 +1,14 @@
-{block #title}{_admin.admin.snippets.default.title}{/block}
+{block #title}{_'admin.admin.snippets.default.title'}{/block}
 
 {block #content}
 
 <div class="row">
   <div class="col-md-12">
     <h2>
-      {_admin.admin.snippets.default.title}
-      <small> / {_system.total} {count($snippets)}
+      {_'admin.admin.snippets.default.title'}
+      <small> / {_'system.total'} {count($snippets)}
       </small>
-      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper"></i> {_admin.admin.snippets.default.new}</a>
+      <a n:href="new" class="btn btn-success btn-lg pull-right"><i class="fa fa-newspaper"></i> {_'admin.admin.snippets.default.new'}</a>
     </h2>
     <hr>
   </div>
@@ -16,11 +16,11 @@
     <table class="table table-striped table-hover table-bordered">
       <thead>
         <tr>
-          <th>{_admin.data.snippets.fields.title}</th>
-          <th>{_admin.data.snippets.fields.identifier}</th>
-          <th>{_admin.data.snippets.fields.total_used}</th>
-          <th>{_system.fields.created}</th>
-          <th>{_system.actions}</th>
+          <th>{_'admin.data.snippets.fields.title'}</th>
+          <th>{_'admin.data.snippets.fields.identifier'}</th>
+          <th>{_'admin.data.snippets.fields.total_used'}</th>
+          <th>{_'system.fields.created'}</th>
+          <th>{_'system.actions'}</th>
         </tr>
       </thead>
       <tbody>
@@ -39,14 +39,14 @@
               {$snippet->total_used|number} /
               <small class="text-muted">{$snippet->last_used|userDate}</small>
             {else}
-              <small class="text-muted">{_admin.data.snippets.no_record}</small>
+              <small class="text-muted">{_'admin.data.snippets.no_record'}</small>
             {/if}
           </td>
           <td class="text-muted">{$snippet->created_at|userDate}</td>
           <td>
             <p class="text-nowrap">
-              <a n:href="show $snippet->id" class="btn btn-sm btn-info" title="{_system.show}"><i class="fa fa-eye"></i> </a>
-              <a n:href="edit $snippet->id" class="btn btn-sm btn-primary" title="{_system.edit}"><i class="fa fa-edit"></i> </a>
+              <a n:href="show $snippet->id" class="btn btn-sm btn-info" title="{_'system.show'}"><i class="fa fa-eye"></i> </a>
+              <a n:href="edit $snippet->id" class="btn btn-sm btn-primary" title="{_'system.edit'}"><i class="fa fa-edit"></i> </a>
             </p>
           </td>
         </tr>
