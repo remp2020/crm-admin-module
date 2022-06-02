@@ -33,7 +33,7 @@
         <tr n:foreach="$records as $record">
           {var $decoded = json_decode($record->data, 1)}
 
-          <td><span class="label label-default">{_admin.admin.audit_log.default.operation.$record->operation|lower}</span></td>
+          <td><span class="label label-default">{_"admin.admin.audit_log.default.operation.$record->operation"|lower}</span></td>
           <td><code>{$record->table_name}</code></td>
           <td>{$record->signature}</td>
 
