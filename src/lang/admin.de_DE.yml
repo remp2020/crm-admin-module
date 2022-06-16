@@ -1,1 +1,119 @@
-{}
+menu:
+    settings: Einstellungen
+    background_jobs: Background-Jobs
+    snippets: Snippets
+    audit_log: Audit-Log
+admin:
+    layout:
+        home: Start
+        profile: Profil
+        signout: Abmelden
+    audit_log:
+        default:
+            header: Audit-Log
+            operation:
+                title: Operation
+                create: Anlegen
+                update: Aktualisieren
+                delete: Löschen
+            created_at_from: Angelegt am
+            no_records: Keine Datensätze entsprechen den Filterbedingungen
+            change: Ändern
+            table: Tabelle
+            signature: Signatur
+            created_at_to: Angelegt bis
+            filter: Filter
+            cancel_filter: Filter löschen
+            created_at: Zeit
+            changed_by: Geändert von
+            eg: z. B.
+    background_jobs:
+        default:
+            graph:
+                tooltip: Pünktliche Background-Jobs
+                title: Background-Jobs
+            types:
+                title: Typen
+            states:
+                error: Fehlgeschlagen
+            enqueued_jobs:
+                title: Eingereihte Jobs
+                id: Id
+                type: Typ
+                payload: Payload
+                process_at: Vorgemerkt für (Zeit)
+                priority: Priorität
+            hermes_tasks:
+                title: Fehlerhaft ausgeführte Jobs
+                message_id: ID
+                type: Typ
+                payload: Payload
+                process_at: Verarbeitet am
+                actions: Aktionen
+            retry: Erneut verarbeitet
+            no_data_available: Keine Datensätze gefunden
+            errors_7:
+                title: Fehlern in den letzten 7 Tagen
+            errors_31:
+                title: Fehler in den letzten 31 Tagen
+            header: Background-Jobs
+            errors_1:
+                title: Fehler in den letzten 24h
+    configs:
+        validation:
+            integer: Bitte geben Sie einen korrekten Integer-Wert an.
+        default:
+            header: Einstellungen
+        messages:
+            settings_saved: Einstellungen wurden erfolgreich gespeichert.
+    snippets:
+        default:
+            title: Snippets
+            new: Neues Snippet
+        messages:
+            snippet_created: Snippet wurde erfolgreich angelegt.
+            snippet_updated: Snippet wurde erfolgreich aktualisiert.
+            snippet_deleted: Snippet wurde erfolgreich gelöscht.
+        show:
+            edit: Snippet bearbeiten
+            usage_informations: Nutzungsinformationen
+            title: Snippet '%snippetTitle%'
+            basic_informations: Basis-Informationen
+            back: Zurück zu den Snippets
+        edit:
+            title: Snippet '%snippetTitle%' bearbeiten
+            back: Zurück zu den Snippets
+        new:
+            title: Neues Snippet
+            back: Zurück zu den Snippets
+components:
+    date_filter_form:
+        date_from: Filtern von
+        submit: Filter
+        date_to: Filtern bis
+    change_locale_form:
+        invalid_submission: Die Sprachänderung ist fehlgeschlagen. Das Konto ist bereits abgemeldet.
+data:
+    snippets:
+        fields:
+            title: Titel
+            html: HTML-Snippet
+            sorting: Sortierung
+            last_used: Zuletzt verwendet
+            total_used: Insgesamt verwendet
+            is_active: Ist aktiv
+            identifier: Identifier
+        placeholder:
+            title: zum Beispiel User zone header
+            identifier: zum Beispiel user_header
+            sorting: zum Beispiel 300
+            html: beliebiges HTML
+        no_record: n/a
+        required:
+            identifier: Identifikation ist erforderlich
+            title: Titel ist erforderlich
+config:
+    secure_login:
+        name: Sichere Authentifizierungsmethode für Admin-Rollen erforderlich
+security:
+    unsecure_login: Ihre Authentifizierung ist nicht sicher genug. Bitte nutzen Sie eine Methode mit Zwei-Faktor-Authentifizierung.
