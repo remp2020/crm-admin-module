@@ -93,6 +93,8 @@ components:
         date_to: Filtern bis
     change_locale_form:
         invalid_submission: Die Sprachänderung ist fehlgeschlagen. Das Konto ist bereits abgemeldet.
+    universal_search_widget:
+        placeholder: Suche
 data:
     snippets:
         fields:

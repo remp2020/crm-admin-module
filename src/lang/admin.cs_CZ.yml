@@ -95,6 +95,8 @@ components:
         submit: Filter
     change_locale_form:
         invalid_submission: "Změna jazyka nebyla úspěšná, konto již bylo odhlášeno."
+    universal_search_widget:
+        placeholder: Vyhledávání
 
 data:
     snippets:

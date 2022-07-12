@@ -11,3 +11,5 @@ services:
 	- Crm\AdminModule\Forms\ChangeLocaleFormFactory
 	- Crm\AdminModule\Seeders\ConfigsSeeder
 	- Crm\AdminModule\Helpers\SecuredAdminAccess
+	- Crm\AdminModule\Model\UniversalSearch
+	- Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget

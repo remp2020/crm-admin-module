@@ -1,0 +1,41 @@
+<li style="padding: 8px;"><select class="universal-search-box" style="min-width: 230px;"></select></li>
+
+<script>
+    $(".universal-search-box").select2({
+        width: 'resolve',
+        placeholder: {_admin.components.universal_search_widget.placeholder},
+        multiple: true,
+        maximumSelectionLength: 1,
+        dropdownAutoWidth: true,
+        ajax: {
+            url: {$url},
+            dataType: 'json',
+            delay: 250,
+            data: function (params) {
+                return {
+                    q: params.term, // search term
+                    page: params.page
+                };
+            }
+        },
+        minimumInputLength: 1,
+    });
+
+    let currentQuery;
+    $('.universal-search-box')
+        .on('select2:closing', function (e) {
+            // Preserve typed value
+            currentQuery = $('.select2-search input').prop('value');
+        })
+        .on('select2:open', function (e) {
+            // Fill preserved value back into Select2 input field and trigger the AJAX loading (if any)
+            $('.select2-search input').val(currentQuery).trigger('change').trigger("input");
+        })
+        .on('select2:close', function (e) {
+            $('.select2-search input').val(currentQuery);
+        })
+        .on('select2:select', function (e) {
+            $('.select2-search input').val(null)
+            window.location.href = e.params.data.url
+        });
+</script>
