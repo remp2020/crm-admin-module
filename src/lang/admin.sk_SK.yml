@@ -99,6 +99,8 @@ components:
         submit: Filter
     change_locale_form:
         invalid_submission: "Zmena jazyka nebola úspešná, konto už bolo odhlásené."
+    universal_search_widget:
+        placeholder: Vyhľadávanie
 
 data:
     snippets:

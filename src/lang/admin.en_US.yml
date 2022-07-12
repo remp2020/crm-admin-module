@@ -99,6 +99,8 @@ components:
         submit: Filter
     change_locale_form:
         invalid_submission: "Change of language was not successful. The account was already signed out."
+    universal_search_widget:
+        placeholder: Search
 
 data:
     snippets:
