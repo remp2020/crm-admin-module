@@ -2,6 +2,7 @@
 
 namespace Crm\AdminModule;
 
+use Contributte\Translation\Translator;
 use Crm\ApplicationModule\AssetsManager;
 use Crm\ApplicationModule\CrmModule;
 use Crm\ApplicationModule\Event\EventsStorage;
@@ -11,7 +12,6 @@ use Crm\ApplicationModule\Menu\MenuItem;
 use Crm\ApplicationModule\SeederManager;
 use Crm\ApplicationModule\Widget\WidgetManagerInterface;
 use Crm\UsersModule\Auth\Permissions;
-use Kdyby\Translation\Translator;
 use Nette\DI\Container;
 use Nette\Security\User;
 

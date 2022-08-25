@@ -2,8 +2,8 @@
 
 namespace Crm\AdminModule\Forms;
 
+use Contributte\Translation\Translator;
 use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
-use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
 use Nette\Database\Table\ActiveRow;
 use Tomaj\Form\Renderer\BootstrapRenderer;

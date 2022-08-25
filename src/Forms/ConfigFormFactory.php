@@ -2,10 +2,10 @@
 
 namespace Crm\AdminModule\Forms;
 
+use Contributte\Translation\Translator;
 use Crm\ApplicationModule\Config\ApplicationConfig;
 use Crm\ApplicationModule\Config\ConfigsCache;
 use Crm\ApplicationModule\Config\Repository\ConfigsRepository;
-use Kdyby\Translation\Translator;
 use Nette\Application\UI\Form;
 use Nette\Utils\Html;
 use Tomaj\Form\Renderer\BootstrapRenderer;

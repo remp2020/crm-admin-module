@@ -2,10 +2,10 @@
 
 namespace Crm\AdminModule\DI;
 
-use Kdyby\Translation\DI\ITranslationProvider;
+use Contributte\Translation\DI\TranslationProviderInterface;
 use Nette\DI\CompilerExtension;
 
-final class AdminModuleExtension extends CompilerExtension implements ITranslationProvider
+final class AdminModuleExtension extends CompilerExtension implements TranslationProviderInterface
 {
     public function loadConfiguration()
     {
@@ -23,11 +23,7 @@ final class AdminModuleExtension extends CompilerExtension implements ITranslati
             ->addSetup('setMapping', [['Admin' => 'Crm\AdminModule\Presenters\*Presenter']]);
     }
 
-    /**
-     * Return array of directories, that contain resources for translator.
-     * @return string[]
-     */
-    public function getTranslationResources()
+    public function getTranslationResources(): array
     {
         return [__DIR__ . '/../lang/'];
     }
