@@ -10,7 +10,7 @@ use Crm\ApplicationModule\LayoutManager;
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
 use Crm\ApplicationModule\SeederManager;
-use Crm\ApplicationModule\Widget\WidgetManagerInterface;
+use Crm\ApplicationModule\Widget\LazyWidgetManagerInterface;
 use Crm\UsersModule\Auth\Permissions;
 use Nette\DI\Container;
 use Nette\Security\User;
@@ -92,11 +92,11 @@ class AdminModule extends CrmModule
         $eventsStorage->register('admin-request-insecure', Events\AdminRequestInsecureEvent::class);
     }
 
-    public function registerWidgets(WidgetManagerInterface $widgetManager)
+    public function registerLazyWidgets(LazyWidgetManagerInterface $widgetManager)
     {
         $widgetManager->registerWidget(
             'admin.after_menu',
-            $this->getInstance(\Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget::class)
+            \Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget::class
         );
     }
 }
