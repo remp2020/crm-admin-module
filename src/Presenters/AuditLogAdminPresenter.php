@@ -24,11 +24,8 @@ class AuditLogAdminPresenter extends AdminPresenter
     /** @persistent */
     public $table;
 
-    private $auditLogRepository;
-
-    public function __construct(AuditLogRepository $auditLogRepository)
+    public function __construct(private AuditLogRepository $auditLogRepository)
     {
-        $this->auditLogRepository = $auditLogRepository;
         parent::__construct();
     }
 
@@ -37,7 +34,16 @@ class AuditLogAdminPresenter extends AdminPresenter
      */
     public function renderDefault()
     {
-        $records = $this->getFilteredLogs();
+        [$records, $hasFilter] = $this->getFilteredLogs();
+
+        $this->template->hasFilter = $hasFilter;
+        $this->template->createdAtFrom = $this->request->getParameter('created_at_from');
+        $this->template->createdAtTo = $this->request->getParameter('created_at_to');
+
+        if (!$hasFilter) {
+            return;
+        }
+
         $count = $records->count('*');
         $this->template->count = $count;
 
@@ -49,8 +55,6 @@ class AuditLogAdminPresenter extends AdminPresenter
 
         $this->template->vp = $vp;
         $this->template->records = $records->limit($paginator->getLength(), $paginator->getOffset());
-        $this->template->createdAtFrom = $this->request->getParameter('created_at_from');
-        $this->template->createdAtTo = $this->request->getParameter('created_at_to');
     }
 
     public function createComponentFilterForm()
@@ -86,7 +90,12 @@ class AuditLogAdminPresenter extends AdminPresenter
         $presenter = $this;
         $form->addSubmit('cancel', $this->translate('default.cancel_filter'))
             ->onClick[] = function () use ($presenter) {
-                $presenter->redirect('AuditLogAdmin:Default', ['text' => '']);
+                $presenter->created_at_from = null;
+                $presenter->created_at_to = null;
+                $presenter->operation = null;
+                $presenter->signature = null;
+                $presenter->table = null;
+                $presenter->redirect('AuditLogAdmin:Default');
             };
 
         $form->onSuccess[] = [$this, 'adminFilterSubmitted'];
@@ -100,26 +109,33 @@ class AuditLogAdminPresenter extends AdminPresenter
         return $form;
     }
 
-    private function getFilteredLogs()
+    private function getFilteredLogs(): array
     {
+        $hasFilter = false;
+
         $auditRecords = $this->auditLogRepository->getTable();
         if (($value = $this->request->getParameter('table')) !== null) {
+            $hasFilter = true;
             $auditRecords->where('table_name', $value);
         }
         if (($value = $this->request->getParameter('signature')) !== null) {
+            $hasFilter = true;
             $auditRecords->where('signature', $value);
         }
         if (($value = $this->request->getParameter('operation')) !== null) {
+            $hasFilter = true;
             $auditRecords->where('operation', $value);
         }
         if (($value = $this->request->getParameter('created_at_from')) !== null) {
+            $hasFilter = true;
             $auditRecords->where('created_at > ?', $value);
         }
         if (($value = $this->request->getParameter('created_at_to')) !== null) {
+            $hasFilter = true;
             $auditRecords->where('created_at < ?', $value);
         }
         $auditRecords->order('created_at DESC, id DESC');
-        return $auditRecords;
+        return [$auditRecords, $hasFilter];
     }
 
     private function translate($key)

@@ -15,6 +15,9 @@ admin:
             header: Audit log
             operation:
                 title: Operace
+                create: Vytvoření
+                update: Upravení
+                delete: Smazání
             table: Tabulka
             signature: Identifikátorátor
             created_at_from: Čas od
@@ -24,6 +27,8 @@ admin:
             change: Změna
             changed_by: Změnu provedl
             created_at: Čas
+            no_records: 'Nenašly se žádné záznamy, které by odpovídaly filtru.'
+            no_filter: 'Pro zobrazení záznamů zadejte alespoň jednu filtrační podmínku.'
             eg: např.
 
     background_jobs:

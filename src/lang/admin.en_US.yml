@@ -28,6 +28,7 @@ admin:
             changed_by: Changed by
             created_at: Time
             no_records: Unable to find any records matching filter
+            no_filter: 'Enter at least one filter condition to display records.'
             eg: e.g.
 
     background_jobs:

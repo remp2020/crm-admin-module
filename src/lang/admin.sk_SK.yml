@@ -27,7 +27,8 @@ admin:
             change: Zmena
             changed_by: Zmenu vykonal
             created_at: Čas
-            no_records: 'Nenašli sa žiadne záznamy, ktoré by zodpovedali filtru'
+            no_records: 'Nenašli sa žiadne záznamy, ktoré by zodpovedali filtru.'
+            no_filter: 'Pre zobrazenie záznamov zadajte aspoň jednu filtračnú podmienku.'
             eg: napr.
 
     background_jobs:
