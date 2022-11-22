@@ -1,7 +1,8 @@
-<li style="padding: 8px;"><select class="universal-search-box" style="min-width: 230px;"></select></li>
+<li class="universal-search-box" style="padding: 8px;"><select style="min-width: 230px;"></select></li>
 
 <script>
-    $(".universal-search-box").select2({
+
+    $(".universal-search-box select").select2({
         width: 'resolve',
         placeholder: {_admin.components.universal_search_widget.placeholder},
         multiple: true,
@@ -21,21 +22,21 @@
         minimumInputLength: 1,
     });
 
-    let currentQuery;
-    $('.universal-search-box')
+    var currentQuery;
+    $('.universal-search-box select')
         .on('select2:closing', function (e) {
             // Preserve typed value
-            currentQuery = $('.select2-search input').prop('value');
+            currentQuery = $('.universal-search-box .select2-search input').prop('value');
         })
         .on('select2:open', function (e) {
             // Fill preserved value back into Select2 input field and trigger the AJAX loading (if any)
-            $('.select2-search input').val(currentQuery).trigger('change').trigger("input");
+            $('.universal-search-box .select2-search input').val(currentQuery).trigger('change').trigger("input");
         })
         .on('select2:close', function (e) {
-            $('.select2-search input').val(currentQuery);
+            $('.universal-search-box .select2-search input').val(currentQuery);
         })
         .on('select2:select', function (e) {
-            $('.select2-search input').val(null)
-            window.location.href = e.params.data.url
+            $('.universal-search-box .select2-search input').val(null)
+            window.location.href = e.params.data.url;
         });
 </script>

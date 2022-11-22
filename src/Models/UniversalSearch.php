@@ -16,6 +16,8 @@ class UniversalSearch
 
     public function search(string $term)
     {
+        $term = trim($term);
+
         $searchResults = [];
         /** @var UniversalSearchDataProviderInterface[] $providers */
         $providers = $this->dataProviderManager->getProviders('admin.dataprovider.universal_search', UniversalSearchDataProviderInterface::class);

@@ -9,14 +9,12 @@ use Crm\ApplicationModule\Widget\LazyWidgetManager;
 class UniversalSearchWidget extends BaseLazyWidget
 {
     private string $templatePath = __DIR__ . DIRECTORY_SEPARATOR . 'universal_search_widget.latte';
-    private UniversalSearch $universalSearch;
 
     public function __construct(
         LazyWidgetManager $lazyWidgetManager,
-        UniversalSearch $universalSearch
+        private UniversalSearch $universalSearch
     ) {
         parent::__construct($lazyWidgetManager);
-        $this->universalSearch = $universalSearch;
     }
 
     public function identifier()
