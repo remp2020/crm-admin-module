@@ -14,7 +14,7 @@ class SnippetsAdminPresenter extends AdminPresenter
     /** @var SnippetsRepository */
     private $snippetsRepository;
 
-    /** @var  @persistent */
+    /** @persistent */
     public $snippet;
 
     public function __construct(SnippetsRepository $snippetsRepository, SnippetFormFactory $snippetFormFactory)
