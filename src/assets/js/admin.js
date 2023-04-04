@@ -107,6 +107,10 @@ $(document).ready(function() {
         if (minDate) {
             properties["minDate"] = minDate;
         }
+        var maxDate = $(this).attr('flatpickr_maxdate');
+        if (maxDate) {
+            properties["maxDate"] = maxDate;
+        }
 
         var wrap = $(this).data('flatpickr_wrap');
         if (wrap) {
