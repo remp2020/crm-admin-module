@@ -3,32 +3,27 @@
 namespace Crm\AdminModule\Forms;
 
 use Contributte\Translation\Translator;
+use Crm\AdminModule\DataProvider\ConfigFormDataProviderInterface;
 use Crm\ApplicationModule\Config\ApplicationConfig;
 use Crm\ApplicationModule\Config\ConfigsCache;
 use Crm\ApplicationModule\Config\Repository\ConfigsRepository;
+use Crm\ApplicationModule\DataProvider\DataProviderManager;
 use Nette\Application\UI\Form;
 use Nette\Utils\Html;
+use Nette\Utils\Json;
 use Tomaj\Form\Renderer\BootstrapRenderer;
 use Tracy\Debugger;
 
 class ConfigFormFactory
 {
-    private $configsRepository;
-
-    private $configsCache;
-
-    private $translator;
-
     public $onSave;
 
     public function __construct(
-        ConfigsRepository $configsRepository,
-        ConfigsCache $configsCache,
-        Translator $translator
+        private ConfigsRepository $configsRepository,
+        private ConfigsCache $configsCache,
+        private DataProviderManager $dataProviderManager,
+        private Translator $translator
     ) {
-        $this->configsRepository = $configsRepository;
-        $this->configsCache = $configsCache;
-        $this->translator = $translator;
     }
 
     public function create($categoryId = null)
@@ -41,20 +36,20 @@ class ConfigFormFactory
         $configs = $this->configsRepository->loadByCategory($categoryId);
         foreach ($configs as $config) {
             $item = null;
-            if ($config->type == ApplicationConfig::TYPE_STRING) {
+            if ($config->type === ApplicationConfig::TYPE_STRING) {
                 $item = $form->addText($config->name, $config->display_name ?? $config->name);
-            } elseif ($config->type == ApplicationConfig::TYPE_INT) {
+            } elseif ($config->type === ApplicationConfig::TYPE_INT) {
                 $item = $form->addText($config->name, $config->display_name ?? $config->name);
                 $item->addCondition(Form::FILLED)
                     ->addRule(Form::INTEGER, $this->translator->translate('admin.admin.configs.validation.integer'));
-            } elseif ($config->type == ApplicationConfig::TYPE_PASSWORD) {
+            } elseif ($config->type === ApplicationConfig::TYPE_PASSWORD) {
                 $item = $form->addText($config->name, $config->display_name ?? $config->name);
-            } elseif ($config->type == ApplicationConfig::TYPE_TEXT) {
+            } elseif ($config->type === ApplicationConfig::TYPE_TEXT) {
                 $item = $form->addTextArea(
                     $config->name,
                     $config->display_name ?? $config->name
                 )->setHtmlAttribute('rows', 5);
-            } elseif ($config->type == ApplicationConfig::TYPE_HTML) {
+            } elseif ($config->type === ApplicationConfig::TYPE_HTML) {
                 $item = $form->addTextArea(
                     $config->name,
                     $config->display_name ?? $config->name
@@ -62,8 +57,14 @@ class ConfigFormFactory
                 $item
                     ->setHtmlAttribute('rows', 15)
                     ->getControlPrototype()->addAttributes(['class' => 'ace', 'data-lang' => 'html']);
-            } elseif ($config->type == ApplicationConfig::TYPE_BOOLEAN) {
-                $item= $form->addCheckbox($config->name, $config->display_name ?? $config->name);
+            } elseif ($config->type === ApplicationConfig::TYPE_BOOLEAN) {
+                $item = $form->addCheckbox($config->name, $config->display_name ?? $config->name);
+            } elseif ($config->type === ApplicationConfig::TYPE_SELECT) {
+                $selectOptions = Json::decode($config->options, true);
+                foreach ($selectOptions as $value => $label) {
+                    $selectOptions[$value] = $this->translator->translate($label);
+                }
+                $item = $form->addSelect($config->name, $config->display_name ?? $config->name, $selectOptions);
             } else {
                 Debugger::log('Unknown config type [' . $config->type . '] of config [' . $config->name . ']', Debugger::ERROR);
                 continue;
@@ -74,6 +75,12 @@ class ConfigFormFactory
         }
 
         $form->addHidden('categoryId', $categoryId);
+
+        /** @var ConfigFormDataProviderInterface[] $providers */
+        $providers = $this->dataProviderManager->getProviders('admin.dataprovider.config_form', ConfigFormDataProviderInterface::class);
+        foreach ($providers as $sorting => $provider) {
+            $form = $provider->provide(['form' => $form]);
+        }
 
         $form->addSubmit('send', 'system.save')
             ->getControlPrototype()
