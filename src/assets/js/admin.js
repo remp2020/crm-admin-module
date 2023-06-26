@@ -117,6 +117,11 @@ $(document).ready(function() {
             properties['wrap'] = true;
         }
 
+        var allowInvalidPreload = $(this).attr('flatpickr_allow_invalid_preload');
+        if (allowInvalidPreload) {
+            properties['allowInvalidPreload'] = true;
+        }
+
         this.flatpickr(properties);
     });
 
