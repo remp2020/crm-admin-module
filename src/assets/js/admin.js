@@ -1,4 +1,5 @@
 import "./vendor"
+import moment from "moment";
 
 $(document).ready(function() {
     $('.autosize').autosize();
@@ -83,6 +84,9 @@ $(document).ready(function() {
             "altFormat": "J M Y",
             onClose(dates, currentDateString, picker) {
                 picker.setDate(picker.altInput.value, true, picker.config.altFormat)
+            },
+            parseDate(dateStr, format) {
+                return moment(dateStr, [format, "d.m.Y", "d.m.Y H:i:S"].map(x => flatpickrToMoment(x)), true).toDate()
             }
         };
 
@@ -129,6 +133,25 @@ $(document).ready(function() {
     initAceEditor(false);
     initCodemirror();
 });
+
+function flatpickrToMoment(format) {
+    let rules = {
+        'J': 'Do',
+        'M': 'MMM',
+        'm': 'MM',
+        'i': 'mm',
+        'S': 'ss',
+        'd': 'DD',
+        'Y': 'YYYY',
+        'H': 'HH',
+    }
+
+    for (const [key, value] of Object.entries(rules)) {
+        format = format.replace(key, value)
+    }
+
+    return format;
+}
 
 window.initSelect2 = function () {
     $('select.select2').each(function () {

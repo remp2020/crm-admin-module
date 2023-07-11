@@ -15,7 +15,8 @@
   "dependencies": {
     "codemirror": "^5.58.2",
     "flatpickr": "4.6.13",
-    "trumbowyg": "^2.21.0"
+    "trumbowyg": "^2.21.0",
+    "moment": "^2.29.4"
   },
   "devDependencies": {
     "cross-env": "^7.0.2",
