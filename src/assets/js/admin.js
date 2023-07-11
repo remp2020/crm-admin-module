@@ -86,7 +86,8 @@ $(document).ready(function() {
                 picker.setDate(picker.altInput.value, true, picker.config.altFormat)
             },
             parseDate(dateStr, format) {
-                return moment(dateStr, [format, "d.m.Y", "d.m.Y H:i:S"].map(x => flatpickrToMoment(x)), true).toDate()
+                var momentFormats = [format, "d.m.Y", "d.m.Y H:i:S"].map(x => flatpickrToMoment(x));
+                return moment(dateStr, [...momentFormats , moment.ISO_8601], true).toDate()
             }
         };
 
