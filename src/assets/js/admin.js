@@ -176,6 +176,11 @@ window.initSelect2 = function () {
             config['allowClear'] = false
         }
 
+        let tags = $(this).attr('tags');
+        if (tags === 'true') {
+            config['tags'] = true
+        }
+
         let placeholder = $(this).find('option[value=""]').text();
         if (placeholder.length > 0) {
             config["placeholder"] = placeholder;
