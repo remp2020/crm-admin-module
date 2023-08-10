@@ -60,7 +60,7 @@ class SnippetFormFactory
         $form->addTextArea('html', 'admin.data.snippets.fields.html')
             ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.html')
             ->setHtmlAttribute('rows', 30)
-            ->setHtmlAttribute('data-codeeditor', 'htmlmixed');
+            ->setHtmlAttribute('data-codeeditor', ['name' => 'twig', 'base' => 'text/html']);
 
         $form->addSubmit('send', 'system.save');
 
