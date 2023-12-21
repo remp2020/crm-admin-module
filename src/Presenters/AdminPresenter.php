@@ -8,21 +8,23 @@ use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
 use Crm\AdminModule\Helpers\SecuredAdminAccess;
 use Crm\ApplicationModule\Presenters\BasePresenter;
 use Crm\UsersModule\Repository\UsersRepository;
+use Nette\Application\Attributes\Persistent;
 use Nette\Application\ForbiddenRequestException;
+use Nette\DI\Attributes\Inject;
 
 class AdminPresenter extends BasePresenter
 {
-    /** @persistent */
+    #[Persistent]
     public $state;
 
-    /** @persistent */
+    #[Persistent]
     public $text;
 
-    /** @persistent */
+    #[Persistent]
     public $payment_method;
 
-    /** @var SecuredAdminAccess @inject */
-    public $securedAdminAccess;
+    #[Inject]
+    public SecuredAdminAccess $securedAdminAccess;
 
     protected $onPage = 50;
 

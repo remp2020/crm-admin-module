@@ -4,24 +4,25 @@ namespace Crm\AdminModule\Presenters;
 
 use Crm\ApplicationModule\Components\VisualPaginator;
 use Crm\ApplicationModule\Repository\AuditLogRepository;
+use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 class AuditLogAdminPresenter extends AdminPresenter
 {
-    /** @persistent */
+    #[Persistent]
     public $created_at_from;
 
-    /** @persistent */
+    #[Persistent]
     public $created_at_to;
 
-    /** @persistent */
+    #[Persistent]
     public $operation;
 
-    /** @persistent */
+    #[Persistent]
     public $signature;
 
-    /** @persistent */
+    #[Persistent]
     public $table;
 
     public function __construct(private AuditLogRepository $auditLogRepository)

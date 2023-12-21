@@ -4,6 +4,7 @@ namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Forms\SnippetFormFactory;
 use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
+use Nette\Application\Attributes\Persistent;
 use Nette\Database\Table\ActiveRow;
 
 class SnippetsAdminPresenter extends AdminPresenter
@@ -14,7 +15,7 @@ class SnippetsAdminPresenter extends AdminPresenter
     /** @var SnippetsRepository */
     private $snippetsRepository;
 
-    /** @persistent */
+    #[Persistent]
     public $snippet;
 
     public function __construct(SnippetsRepository $snippetsRepository, SnippetFormFactory $snippetFormFactory)

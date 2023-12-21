@@ -4,11 +4,12 @@ namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Forms\ConfigFormFactory;
 use Crm\ApplicationModule\Config\Repository\ConfigCategoriesRepository;
+use Nette\DI\Attributes\Inject;
 
 class ConfigAdminPresenter extends AdminPresenter
 {
-    /** @var ConfigCategoriesRepository @inject */
-    public $configCategoriesRepository;
+    #[Inject]
+    public ConfigCategoriesRepository $configCategoriesRepository;
 
     /**
      * @admin-access-level write
