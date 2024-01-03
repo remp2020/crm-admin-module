@@ -1,5 +1,6 @@
 import "./vendor"
 import moment from "moment";
+import minMaxTimePlugin from "flatpickr/dist/plugins/minMaxTimePlugin";
 
 $(document).ready(function() {
     $('.autosize').autosize();
@@ -115,6 +116,20 @@ $(document).ready(function() {
         var maxDate = $(this).attr('flatpickr_maxdate');
         if (maxDate) {
             properties["maxDate"] = maxDate;
+        }
+
+        var maxDatetime = $(this).attr('flatpickr_maxdatetime');
+        if (maxDatetime) {
+            maxDatetime = Date.parse(maxDatetime);
+
+            properties['disable'] = [(date) => (date.valueOf() >= maxDatetime)]
+            properties['plugins'] = [minMaxTimePlugin({
+                getTimeLimits: () => {
+                    return {
+                        maxTime: maxDatetime
+                    };
+                }
+            })]
         }
 
         var wrap = $(this).data('flatpickr_wrap');
