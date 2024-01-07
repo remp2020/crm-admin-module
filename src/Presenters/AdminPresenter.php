@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Presenters;
 
-use Crm\AdminModule\Components\AdminMenuFactoryInterface;
+use Crm\AdminModule\Components\AdminMenu\AdminMenuFactoryInterface;
 use Crm\AdminModule\Events\AdminRequestInsecureEvent;
 use Crm\AdminModule\Forms\ChangeLocaleFormFactory;
 use Crm\AdminModule\Helpers\SecuredAdminAccess;

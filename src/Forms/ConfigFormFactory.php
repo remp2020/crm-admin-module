@@ -3,7 +3,7 @@
 namespace Crm\AdminModule\Forms;
 
 use Contributte\Translation\Translator;
-use Crm\AdminModule\DataProvider\ConfigFormDataProviderInterface;
+use Crm\AdminModule\DataProviders\ConfigFormDataProviderInterface;
 use Crm\ApplicationModule\Config\ApplicationConfig;
 use Crm\ApplicationModule\Config\ConfigsCache;
 use Crm\ApplicationModule\Config\Repository\ConfigsRepository;

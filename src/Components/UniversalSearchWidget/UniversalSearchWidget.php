@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Components\UniversalSearchWidget;
 
-use Crm\AdminModule\Model\UniversalSearch;
+use Crm\AdminModule\Models\UniversalSearch;
 use Crm\ApplicationModule\Widget\BaseLazyWidget;
 use Crm\ApplicationModule\Widget\LazyWidgetManager;
 
