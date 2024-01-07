@@ -1,6 +1,6 @@
 <?php
 
-namespace Crm\AdminModule\Components;
+namespace Crm\AdminModule\Components\AdminMenu;
 
 interface AdminMenuFactoryInterface
 {

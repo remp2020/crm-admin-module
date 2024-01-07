@@ -1,6 +1,6 @@
 <?php
 
-namespace Crm\AdminModule\Populator;
+namespace Crm\AdminModule\Populators;
 
 use Crm\ApplicationModule\Populator\AbstractPopulator;
 use Crm\ApplicationModule\Repository\AuditLogRepository;

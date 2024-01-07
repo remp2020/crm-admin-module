@@ -1,6 +1,6 @@
 <?php
 
-namespace Crm\AdminModule\Components;
+namespace Crm\AdminModule\Components\AdminMenu;
 
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;

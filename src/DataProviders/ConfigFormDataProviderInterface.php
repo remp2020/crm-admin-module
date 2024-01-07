@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Crm\AdminModule\DataProvider;
+namespace Crm\AdminModule\DataProviders;
 
 use Crm\ApplicationModule\DataProvider\DataProviderInterface;
 use Nette\Application\UI\Form;
