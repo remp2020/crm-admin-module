@@ -5,7 +5,7 @@ namespace Crm\AdminModule\Components;
 use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
 use Crm\ApplicationModule\Menu\MenuItemInterface;
-use Nette\Application\UI;
+use Nette\Application\UI\Control;
 use Nette\Security\Authorizator;
 use Nette\Security\User;
 
@@ -18,7 +18,7 @@ use Nette\Security\User;
  *
  * @package Crm\AdminModule\Components
  */
-class AdminMenu extends UI\Control
+class AdminMenu extends Control
 {
     private $templateName = 'admin_menu.latte';
 

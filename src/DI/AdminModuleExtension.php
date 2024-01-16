@@ -3,6 +3,7 @@
 namespace Crm\AdminModule\DI;
 
 use Contributte\Translation\DI\TranslationProviderInterface;
+use Nette\Application\IPresenterFactory;
 use Nette\DI\CompilerExtension;
 
 final class AdminModuleExtension extends CompilerExtension implements TranslationProviderInterface
@@ -19,7 +20,7 @@ final class AdminModuleExtension extends CompilerExtension implements Translatio
     {
         $builder = $this->getContainerBuilder();
         // load presenters from extension to Nette
-        $builder->getDefinition($builder->getByType(\Nette\Application\IPresenterFactory::class))
+        $builder->getDefinition($builder->getByType(IPresenterFactory::class))
             ->addSetup('setMapping', [['Admin' => 'Crm\AdminModule\Presenters\*Presenter']]);
     }
 

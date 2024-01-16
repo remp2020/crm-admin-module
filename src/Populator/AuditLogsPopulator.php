@@ -4,11 +4,12 @@ namespace Crm\AdminModule\Populator;
 
 use Crm\ApplicationModule\Populator\AbstractPopulator;
 use Crm\ApplicationModule\Repository\AuditLogRepository;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class AuditLogsPopulator extends AbstractPopulator
 {
     /**
-     * @param \Symfony\Component\Console\Helper\ProgressBar $progressBar
+     * @param ProgressBar $progressBar
      */
     public function seed($progressBar)
     {

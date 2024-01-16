@@ -3,6 +3,9 @@
 namespace Crm\AdminModule;
 
 use Contributte\Translation\Translator;
+use Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget;
+use Crm\AdminModule\Events\AdminRequestInsecureEvent;
+use Crm\AdminModule\Seeders\ConfigsSeeder;
 use Crm\ApplicationModule\AssetsManager;
 use Crm\ApplicationModule\CrmModule;
 use Crm\ApplicationModule\Event\EventsStorage;
@@ -84,19 +87,19 @@ class AdminModule extends CrmModule
 
     public function registerSeeders(SeederManager $seederManager)
     {
-        $seederManager->addSeeder($this->getInstance(\Crm\AdminModule\Seeders\ConfigsSeeder::class));
+        $seederManager->addSeeder($this->getInstance(ConfigsSeeder::class));
     }
 
     public function registerEvents(EventsStorage $eventsStorage)
     {
-        $eventsStorage->register('admin-request-insecure', Events\AdminRequestInsecureEvent::class);
+        $eventsStorage->register('admin-request-insecure', AdminRequestInsecureEvent::class);
     }
 
     public function registerLazyWidgets(LazyWidgetManagerInterface $widgetManager)
     {
         $widgetManager->registerWidget(
             'admin.after_menu',
-            \Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget::class
+            UniversalSearchWidget::class
         );
     }
 }
