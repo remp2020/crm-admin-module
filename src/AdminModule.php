@@ -14,7 +14,7 @@ use Crm\ApplicationModule\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Menu\MenuItem;
 use Crm\ApplicationModule\SeederManager;
 use Crm\ApplicationModule\Widget\LazyWidgetManagerInterface;
-use Crm\UsersModule\Auth\Permissions;
+use Crm\UsersModule\Models\Auth\Permissions;
 use Nette\DI\Container;
 use Nette\Security\User;
 
