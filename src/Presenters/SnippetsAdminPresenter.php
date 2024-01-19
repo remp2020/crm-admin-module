@@ -3,7 +3,7 @@
 namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Forms\SnippetFormFactory;
-use Crm\ApplicationModule\Snippet\Repository\SnippetsRepository;
+use Crm\ApplicationModule\Repositories\SnippetsRepository;
 use Nette\Application\Attributes\Persistent;
 use Nette\Database\Table\ActiveRow;
 

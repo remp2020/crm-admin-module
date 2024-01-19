@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Models;
 
-use Crm\ApplicationModule\DataProvider\DataProviderManager;
+use Crm\ApplicationModule\Models\DataProvider\DataProviderManager;
 
 class UniversalSearch
 {

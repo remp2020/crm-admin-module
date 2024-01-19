@@ -3,8 +3,8 @@
 namespace Crm\AdminModule\Components\UniversalSearchWidget;
 
 use Crm\AdminModule\Models\UniversalSearch;
-use Crm\ApplicationModule\Widget\BaseLazyWidget;
-use Crm\ApplicationModule\Widget\LazyWidgetManager;
+use Crm\ApplicationModule\Models\Widget\BaseLazyWidget;
+use Crm\ApplicationModule\Models\Widget\LazyWidgetManager;
 
 class UniversalSearchWidget extends BaseLazyWidget
 {

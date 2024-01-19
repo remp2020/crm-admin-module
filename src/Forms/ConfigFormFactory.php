@@ -4,10 +4,10 @@ namespace Crm\AdminModule\Forms;
 
 use Contributte\Translation\Translator;
 use Crm\AdminModule\DataProviders\ConfigFormDataProviderInterface;
-use Crm\ApplicationModule\Config\ApplicationConfig;
-use Crm\ApplicationModule\Config\ConfigsCache;
-use Crm\ApplicationModule\Config\Repository\ConfigsRepository;
-use Crm\ApplicationModule\DataProvider\DataProviderManager;
+use Crm\ApplicationModule\Models\Config\ApplicationConfig;
+use Crm\ApplicationModule\Models\Config\ConfigsCache;
+use Crm\ApplicationModule\Models\DataProvider\DataProviderManager;
+use Crm\ApplicationModule\Repositories\ConfigsRepository;
 use Nette\Application\UI\Form;
 use Nette\Utils\Html;
 use Nette\Utils\Json;

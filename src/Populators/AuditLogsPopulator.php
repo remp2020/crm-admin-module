@@ -2,8 +2,8 @@
 
 namespace Crm\AdminModule\Populators;
 
-use Crm\ApplicationModule\Populator\AbstractPopulator;
-use Crm\ApplicationModule\Repository\AuditLogRepository;
+use Crm\ApplicationModule\Populators\AbstractPopulator;
+use Crm\ApplicationModule\Repositories\AuditLogRepository;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class AuditLogsPopulator extends AbstractPopulator

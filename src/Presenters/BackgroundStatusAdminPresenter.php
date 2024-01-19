@@ -2,12 +2,12 @@
 
 namespace Crm\AdminModule\Presenters;
 
-use Crm\ApplicationModule\Components\Graphs\GoogleLineGraphGroupControlFactoryInterface;
-use Crm\ApplicationModule\Graphs\Criteria;
-use Crm\ApplicationModule\Graphs\GraphDataItem;
+use Crm\ApplicationModule\Components\Graphs\GoogleLineGraphGroup\GoogleLineGraphGroupControlFactoryInterface;
 use Crm\ApplicationModule\Hermes\HermesMessage;
 use Crm\ApplicationModule\Hermes\RedisTasksQueue;
-use Crm\ApplicationModule\Repository\HermesTasksRepository;
+use Crm\ApplicationModule\Models\Graphs\Criteria;
+use Crm\ApplicationModule\Models\Graphs\GraphDataItem;
+use Crm\ApplicationModule\Repositories\HermesTasksRepository;
 use Nette\Utils\DateTime;
 use Nette\Utils\Json;
 use Tomaj\Hermes\Emitter;

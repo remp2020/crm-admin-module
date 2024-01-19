@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Helpers;
 
-use Crm\ApplicationModule\Config\ApplicationConfig;
+use Crm\ApplicationModule\Models\Config\ApplicationConfig;
 use Crm\UsersModule\Repositories\UserMetaRepository;
 use Nette\Database\Table\ActiveRow;
 use Nette\Http\Session;

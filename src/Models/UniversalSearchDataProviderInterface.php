@@ -2,7 +2,7 @@
 
 namespace Crm\AdminModule\Models;
 
-use Crm\ApplicationModule\DataProvider\DataProviderInterface;
+use Crm\ApplicationModule\Models\DataProvider\DataProviderInterface;
 
 interface UniversalSearchDataProviderInterface extends DataProviderInterface
 {

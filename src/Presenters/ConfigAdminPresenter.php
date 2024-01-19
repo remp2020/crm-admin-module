@@ -3,7 +3,7 @@
 namespace Crm\AdminModule\Presenters;
 
 use Crm\AdminModule\Forms\ConfigFormFactory;
-use Crm\ApplicationModule\Config\Repository\ConfigCategoriesRepository;
+use Crm\ApplicationModule\Repositories\ConfigCategoriesRepository;
 use Nette\DI\Attributes\Inject;
 
 class ConfigAdminPresenter extends AdminPresenter

@@ -2,8 +2,8 @@
 
 namespace Crm\AdminModule\Presenters;
 
-use Crm\ApplicationModule\Components\VisualPaginator;
-use Crm\ApplicationModule\Repository\AuditLogRepository;
+use Crm\ApplicationModule\Components\VisualPaginator\VisualPaginator;
+use Crm\ApplicationModule\Repositories\AuditLogRepository;
 use Nette\Application\Attributes\Persistent;
 use Nette\Application\UI\Form;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
