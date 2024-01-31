@@ -23,6 +23,7 @@ import 'codemirror/mode/xml/xml.js';
 import 'codemirror/mode/javascript/javascript.js';
 import 'codemirror/mode/css/css.js';
 import 'codemirror/mode/twig/twig.js';
+import 'codemirror/mode/sql/sql.js';
 
 // Flatpickr
 import Flatpickr from "flatpickr"
