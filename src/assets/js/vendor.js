@@ -2,6 +2,8 @@
 import icons from "trumbowyg/dist/ui/icons.svg";
 import "trumbowyg/dist/ui/trumbowyg.css"
 import "trumbowyg/dist/trumbowyg.js";
+import "trumbowyg/plugins/allowtagsfrompaste/trumbowyg.allowtagsfrompaste";
+import "./trumbowyg.removeattributesfrompaste";
 // Codemirror
 import CodeMirror from 'codemirror/lib/codemirror.js';
 import 'codemirror/lib/codemirror.css';

@@ -272,6 +272,11 @@ function initHtmlEditor() {
         semanticKeepAttributes: true,
         semantic: false,
         autogrow: true,
+        plugins: {
+            allowTagsFromPaste: {
+                allowedTags: ['p', 'span', 'b', 'strong', 'i', 'em', 'strike', 'del', 'u', 'a', 'div']
+            }
+        }
     }
     $(selector).each(function(index, element) {
         let $this = $(element);
