@@ -237,10 +237,10 @@ window.initSelect2 = function () {
 }
 
 // for selects to have correct width in collapse blocks
-$('.collapse').on('show.bs.collapse', function () {
+$(document).on('show.bs.collapse', '.collapse', function () {
     setTimeout(initSelect2, 0);
 });
-$('.modal').on('shown.bs.modal', function () {
+$(document).on('shown.bs.modal', '.modal', function () {
     setTimeout(initSelect2, 0);
 });
 
