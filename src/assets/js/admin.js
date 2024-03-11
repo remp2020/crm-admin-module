@@ -148,6 +148,7 @@ $(document).ready(function() {
     initHtmlEditor();
     initAceEditor(false);
     initCodemirror();
+    initDropdownSectionsMerger();
 });
 
 function flatpickrToMoment(format) {
@@ -317,5 +318,30 @@ function initCodemirror() {
         }
 
         CodeMirror.fromTextArea(element[0], settings);
+    });
+}
+
+function initDropdownSectionsMerger() {
+    $('[data-dropdown-merge-sections]').each(function() {
+        var dropdown = $(this);
+
+        // key:sectionId, value:lastSectionItem
+        var sections = {};
+
+        dropdown.find('[data-dropdown-section]').each(function () {
+            var section = $(this);
+            var sectionId = section.data('dropdown-section');
+
+            if (sections[sectionId] === undefined) {
+                sections[sectionId] = section.nextUntil('[data-dropdown-section]').last();
+                return;
+            }
+
+            var sectionItems = section.nextUntil('[data-dropdown-section]');
+            section.remove();
+
+            sections[sectionId].after(sectionItems);
+            sections[sectionId] = sectionItems.last();
+        });
     });
 }
