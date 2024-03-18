@@ -1,6 +1,7 @@
 import "./vendor"
 import moment from "moment";
 import minMaxTimePlugin from "flatpickr/dist/plugins/minMaxTimePlugin";
+import {convertArrayToCSV} from "convert-array-to-csv";
 
 $(document).ready(function() {
     $('.autosize').autosize();
@@ -344,4 +345,44 @@ function initDropdownSectionsMerger() {
             sections[sectionId] = sectionItems.last();
         });
     });
+}
+
+window.crmAdmin = window.crmAdmin || {};
+
+window.crmAdmin.downloadBlob = function (blob, filename) {
+    var blobUrl = URL.createObjectURL(blob);
+
+    var downloadLink = $('<a />', {
+        href: blobUrl,
+        download: filename,
+        class: 'hidden',
+        'aria-hidden': true,
+    });
+    downloadLink.appendTo($('body'));
+    downloadLink[0].click();
+    downloadLink.remove();
+
+    URL.revokeObjectURL(blobUrl);
+}
+
+/**
+ * Converts google visualization data to CSV (not a data table, just an input array/data)
+ */
+window.crmAdmin.googleVisualizationDataToCsv = function (data) {
+    var modifiedData = data
+        .map(function (row) {
+            return row.map(function (cell) {
+                if (cell instanceof Date) {
+                    return moment(cell).format('YYYY-MM-DD');
+                }
+
+                if (Object.hasOwn(cell, 'label')) {
+                    return cell.label;
+                }
+
+                return cell;
+            });
+        });
+
+    return convertArrayToCSV(modifiedData);
 }
