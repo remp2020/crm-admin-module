@@ -19,10 +19,11 @@ class ConfigFormFactory
     public $onSave;
 
     public function __construct(
-        private ConfigsRepository $configsRepository,
-        private ConfigsCache $configsCache,
-        private DataProviderManager $dataProviderManager,
-        private Translator $translator
+        private readonly ConfigsRepository $configsRepository,
+        private readonly ConfigsCache $configsCache,
+        private readonly DataProviderManager $dataProviderManager,
+        private readonly Translator $translator,
+        private readonly ApplicationConfig $applicationConfig,
     ) {
     }
 
@@ -105,6 +106,8 @@ class ConfigFormFactory
                 $this->configsCache->add($name, $value);
             }
         }
+
+        $this->applicationConfig->refresh(force: true);
 
         $this->onSave->__invoke($categoryId);
     }
