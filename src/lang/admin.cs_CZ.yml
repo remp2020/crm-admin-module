@@ -19,7 +19,7 @@ admin:
                 update: Upravení
                 delete: Smazání
             table: Tabulka
-            signature: Identifikátorátor
+            signature: Identifikátor
             created_at_from: Čas od
             created_at_to: Čas do
             filter: Filtr
