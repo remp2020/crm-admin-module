@@ -2,7 +2,6 @@
 
 namespace Crm\AdminModule;
 
-use Contributte\Translation\Translator;
 use Crm\AdminModule\Components\UniversalSearchWidget\UniversalSearchWidget;
 use Crm\AdminModule\Events\AdminRequestInsecureEvent;
 use Crm\AdminModule\Seeders\ConfigsSeeder;
@@ -14,23 +13,9 @@ use Crm\ApplicationModule\Models\Event\EventsStorage;
 use Crm\ApplicationModule\Models\Menu\MenuContainerInterface;
 use Crm\ApplicationModule\Models\Menu\MenuItem;
 use Crm\ApplicationModule\Models\Widget\LazyWidgetManagerInterface;
-use Crm\UsersModule\Models\Auth\Permissions;
-use Nette\DI\Container;
-use Nette\Security\User;
 
 class AdminModule extends CrmModule
 {
-    private $user;
-
-    private $permissions;
-
-    public function __construct(Container $container, Translator $translator, User $user, Permissions $permissions)
-    {
-        parent::__construct($container, $translator);
-        $this->user = $user;
-        $this->permissions = $permissions;
-    }
-
     public function registerAdminMenuItems(MenuContainerInterface $menuContainer)
     {
         $mainMenu = new MenuItem('', ':Application:Admin:', 'fa fa-cog', 900, true);
