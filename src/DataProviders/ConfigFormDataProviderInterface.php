@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace Crm\AdminModule\DataProviders;
 
 use Crm\ApplicationModule\Models\DataProvider\DataProviderInterface;
-use Nette\Application\UI\Form;
+use Crm\ApplicationModule\UI\Form;
 
 interface ConfigFormDataProviderInterface extends DataProviderInterface
 {

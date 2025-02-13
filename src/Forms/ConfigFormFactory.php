@@ -8,7 +8,7 @@ use Crm\ApplicationModule\Models\Config\ApplicationConfig;
 use Crm\ApplicationModule\Models\Config\ConfigsCache;
 use Crm\ApplicationModule\Models\DataProvider\DataProviderManager;
 use Crm\ApplicationModule\Repositories\ConfigsRepository;
-use Nette\Application\UI\Form;
+use Crm\ApplicationModule\UI\Form;
 use Nette\Utils\Html;
 use Nette\Utils\Json;
 use Tomaj\Form\Renderer\BootstrapRenderer;

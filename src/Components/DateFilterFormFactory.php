@@ -3,7 +3,7 @@
 namespace Crm\AdminModule\Components;
 
 use Contributte\Translation\Translator;
-use Nette\Application\UI\Form;
+use Crm\ApplicationModule\UI\Form;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
 /**

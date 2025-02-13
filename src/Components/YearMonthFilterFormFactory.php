@@ -2,9 +2,9 @@
 
 namespace Crm\AdminModule\Components;
 
+use Crm\ApplicationModule\UI\Form;
 use DateInterval;
 use DateTime;
-use Nette\Application\UI\Form;
 use Nette\Localization\Translator;
 use Tomaj\Form\Renderer\BootstrapInlineRenderer;
 
