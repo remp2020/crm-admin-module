@@ -9,7 +9,7 @@ class UniversalSearch
     private DataProviderManager $dataProviderManager;
 
     public function __construct(
-        DataProviderManager $dataProviderManager
+        DataProviderManager $dataProviderManager,
     ) {
         $this->dataProviderManager = $dataProviderManager;
     }
@@ -51,7 +51,7 @@ class UniversalSearch
 
         $array[] = [
             'text' => $groupName,
-            'children' => $items
+            'children' => $items,
         ];
     }
 }

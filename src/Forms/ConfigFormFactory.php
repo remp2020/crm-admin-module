@@ -48,12 +48,12 @@ class ConfigFormFactory
             } elseif ($config->type === ApplicationConfig::TYPE_TEXT) {
                 $item = $form->addTextArea(
                     $config->name,
-                    $config->display_name ?? $config->name
+                    $config->display_name ?? $config->name,
                 )->setHtmlAttribute('rows', 5);
             } elseif ($config->type === ApplicationConfig::TYPE_HTML) {
                 $item = $form->addTextArea(
                     $config->name,
-                    $config->display_name ?? $config->name
+                    $config->display_name ?? $config->name,
                 );
                 $item
                     ->setHtmlAttribute('rows', 15)

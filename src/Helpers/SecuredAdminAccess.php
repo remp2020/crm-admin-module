@@ -18,7 +18,7 @@ class SecuredAdminAccess
     public function __construct(
         private Session $session,
         private ApplicationConfig $applicationConfig,
-        private UserMetaRepository $userMetaRepository
+        private UserMetaRepository $userMetaRepository,
     ) {
     }
 

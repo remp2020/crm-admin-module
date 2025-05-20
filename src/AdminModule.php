@@ -25,7 +25,7 @@ class AdminModule extends CrmModule
             ':Admin:ConfigAdmin:',
             'fa fa-wrench',
             100,
-            true
+            true,
         );
         $mainMenu->addChild($menuItem1);
 
@@ -34,7 +34,7 @@ class AdminModule extends CrmModule
             ':Admin:BackgroundStatusAdmin:',
             'fa fa-sync-alt',
             200,
-            true
+            true,
         );
         $mainMenu->addChild($menuItem2);
 
@@ -43,7 +43,7 @@ class AdminModule extends CrmModule
             ':Admin:SnippetsAdmin:',
             'fa fa-eye-dropper',
             400,
-            true
+            true,
         );
         $mainMenu->addChild($menuItem4);
 
@@ -52,7 +52,7 @@ class AdminModule extends CrmModule
             ':Admin:AuditLogAdmin:',
             'fa fa-list-ul',
             500,
-            true
+            true,
         );
         $mainMenu->addChild($menuItem5);
 
@@ -84,7 +84,7 @@ class AdminModule extends CrmModule
     {
         $widgetManager->registerWidget(
             'admin.after_menu',
-            UniversalSearchWidget::class
+            UniversalSearchWidget::class,
         );
     }
 }

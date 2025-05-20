@@ -26,7 +26,7 @@ class SnippetFormFactory
 
     public function __construct(
         SnippetsRepository $snippetsRepository,
-        Translator $translator
+        Translator $translator,
     ) {
         $this->snippetsRepository = $snippetsRepository;
         $this->translator = $translator;
@@ -87,7 +87,7 @@ class SnippetFormFactory
                 $values->title,
                 $values->html,
                 $values->sorting,
-                $values->is_active
+                $values->is_active,
             );
             $this->onCreate->__invoke($snippet);
         }

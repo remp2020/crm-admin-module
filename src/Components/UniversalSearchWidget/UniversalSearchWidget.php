@@ -12,7 +12,7 @@ class UniversalSearchWidget extends BaseLazyWidget
 
     public function __construct(
         LazyWidgetManager $lazyWidgetManager,
-        private UniversalSearch $universalSearch
+        private UniversalSearch $universalSearch,
     ) {
         parent::__construct($lazyWidgetManager);
     }
@@ -35,7 +35,7 @@ class UniversalSearchWidget extends BaseLazyWidget
         $result = $this->universalSearch->search($term);
 
         $this->getPresenter()->sendJson([
-            "results" => $result
+            "results" => $result,
         ]);
     }
 }

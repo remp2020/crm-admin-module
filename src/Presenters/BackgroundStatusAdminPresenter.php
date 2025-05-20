@@ -23,7 +23,7 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
     public function __construct(
         HermesTasksRepository $hermesTasksRepository,
         RedisTasksQueue $redisTasksQueue,
-        Emitter $hermesEmitter
+        Emitter $hermesEmitter,
     ) {
         parent::__construct();
         $this->hermesTasksRepository = $hermesTasksRepository;
@@ -45,7 +45,7 @@ class BackgroundStatusAdminPresenter extends AdminPresenter
                     DateTime::from("-{$dayRange} days"),
                     [
                         HermesTasksRepository::STATE_ERROR,
-                    ]
+                    ],
                 )
                 ->fetchPairs('type', 'count');
         }

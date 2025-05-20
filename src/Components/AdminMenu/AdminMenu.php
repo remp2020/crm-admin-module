@@ -55,7 +55,7 @@ class AdminMenu extends Control
             $menuItem->link(),
             $menuItem->icon(),
             $menuItem->position(),
-            $menuItem->internal()
+            $menuItem->internal(),
         );
     }
 

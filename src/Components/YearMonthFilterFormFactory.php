@@ -36,14 +36,14 @@ class YearMonthFilterFormFactory
         $selectFrom = $form->addSelect(
             'date_from',
             'admin.components.date_filter_form.date_from',
-            $selectOptions
+            $selectOptions,
         )->setPrompt('--');
         $selectFrom->getControlPrototype()->addAttributes(['class' => 'select2']);
 
         $selectTo = $form->addSelect(
             'date_to',
             'admin.components.date_filter_form.date_to',
-            $selectOptions
+            $selectOptions,
         )->setPrompt('--');
         $selectTo->getControlPrototype()->addAttributes(['class' => 'select2']);
 
