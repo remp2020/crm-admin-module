@@ -43,6 +43,13 @@ $(document).ready(function() {
             return false;
         }
     });
+    $(document).on('submit', 'form', function(e) {
+        let elements = this.querySelectorAll('[type="submit"], [data-submit="disable"]');
+        elements.forEach(function(element) {
+            element.disabled = true;
+            element.classList.add('disabled');
+        });
+    });
 
     $('.add_note').click(function(ev) {
         ev.preventDefault();
