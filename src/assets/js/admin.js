@@ -44,11 +44,15 @@ $(document).ready(function() {
         }
     });
     $(document).on('submit', 'form', function(e) {
-        let elements = this.querySelectorAll('[type="submit"], [data-submit="disable"]');
-        elements.forEach(function(element) {
-            element.disabled = true;
-            element.classList.add('disabled');
-        });
+        const form = this;
+
+        setTimeout(function() {
+            let elements = form.querySelectorAll('[type="submit"], [data-submit="disable"]');
+            elements.forEach(function(element) {
+                element.disabled = true;
+                element.classList.add('disabled');
+            });
+        }, 0); // Delay execution until after the form data is collected
     });
 
     $('.add_note').click(function(ev) {
