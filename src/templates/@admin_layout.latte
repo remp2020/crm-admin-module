@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" crossorigin="anonymous">
   <link href="{$basePath}/layouts/admin/css/admin.css?v=5" rel="stylesheet">
   <link href="{$basePath}/layouts/admin/css/docs.min.css" rel="stylesheet">
+  <link href="{$basePath}/layouts/admin/css/dark-mode.css?v=11" rel="stylesheet">
   <script src="{$basePath}/layouts/admin/js/highcharts.js"></script>
   {*Google Charts*}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -58,11 +59,27 @@
           });
       });
   </script>
+  <script>
+    // Apply dark mode immediately to prevent flash of light theme
+    (function() {
+      var savedTheme = localStorage.getItem('admin-theme');
+      if (savedTheme === 'dark') {
+        document.documentElement.classList.add('dark-mode-loading');
+      }
+    })();
+  </script>
   {block head}{/block}
 </head>
 
 <body>
-<script> document.documentElement.className += ' js' </script>
+<script>
+  document.documentElement.className += ' js';
+  // Transfer dark mode class from html to body immediately
+  if (document.documentElement.classList.contains('dark-mode-loading')) {
+    document.body.classList.add('dark-mode');
+    document.documentElement.classList.remove('dark-mode-loading');
+  }
+</script>
 
 <nav class="navbar navbar-default" {if \Crm\ApplicationModule\Application\Core::env('CRM_ENV') == 'local'} style="background-color:black;"{/if}
      role="navigation">
@@ -86,6 +103,13 @@
       {control adminMenu}
 
       <ul class="nav navbar-nav navbar-right">
+
+        <li>
+          <a id="theme-toggle" title="Toggle dark mode">
+            <i class="fa fa-moon"></i>
+            <i class="fa fa-sun"></i>
+          </a>
+        </li>
 
         <li>
           {control simpleWidget 'admin.after_menu'}
@@ -170,6 +194,29 @@
 
       {var $lang = explode("_", $locale)[0]}
       {*localizeFlatpickr({$lang})*}
+
+        // Dark mode toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Load saved theme from localStorage
+        const savedTheme = localStorage.getItem('admin-theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark-mode');
+        }
+
+        // Toggle theme on button click
+        themeToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            body.classList.toggle('dark-mode');
+
+            // Save preference to localStorage
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('admin-theme', 'dark');
+            } else {
+                localStorage.setItem('admin-theme', 'light');
+            }
+        });
     });
 </script>
 

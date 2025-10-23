@@ -397,3 +397,94 @@ window.crmAdmin.googleVisualizationDataToCsv = function (data) {
 
     return convertArrayToCSV(modifiedData);
 }
+
+/**
+ * Returns Google Charts options for dark mode support
+ * Merges the provided options with dark mode specific colors if dark mode is active
+ */
+window.crmAdmin.getGoogleChartsOptions = function (baseOptions) {
+    var isDarkMode = document.body.classList.contains('dark-mode');
+
+    if (!isDarkMode) {
+        return baseOptions;
+    }
+
+    // Dark mode color configuration
+    var darkModeOptions = {
+        backgroundColor: '#1a1a1a',
+
+        legend: {
+            textStyle: {
+                color: '#e0e0e0'
+            }
+        },
+
+        titleTextStyle: {
+            color: '#e0e0e0'
+        },
+
+        hAxis: {
+            textStyle: {
+                color: '#e0e0e0'
+            },
+            titleTextStyle: {
+                color: '#e0e0e0'
+            },
+            gridlines: {
+                color: '#3d3d3d'
+            },
+            minorGridlines: {
+                color: '#2d2d2d'
+            },
+            baselineColor: '#3d3d3d'
+        },
+
+        vAxis: {
+            textStyle: {
+                color: '#e0e0e0'
+            },
+            titleTextStyle: {
+                color: '#e0e0e0'
+            },
+            gridlines: {
+                color: '#3d3d3d'
+            },
+            minorGridlines: {
+                color: '#2d2d2d'
+            },
+            baselineColor: '#3d3d3d'
+        },
+
+        // Tooltip styling
+        tooltip: {
+            textStyle: {
+                color: '#e0e0e0'
+            }
+        },
+
+        // Annotation styling
+        annotations: {
+            textStyle: {
+                color: '#e0e0e0'
+            }
+        }
+    };
+
+    // Deep merge function to combine objects
+    function deepMerge(target, source) {
+        for (var key in source) {
+            if (source.hasOwnProperty(key)) {
+                if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+                    target[key] = target[key] || {};
+                    deepMerge(target[key], source[key]);
+                } else {
+                    target[key] = source[key];
+                }
+            }
+        }
+        return target;
+    }
+
+    // Merge base options with dark mode options
+    return deepMerge(JSON.parse(JSON.stringify(baseOptions)), darkModeOptions);
+}
