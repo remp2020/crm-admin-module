@@ -121,6 +121,11 @@ $(document).ready(function() {
             properties["defaultHour"] = 0;
         }
 
+        var dateFormat = $(this).attr('flatpickr_dateformat');
+        if (dateFormat) {
+            properties["dateFormat"] = dateFormat;
+        }
+
         var minDate = $(this).attr('flatpickr_mindate');
         if (minDate) {
             properties["minDate"] = minDate;
