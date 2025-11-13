@@ -30,6 +30,49 @@ $(document).ready(function() {
         }
     });
 
+    // Disable/enable submit buttons for AJAX forms
+    $.nette.ext('ajaxFormButtons', {
+        start: function(xhr, settings) {
+            if (!settings.nette || !settings.nette.form) {
+                return;
+            }
+
+            const $form = $(settings.nette.form);
+
+            // Only handle AJAX forms
+            if (!$form.hasClass('ajax')) {
+                return;
+            }
+
+            // Disable buttons when AJAX request starts
+            $form.find('[type="submit"], [data-submit="disable"]').each(function() {
+                $(this).prop('disabled', true).addClass('disabled');
+            });
+        },
+        complete: function(payload, status, settings) {
+            if (!settings.nette || !settings.nette.form) {
+                return;
+            }
+
+            const $form = $(settings.nette.form);
+
+            // Only handle AJAX forms
+            if (!$form.hasClass('ajax')) {
+                return;
+            }
+
+            // Keep disabled if redirecting (success case)
+            if (payload && payload.redirect) {
+                return;
+            }
+
+            // Re-enable buttons (validation error case)
+            $form.find('[type="submit"], [data-submit="disable"]').each(function() {
+                $(this).prop('disabled', false).removeClass('disabled');
+            });
+        }
+    });
+
     // handling standard calls on elements rendered on page load
     $(document).on('click', 'a.btn-danger', function(e) {
         if (!confirm('Are you sure?')) {
