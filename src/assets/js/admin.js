@@ -18,6 +18,11 @@ $(document).ready(function() {
                 return;
             }
 
+            // Disable submit buttons for AJAX forms
+            if (settings.nette.form) {
+                disableFormSubmitButtons(settings.nette.form.get(0));
+            }
+
             let target = $(settings.nette.e.target);
             if (!target.hasClass('btn-danger') && !target.closest('.btn').hasClass('btn-danger')) {
                 return;
@@ -27,49 +32,6 @@ $(document).ready(function() {
                 settings.nette.e.preventDefault();
                 return false;
             }
-        }
-    });
-
-    // Disable/enable submit buttons for AJAX forms
-    $.nette.ext('ajaxFormButtons', {
-        start: function(xhr, settings) {
-            if (!settings.nette || !settings.nette.form) {
-                return;
-            }
-
-            const $form = $(settings.nette.form);
-
-            // Only handle AJAX forms
-            if (!$form.hasClass('ajax')) {
-                return;
-            }
-
-            // Disable buttons when AJAX request starts
-            $form.find('[type="submit"], [data-submit="disable"]').each(function() {
-                $(this).prop('disabled', true).addClass('disabled');
-            });
-        },
-        complete: function(payload, status, settings) {
-            if (!settings.nette || !settings.nette.form) {
-                return;
-            }
-
-            const $form = $(settings.nette.form);
-
-            // Only handle AJAX forms
-            if (!$form.hasClass('ajax')) {
-                return;
-            }
-
-            // Keep disabled if redirecting (success case)
-            if (payload && payload.redirect) {
-                return;
-            }
-
-            // Re-enable buttons (validation error case)
-            $form.find('[type="submit"], [data-submit="disable"]').each(function() {
-                $(this).prop('disabled', false).removeClass('disabled');
-            });
         }
     });
 
@@ -87,15 +49,7 @@ $(document).ready(function() {
         }
     });
     $(document).on('submit', 'form', function(e) {
-        const form = this;
-
-        setTimeout(function() {
-            let elements = form.querySelectorAll('[type="submit"], [data-submit="disable"]');
-            elements.forEach(function(element) {
-                element.disabled = true;
-                element.classList.add('disabled');
-            });
-        }, 0); // Delay execution until after the form data is collected
+        disableFormSubmitButtons(this);
     });
 
     $('.add_note').click(function(ev) {
@@ -404,6 +358,16 @@ function initDropdownSectionsMerger() {
             sections[sectionId] = sectionItems.last();
         });
     });
+}
+
+function disableFormSubmitButtons(form) {
+    setTimeout(function() {
+        let elements = form.querySelectorAll('[type="submit"], [data-submit="disable"]');
+        elements.forEach(function(element) {
+            element.disabled = true;
+            element.classList.add('disabled');
+        });
+    }, 0); // Delay execution until after the form data is collected
 }
 
 window.crmAdmin = window.crmAdmin || {};
