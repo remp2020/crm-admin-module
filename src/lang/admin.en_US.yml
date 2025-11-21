@@ -116,6 +116,9 @@ data:
         required:
             title: Title is required
             identifier: Identifier is required
+            sorting: Sorting is required
+        validation:
+            sorting_positive: Sorting must be a positive number
         placeholder:
             title: for example User zone header
             identifier: for example user_header

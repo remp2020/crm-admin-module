@@ -116,6 +116,9 @@ data:
         required:
             title: Názov je povinný
             identifier: Identifikátor je povinný
+            sorting: Poradie je povinné
+        validation:
+            sorting_positive: Poradie musí byť kladné číslo
         placeholder:
             title: napríklad User zone header
             identifier: napríklad user_header

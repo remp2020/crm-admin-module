@@ -54,7 +54,10 @@ class SnippetFormFactory
 
         $form->addCheckbox('is_active', 'admin.data.snippets.fields.is_active');
 
-        $form->addText('sorting', 'admin.data.snippets.fields.sorting')
+        $form->addInteger('sorting', 'admin.data.snippets.fields.sorting')
+            ->setRequired('admin.data.snippets.required.sorting')
+            ->setDefaultValue(100)
+            ->addRule($form::MIN, 'admin.data.snippets.validation.sorting_positive', 0)
             ->setHtmlAttribute('placeholder', 'admin.data.snippets.placeholder.sorting');
 
         $form->addTextArea('html', 'admin.data.snippets.fields.html')
