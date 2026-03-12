@@ -1,3 +1,3 @@
 js:
-	yarn install
-	yarn mix --production
+	npm install
+	npm run production
