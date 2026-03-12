@@ -35,7 +35,7 @@ class SnippetFormFactory
     /**
      * @return Form
      */
-    public function create(ActiveRow $snippet = null)
+    public function create(?ActiveRow $snippet = null)
     {
         $this->snippet = $snippet;
         $form = new Form;
