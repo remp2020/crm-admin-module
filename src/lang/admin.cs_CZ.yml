@@ -124,6 +124,9 @@ data:
             identifier: například user_header
             sorting: Například 300
             html: nějaké html
+        errors:
+            identifier_exists: Snippet s identifikátorem '%identifier%' existuje.
+            identifier_exists_update: Změna identifikátoru '%old_identifier%' na nový identifikátor '%new_identifier%' není možná. Snippet s identifikátorem '%new_identifier%' existuje.
         no_record: 'n/a'
 
 security:

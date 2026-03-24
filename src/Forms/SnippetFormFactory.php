@@ -3,6 +3,7 @@
 namespace Crm\AdminModule\Forms;
 
 use Contributte\Translation\Translator;
+use Crm\ApplicationModule\Repositories\SnippetAlreadyExistsException;
 use Crm\ApplicationModule\Repositories\SnippetsRepository;
 use Crm\ApplicationModule\UI\Form;
 use Nette\Database\Table\ActiveRow;
@@ -82,16 +83,35 @@ class SnippetFormFactory
                 // keep default value flag if it was there and html didn't change
                 $values['has_default_value'] = true;
             }
-            $this->snippetsRepository->update($this->snippet, $values);
+            try {
+                $this->snippetsRepository->update($this->snippet, $values);
+            } catch (SnippetAlreadyExistsException $e) {
+                $form['identifier']->addError($this->translator->translate(
+                    'admin.data.snippets.errors.identifier_exists_update',
+                    [
+                        'old_identifier' => $this->snippet->identifier,
+                        'new_identifier' => $values['identifier'],
+                    ],
+                ));
+                return;
+            }
             $this->onUpdate->__invoke($this->snippet);
         } else {
-            $snippet = $this->snippetsRepository->add(
-                $values->identifier,
-                $values->title,
-                $values->html,
-                $values->sorting,
-                $values->is_active,
-            );
+            try {
+                $snippet = $this->snippetsRepository->add(
+                    $values->identifier,
+                    $values->title,
+                    $values->html,
+                    $values->sorting,
+                    $values->is_active,
+                );
+            } catch (SnippetAlreadyExistsException $e) {
+                $form['identifier']->addError($this->translator->translate(
+                    'admin.data.snippets.errors.identifier_exists',
+                    ['identifier' => $values->identifier],
+                ));
+                return;
+            }
             $this->onCreate->__invoke($snippet);
         }
     }

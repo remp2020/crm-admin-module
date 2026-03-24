@@ -124,6 +124,9 @@ data:
             identifier: for example user_header
             sorting: for example 300
             html: some html
+        errors:
+            identifier_exists: A snippet with identifier '%identifier%' exists.
+            identifier_exists_update: Changing identifier '%old_identifier%' to new identifier '%new_identifier%' is not possible. A snippet with identifier '%new_identifier%' exists.
         no_record: 'n/a'
 
 security:
