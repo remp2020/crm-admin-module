@@ -39,8 +39,6 @@ class UserSignInEventHandler extends AbstractListener
 }
 ```
 
-[![Translation status @ Weblate](https://hosted.weblate.org/widgets/remp-crm/-/admin-module/svg-badge.svg)](https://hosted.weblate.org/projects/remp-crm/admin-module/)
-
 ## Components
 
 **DateFilterFormFactory**
