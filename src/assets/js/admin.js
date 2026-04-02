@@ -372,6 +372,41 @@ function disableFormSubmitButtons(form) {
 
 window.crmAdmin = window.crmAdmin || {};
 
+/**
+ * Initialize ClipboardJS on the given selector with tooltip feedback.
+ * Requires clipboard.js to be loaded (e.g. from CDN) and Bootstrap tooltips.
+ *
+ * @param {string} selector - CSS selector for clipboard trigger elements
+ */
+window.crmAdmin.initClipboard = function (selector) {
+    if (typeof ClipboardJS === 'undefined') {
+        console.warn('ClipboardJS is not loaded. Include clipboard.js before calling initClipboard.');
+        return;
+    }
+
+    var clipboard = new ClipboardJS(selector);
+
+    $(selector).tooltip({
+        trigger: 'manual',
+        placement: 'top'
+    });
+
+    clipboard.on('success', function (e) {
+        var $el = $(e.trigger);
+        $el.attr('data-original-title', $el.data('clipboard-success') || 'Copied!').tooltip('show');
+        setTimeout(function () { $el.tooltip('hide'); }, 1000);
+        e.clearSelection();
+    });
+
+    clipboard.on('error', function (e) {
+        var $el = $(e.trigger);
+        $el.attr('data-original-title', 'Press Ctrl+C').tooltip('show');
+        setTimeout(function () { $el.tooltip('hide'); }, 1500);
+    });
+
+    return clipboard;
+};
+
 window.crmAdmin.downloadBlob = function (blob, filename) {
     var blobUrl = URL.createObjectURL(blob);
 
