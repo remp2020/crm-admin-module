@@ -19,6 +19,8 @@ import 'codemirror/addon/search/searchcursor.js';
 import 'codemirror/addon/search/jump-to-line.js';
 import 'codemirror/addon/dialog/dialog.js';
 import 'codemirror/addon/dialog/dialog.css';
+import 'codemirror/addon/display/fullscreen.js';
+import 'codemirror/addon/display/fullscreen.css';
 
 import 'codemirror/mode/htmlmixed/htmlmixed.js';
 import 'codemirror/mode/xml/xml.js';

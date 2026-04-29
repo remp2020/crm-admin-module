@@ -306,6 +306,7 @@ function initCodemirror() {
     $(selector).each(function () {
         let element = $(this);
         let mode = element.data('codeeditor');
+        let fullscreenBtn = null;
         const settings = {
             'mode': mode,
             'indentUnit': 4,
@@ -321,7 +322,17 @@ function initCodemirror() {
                 'Cmd-\/': 'toggleComment',
                 'Alt-F': 'findPersistent',
                 'Ctrl-F': 'findPersistent',
-                'Cmd-F': 'findPersistent'
+                'Cmd-F': 'findPersistent',
+                "F11": function(cm) {
+                    cm.setOption("fullScreen", !cm.getOption("fullScreen"));
+                    updateCodemirrorFullscreenToggleButton(fullscreenBtn, cm);
+                },
+                "Esc": function(cm) {
+                    if (cm.getOption("fullScreen")) {
+                        cm.setOption("fullScreen", false);
+                        updateCodemirrorFullscreenToggleButton(fullscreenBtn, cm);
+                    }
+                }
             },
             'direction': 'ltr',
             'autoCloseBrackets': true,
@@ -331,7 +342,31 @@ function initCodemirror() {
             },
         }
 
-        CodeMirror.fromTextArea(element[0], settings);
+        const editor = CodeMirror.fromTextArea(element[0], settings);
+
+        fullscreenBtn = document.createElement('button');
+        fullscreenBtn.type = 'button';
+        fullscreenBtn.className = 'cm-fullscreen-toggle';
+        fullscreenBtn.title = 'Toggle fullscreen (F11)';
+        fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+        fullscreenBtn.addEventListener('click', function() {
+            editor.setOption('fullScreen', !editor.getOption('fullScreen'));
+            updateCodemirrorFullscreenToggleButton(fullscreenBtn, editor);
+            editor.focus();
+        });
+        editor.getWrapperElement().appendChild(fullscreenBtn);
+    });
+}
+
+function updateCodemirrorFullscreenToggleButton(btn, cm) {
+    const isFullscreen = cm.getOption('fullScreen');
+    
+    // toggle expand/compress icon
+    btn.querySelector('i').className = isFullscreen ? 'fas fa-compress' : 'fas fa-expand';
+    
+    // hide FS toggle buttons from other text areas
+    document.querySelectorAll('.cm-fullscreen-toggle').forEach(function(other) {
+        if (other !== btn) other.style.display = isFullscreen ? 'none' : '';
     });
 }
 

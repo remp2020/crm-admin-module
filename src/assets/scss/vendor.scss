@@ -3,4 +3,24 @@
 .CodeMirror {
   border: 1px solid #ccc;
   border-radius: 4px;
+
+  .cm-fullscreen-toggle {
+    position: absolute;
+    top: 3px;
+    right: 12px;
+    z-index: 10;
+    background: transparent;
+    border: none;
+    padding: 4px 7px;
+    cursor: pointer;
+    opacity: 0.25;
+    color: inherit;
+    line-height: 1;
+    border-radius: 3px;
+    transition: opacity 0.15s;
+
+    &:hover {
+      opacity: 0.75;
+    }
+  }
 }
